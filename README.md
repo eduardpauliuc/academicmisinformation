@@ -1,2 +1,2 @@
-# amice
-ISS Project
+# AcademicMisinformation
+ISS Project - Amice Team
