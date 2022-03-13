@@ -1,0 +1,39 @@
+Actors:
+Student
+Teacher
+(inh teacher) Chief of Department
+Staff
+All these inherit User
+Admin
+
+Actions:
+Sign in (User) included by all
+Manage profile - user
+Logout - user
+
+Student actions:
+Enroll
+View curriculum
+Manage optional courses
+Sign contract of studies
+View grades
+
+Staff actions:
+Assign student to optional
+View students in group by result
+View student in year by result or criteria
+View students rakings after semester
+Generate document (extende above)
+
+Teacher actions:
+Propose optional courses
+Add grade for student
+
+Chief of Department actions:
+Review list of optional courses
+Set number of student for course
+View teacher with best/worst results
+View disciplines for teacher
+
+Admin actions:
+Create accounts
