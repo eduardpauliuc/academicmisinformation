@@ -6,8 +6,8 @@
 ### Database Diagram
 ![database](./database.jpg)
 
-### Use-Cases Diagram
-![use_cases](./use_cases.jpg)
+### Usecase Diagram
+![usecase](./usecase.jpg)
 
 ### Flowchart Diagram
 ![flowchart](./flowchart.jpg)
