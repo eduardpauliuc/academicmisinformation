@@ -1,5 +1,4 @@
-package com.example.iss_project;
-
+package com.example;
 
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
