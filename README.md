@@ -1,46 +1,41 @@
 # AcademicMisinformation
+### `Team Amice`
 
-ISS Project - Amice Team
+<hr>
 
-
-## Client: WEB
+## Client (web):
 
 ### Technology: React + Typescript
 People: Nuti, Andreea, Iulia, Ed
 
+<hr>
 
 ## Backend:
 
-### Technology: Spring
+### Technology: Java SpringBoot
 People: Calin, Alex, Andreea, Iulia
 
+<hr>
 
 ## Database:
 
 ### Technology: PostgreSQL
 People: Alex
 
+<hr>
 
-### Notes:
-- assume **Java SpringBoot** as backend technology
-- **Spring Data JPA** – facilitates data access and operations
-- **Hibernate** (included in Spring Data JPA) – manages object-table mappings
-- **PostgreSQL JDBC** driver – allows Java programs to connect to PostgreSQL database only by using Java code
-- **pgAdmin4**– GUI used for managing the database
+## Requirements
 
-## REQUIREMENTS
+### Actors:
 
-#### Actors:
-
-All these inherit User:
+All inherit User:
 - Student
 - Teacher
-- Chief of Department (inh teacher) 
+- Chief of Department (inherits teacher)
 - Staff
 - Admin
 
-
-#### Actions:
+### Actions:
 
 ##### User:
 - Sign in
@@ -59,7 +54,7 @@ All these inherit User:
 - View students in group by result
 - View student in year by result or criteria
 - View students rakings after semester
-- Generate document (extende above)
+- Generate document (extended above)
 
 ##### Teacher:
 - Propose optional courses
@@ -67,7 +62,7 @@ All these inherit User:
 
 ##### Chief of Department:
 - Review list of optional courses
-- Set number of student for course
+- Set number of students for course
 - View teacher with best/worst results
 - View disciplines for teacher
 

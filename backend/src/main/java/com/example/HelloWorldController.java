@@ -1,5 +1,4 @@
-package com.example.iss_project;
-
+package com.example;
 
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -15,5 +14,10 @@ public class HelloWorldController {
     @RequestMapping("/goodbye")
     public String goodbye(){
         return "Goodbye from Spring Boot";
+    }
+
+    @RequestMapping("/ciao")
+    public String ciao(){
+        return "Ciao from Spring Boot";
     }
 }
