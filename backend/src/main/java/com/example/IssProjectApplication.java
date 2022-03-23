@@ -9,10 +9,10 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 public class IssProjectApplication {
 
     public static void main(String[] args) {
-        String password = "123456";
+        String password = "foobar";
         PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
         String encodedPassword = passwordEncoder.encode(password);
-        System.out.print(encodedPassword);
+        System.out.print("PASSWORD: " + encodedPassword);
 
         SpringApplication.run(IssProjectApplication.class, args);
     }
