@@ -15,10 +15,6 @@ public class BaseEntity {
     public BaseEntity() {
     }
 
-    public BaseEntity(Long id) {
-        this.id = id;
-    }
-
     public Long getId() {
         return id;
     }
