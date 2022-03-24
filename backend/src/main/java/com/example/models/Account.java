@@ -1,6 +1,8 @@
 package com.example.models;
 
+import com.sun.istack.NotNull;
 import lombok.Getter;
+import lombok.NonNull;
 import lombok.Setter;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -9,25 +11,33 @@ import org.springframework.security.core.userdetails.UserDetails;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Table;
+import javax.persistence.UniqueConstraint;
 import java.sql.Date;
 import java.util.HashSet;
 import java.util.Set;
 
 @Entity
-@Table(name = "accounts")
+@Table(name = "accounts", uniqueConstraints = {
+        @UniqueConstraint(columnNames = "username"),
+        @UniqueConstraint(columnNames = "email"),
+})
 @Getter
 @Setter
 public class Account extends BaseEntity implements UserDetails {
 
+    @NonNull
     @Column(name = "username")
     private String username;
 
+    @NonNull
     @Column(name = "email")
     private String email;
 
+    @NonNull
     @Column(name = "password_digest")
     private String password;
 
+    @NonNull
     @Column(name = "type")
     private String type;
 
