@@ -22,7 +22,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
-import java.util.Date;
+import java.sql.Date;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.List;
@@ -91,9 +91,8 @@ public class AuthenticationController {
                     .body(new MessageResponse("Error: Email already exists!"));
         }
 
-
-        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd/MM/yyyy");
-        Date date = (Date) simpleDateFormat.parse(signupRequest.getBirthDate());
+        // the format of the date must be 'yyyy-MM-dd'
+        Date date = Date.valueOf(signupRequest.getBirthDate());
 
         Account account = new Account(
                 signupRequest.getUsername(),
