@@ -1,7 +1,7 @@
 package com.example.payload.responses;
 
 
-import java.sql.Date;
+import java.util.Date;
 
 public class JwtResponse {
     private String token;

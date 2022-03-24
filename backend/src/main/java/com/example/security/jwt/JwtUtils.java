@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Component;
 
+import java.time.ZonedDateTime;
 import java.util.Date;
 
 @Component
@@ -25,7 +26,7 @@ public class JwtUtils {
         return Jwts.builder()
                 .setSubject((accountPrincipal.getUsername()))
                 .setIssuedAt(new Date())
-                .setExpiration(new Date((new Date()).getTime() + this.jwtExpirationMs))
+                .setExpiration(Date.from(ZonedDateTime.now().toInstant().plusMillis(Long.parseLong(this.jwtExpirationMs))))
                 .signWith(SignatureAlgorithm.HS512, this.jwtSecret)
                 .compact();
     }

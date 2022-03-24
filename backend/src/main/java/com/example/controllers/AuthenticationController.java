@@ -22,8 +22,11 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
-import java.sql.Date;
+import java.util.Date;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @CrossOrigin(origins = "*", maxAge = 3600)
@@ -58,21 +61,24 @@ public class AuthenticationController {
         AccountDetails accountDetails = (AccountDetails) authentication.getPrincipal();
         List<String> roles = accountDetails.getAuthorities().stream()
                 .map(GrantedAuthority::getAuthority)
-                .limit(1)
                 .collect(Collectors.toList());
+        Optional<String> roleWrapper = roles.stream().findFirst(); // each user has exactly one role
+        String role = roleWrapper.orElse("");
 
-        return ResponseEntity.ok(new JwtResponse(jwt,
+        return ResponseEntity.ok(new JwtResponse(
+                jwt,
                 accountDetails.getId(),
                 accountDetails.getUsername(),
                 accountDetails.getEmail(),
-                roles.get(0),
+                role,
                 accountDetails.getFirstName(),
                 accountDetails.getLastName(),
-                accountDetails.getBirthDate()));
+                accountDetails.getBirthDate()
+        ));
     }
 
     @PostMapping("/signup")
-    public ResponseEntity<?> registerUser(@Valid @RequestBody SignupRequest signupRequest) {
+    public ResponseEntity<?> registerUser(@Valid @RequestBody SignupRequest signupRequest) throws ParseException {
         if (this.accountRepository.existsByUsername(signupRequest.getUsername())) {
             return ResponseEntity
                     .badRequest()
@@ -85,19 +91,23 @@ public class AuthenticationController {
                     .body(new MessageResponse("Error: Email already exists!"));
         }
 
+
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd/MM/yyyy");
+        Date date = (Date) simpleDateFormat.parse(signupRequest.getBirthDate());
+
         Account account = new Account(
                 signupRequest.getUsername(),
                 signupRequest.getEmail(),
                 encoder.encode(signupRequest.getPassword()),
                 signupRequest.getFirstName(),
                 signupRequest.getLastName(),
-                Date.valueOf(signupRequest.getBirthDate())
+                date
         );
 
         String requestRole = signupRequest.getRole();
         Role role;
 
-        switch(requestRole) {
+        switch (requestRole) {
             case "staff":
                 Role staffRole = this.roleRepository.findByName(ERole.ROLE_STAFF)
                         .orElseThrow(() -> new RuntimeException("Error: Role not found!"));
