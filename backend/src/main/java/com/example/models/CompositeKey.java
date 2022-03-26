@@ -10,17 +10,17 @@ public class CompositeKey implements Serializable {
 
     }
 
-    public CompositeKey(Integer first_key, Integer second_key){
-        this.firstKey = first_key;
-        this.secondKey = second_key;
+    public CompositeKey(Integer firstKey, Integer secondKey){
+        this.firstKey = firstKey;
+        this.secondKey = secondKey;
     }
 
     public Integer getFirstKey(){
-        return firstKey;
+        return this.firstKey;
     }
 
     public Integer getSecondKey(){
-        return secondKey;
+        return this.secondKey;
     }
 
 }
