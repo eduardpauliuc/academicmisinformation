@@ -14,7 +14,7 @@ import java.sql.Date;
 @AllArgsConstructor
 @NoArgsConstructor
 @Table(name = "active_contracts")
-@IdClass(CompositeKey.class)
+@IdClass(ActiveContractKey.class)
 // this should DEFINITELY not work
 // figure this out please
 public class ActiveContract{
