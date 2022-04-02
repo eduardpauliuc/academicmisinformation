@@ -5,7 +5,7 @@
 
 ## Client (web):
 
-### Technology: React + Typescript
+### Technology: React
 People: Nuti, Andreea, Iulia, Ed
 
 <hr>
@@ -13,14 +13,14 @@ People: Nuti, Andreea, Iulia, Ed
 ## Backend:
 
 ### Technology: Java SpringBoot
-People: Calin, Alex, Andreea, Iulia
+People: Andreea, Alex, Calin
 
 <hr>
 
 ## Database:
 
 ### Technology: PostgreSQL
-People: Alex
+People: Alex, Calin, Andreea
 
 <hr>
 
