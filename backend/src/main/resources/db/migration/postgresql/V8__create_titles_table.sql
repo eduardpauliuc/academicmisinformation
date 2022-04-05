@@ -1,4 +1,4 @@
-CREATE TABLE IF NOT EXISTS migrations.roles
+CREATE TABLE IF NOT EXISTS migrations.titles
 (
     id      SERIAL,
     name    TEXT,
