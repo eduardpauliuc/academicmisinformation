@@ -1,3 +1,4 @@
 INSERT INTO migrations.statuses(name)
-VALUES ('PENDING'),
+VALUES ('ACCEPTED'),
+       ('PENDING'),
        ('REJECTED');

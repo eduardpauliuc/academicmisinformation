@@ -1,7 +1,7 @@
 CREATE TABLE IF NOT EXISTS migrations.accounts
 (
     id              SERIAL,
-    role_id         INTEGER,
+    role_id         INTEGER NOT NULL,
     username        TEXT NOT NULL UNIQUE,
     email           TEXT NOT NULL UNIQUE,
     password_digest TEXT NOT NULL,

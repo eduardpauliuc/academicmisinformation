@@ -5,7 +5,7 @@ CREATE TABLE IF NOT EXISTS migrations.teacher_courses
 
     PRIMARY KEY (teacher_id, course_id),
 
-    CONSTRAINT FK_teacher_courses_teacher_id FOREIGN KEY (teacher_id) REFERENCES migrations.teachers(id)
+    CONSTRAINT FK_teacher_courses_teacher_id FOREIGN KEY (teacher_id) REFERENCES migrations.teachers(account_id)
         ON DELETE CASCADE
         ON UPDATE CASCADE,
 

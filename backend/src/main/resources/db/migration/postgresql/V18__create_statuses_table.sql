@@ -1,7 +1,7 @@
 CREATE TABLE IF NOT EXISTS migrations.statuses
 (
     id      SERIAL,
-    name    TEXT,
+    name    TEXT NOT NULL,
 
     PRIMARY KEY(id)
 )
