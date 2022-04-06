@@ -5,30 +5,23 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import javax.persistence.CascadeType;
-import javax.persistence.JoinColumn;
 import javax.persistence.*;
 
 @Entity
 @Table(name = "specializations")
-@Setter
 @Getter
+@Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class Specialization extends BaseEntity{
-    @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "faculty_id")
+public class Specialization {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
+    private Long id;
+
+    @ManyToOne
+    @JoinColumn(name = "faculty_id", nullable = false)
     private Faculty faculty;
-
-    @Column(name = "name")
-    private String name;
-
-    @Column(name = "study_language")
-    private String studyLanguage;
-
-    @OneToOne(cascade = CascadeType.ALL, orphanRemoval = true)
-    @JoinColumn(name = "chief_of_department_id")
-    private Teacher teacher;
-
 
 }

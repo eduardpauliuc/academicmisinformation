@@ -13,12 +13,18 @@ import javax.persistence.*;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class Teacher extends BaseEntity{
+public class Teacher {
 
-    @OneToOne(cascade = CascadeType.ALL, orphanRemoval = true)
+    @Id
+    private Long id;
+
+    @MapsId
+    @OneToOne
     @JoinColumn(name = "account_id")
-    Account account;
+    private Account account;
 
-    @Column(name = "title")
-    String title;
+    @ManyToOne
+    @JoinColumn(name = "title_id")
+    private Title title;
+
 }

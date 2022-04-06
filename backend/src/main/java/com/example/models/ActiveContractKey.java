@@ -6,20 +6,20 @@ public class ActiveContractKey implements Serializable {
     private Integer student;
     private Integer specialization;
 
-    public ActiveContractKey(){
+    public ActiveContractKey() {
 
     }
 
-    public ActiveContractKey(Integer first_key, Integer second_key){
+    public ActiveContractKey(Integer first_key, Integer second_key) {
         this.student = first_key;
         this.specialization = second_key;
     }
 
-    public Integer getStudentID(){
+    public Integer getStudentID() {
         return student;
     }
 
-    public Integer getSpecializationID(){
+    public Integer getSpecializationID() {
         return specialization;
     }
 

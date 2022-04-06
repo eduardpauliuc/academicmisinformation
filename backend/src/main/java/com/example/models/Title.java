@@ -6,22 +6,22 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
-import java.util.List;
 
 @Entity
-@Table(name = "faculties")
-@Getter @Setter @AllArgsConstructor @NoArgsConstructor
-public class Faculty {
+@Table(name = "titles")
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
+public class Title {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private Long id;
 
-    @Column(name = "name", nullable = false)
-    private String name;
-
-    @OneToMany(mappedBy="faculty")
-    private List<Specialization> specializations;
+    @Enumerated(EnumType.STRING)
+    @Column(name = "name")
+    private ETitle name;
 
 }

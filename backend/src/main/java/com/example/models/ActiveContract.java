@@ -17,7 +17,7 @@ import java.sql.Date;
 @IdClass(ActiveContractKey.class)
 // this should DEFINITELY not work
 // figure this out please
-public class ActiveContract{
+public class ActiveContract {
     @Id
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "student_id")
