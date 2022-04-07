@@ -15,7 +15,7 @@ import java.util.Objects;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-@IdClass(OptionalPreferenceId.class)
+
 public class OptionalPreference {
 
     @EmbeddedId
