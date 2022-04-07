@@ -44,7 +44,7 @@ public class AccountDetails implements org.springframework.security.core.userdet
                 account.getId(),
                 account.getUsername(),
                 account.getEmail(),
-                account.getPassword(),
+                account.getPasswordDigest(),
                 authorities,
                 account.getFirstName(),
                 account.getLastName(),

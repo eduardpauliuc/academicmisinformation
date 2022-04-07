@@ -21,7 +21,7 @@ public class Title {
     private Long id;
 
     @Enumerated(EnumType.STRING)
-    @Column(name = "name")
+    @Column(name = "name", nullable = false)
     private ETitle name;
 
 }

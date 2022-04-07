@@ -9,12 +9,12 @@ import javax.persistence.*;
 import java.util.List;
 
 @Entity
-@Table(name = "teachers")
+@Table(name = "students")
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class Teacher {
+public class Student {
 
     @Id
     private Long id;
@@ -24,17 +24,16 @@ public class Teacher {
     @JoinColumn(name = "account_id")
     private Account account;
 
-    @ManyToOne
-    @JoinColumn(name = "title_id")
-    private Title title;
+    @Column(name = "registration_number", unique = true)
+    private String registrationNumber;
 
-    @ManyToMany(mappedBy = "teachers")
-    private List<Course> courses;
+    @OneToMany(mappedBy="student")
+    private List<Grade> grades;
 
-    @OneToMany(mappedBy = "teacher")
-    private List<OptionalProposal> optionalProposals;
+    @OneToMany(mappedBy="student")
+    private List<OptionalPreference> optionalPreferences;
 
-    @OneToOne(mappedBy = "chiefOfDepartment")
-    private Specialization specialization;
+    @OneToMany(mappedBy="student")
+    private List<Contract> contracts;
 
 }
