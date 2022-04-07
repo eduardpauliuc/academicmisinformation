@@ -2,6 +2,7 @@ package com.example.controllers;
 
 import com.example.models.Account;
 import com.example.models.ERole;
+import com.example.models.Role;
 import com.example.payload.requests.LoginRequest;
 import com.example.payload.requests.SignupRequest;
 import com.example.payload.responses.JwtResponse;

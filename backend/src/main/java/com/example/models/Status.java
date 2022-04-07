@@ -1,5 +1,6 @@
 package com.example.models;
 
+
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -9,25 +10,22 @@ import javax.persistence.*;
 import java.util.List;
 
 @Entity
-@Table(name = "faculties")
+@Table(name="statuses")
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class Faculty {
+public class Status {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private Long id;
 
+    @Enumerated(EnumType.STRING)
     @Column(name = "name", nullable = false)
-    private String name;
+    private EStatus name;
 
-    @OneToMany(mappedBy="faculty")
-    private List<Specialization> specializations;
-
-    @OneToMany(mappedBy="faculty")
-    private List<StaffMember> staffMembers;
-
+    @OneToMany(mappedBy = "status")
+    private List<OptionalProposal> optionalProposals;
 }
