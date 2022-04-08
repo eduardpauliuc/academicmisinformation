@@ -37,16 +37,15 @@ public class AuthenticationController {
     AuthenticationManager authenticationManager;
 
     @Autowired
-    IAccountRepository accountRepository;
-
-    @Autowired
-    IRoleRepository roleRepository;
-
-    @Autowired
     PasswordEncoder encoder;
 
     @Autowired
     JwtUtils jwtUtils;
+
+    private final IAccountService accountService;
+
+    private final IRoleService roleService;
+
 
     @PostMapping("/signin")
     public ResponseEntity<?> authenticateUser(@Valid @RequestBody LoginRequest loginRequest) {
@@ -78,13 +77,13 @@ public class AuthenticationController {
 
     @PostMapping("/signup")
     public ResponseEntity<?> registerUser(@Valid @RequestBody SignupRequest signupRequest) throws ParseException {
-        if (this.accountRepository.existsByUsername(signupRequest.getUsername())) {
+        if (this.accountService.existsByUsername(signupRequest.getUsername())) {
             return ResponseEntity
                     .badRequest()
                     .body(new MessageResponse("Error: Username already exists!"));
         }
 
-        if (this.accountRepository.existsByEmail(signupRequest.getEmail())) {
+        if (this.accountService.existsByEmail(signupRequest.getEmail())) {
             return ResponseEntity
                     .badRequest()
                     .body(new MessageResponse("Error: Email already exists!"));
@@ -107,32 +106,32 @@ public class AuthenticationController {
 
         switch (requestRole) {
             case "staff":
-                Role staffRole = this.roleRepository.findByName(ERole.ROLE_STAFF)
+                Role staffRole = this.roleService.findByName(ERole.ROLE_STAFF)
                         .orElseThrow(() -> new RuntimeException("Error: Role not found!"));
                 role = staffRole;
                 break;
 
             case "teacher":
-                Role teacherRole = this.roleRepository.findByName(ERole.ROLE_TEACHER)
+                Role teacherRole = this.roleService.findByName(ERole.ROLE_TEACHER)
                         .orElseThrow(() -> new RuntimeException("Error: Role not found!"));
                 role = teacherRole;
                 break;
 
             case "administrator":
-                Role administratorRole = this.roleRepository.findByName(ERole.ROLE_ADMINISTRATOR)
+                Role administratorRole = this.roleService.findByName(ERole.ROLE_ADMINISTRATOR)
                         .orElseThrow(() -> new RuntimeException("Error: Role not found!"));
                 role = administratorRole;
                 break;
 
             default:
-                Role studentRole = this.roleRepository.findByName(ERole.ROLE_STUDENT)
+                Role studentRole = this.roleService.findByName(ERole.ROLE_STUDENT)
                         .orElseThrow(() -> new RuntimeException("Error: Role not found!"));
                 role = studentRole;
                 break;
         }
 
         account.setRole(role);
-        this.accountRepository.save(account);
+        this.accountService.save(account);
 
         return ResponseEntity.ok(new MessageResponse("Account successfully created!"));
     }
