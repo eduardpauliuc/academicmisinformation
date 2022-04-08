@@ -7,10 +7,10 @@ import com.example.payload.requests.LoginRequest;
 import com.example.payload.requests.SignupRequest;
 import com.example.payload.responses.JwtResponse;
 import com.example.payload.responses.MessageResponse;
-import com.example.repositories.IAccountRepository;
-import com.example.repositories.IRoleRepository;
 import com.example.security.jwt.JwtUtils;
 import com.example.security.services.AccountDetails;
+import com.example.security.services.IAccountService;
+import com.example.security.services.IRoleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -42,9 +42,11 @@ public class AuthenticationController {
     @Autowired
     JwtUtils jwtUtils;
 
-    private final IAccountService accountService;
+    @Autowired
+    private IAccountService accountService;
 
-    private final IRoleService roleService;
+    @Autowired
+    private IRoleService roleService;
 
 
     @PostMapping("/signin")
