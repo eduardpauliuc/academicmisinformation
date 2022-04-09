@@ -1,0 +1,19 @@
+html {
+  height: 100vh;
+  margin: 0px;
+}
+
+body {
+  margin: 0px;
+  height: 100%;
+  background-color: #41b5f6;
+}
+
+#root {
+  height: 100%;
+}
+
+* {
+  font-family: "Work Sans";
+  font-style: normal;
+}

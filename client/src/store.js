@@ -8,8 +8,6 @@ const reducer =  {
   message: messageReducer,
 };
 
-console.log(reducer);
-
 export const store = configureStore({
   reducer,
   devTools: true,
