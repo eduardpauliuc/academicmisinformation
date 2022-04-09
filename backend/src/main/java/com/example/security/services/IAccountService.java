@@ -10,7 +10,11 @@ public interface IAccountService {
 
     Boolean existsByEmail(String email);
 
-    Optional<Account> findByUsername(String username);
+    Optional<Account> findAccountByUsername(String username);
 
-    Account save(Account account);
+    Account saveAccount(Account account);
+
+    void deleteAccountById(Long id);
+
+
 }

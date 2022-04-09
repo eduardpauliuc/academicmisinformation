@@ -27,13 +27,18 @@ public class AccountService implements IAccountService {
     }
 
     @Override
-    public Optional<Account> findByUsername(String username) {
+    public Optional<Account> findAccountByUsername(String username) {
         return accountRepository.findByUsername(username);
     }
 
     @Override
-    public Account save(Account account) {
+    public Account saveAccount(Account account) {
         return accountRepository.save(account);
+    }
+
+    @Override
+    public void deleteAccountById(Long id) {
+        accountRepository.deleteById(id);
     }
 
 

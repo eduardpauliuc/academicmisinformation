@@ -133,7 +133,7 @@ public class AuthenticationController {
         }
 
         account.setRole(role);
-        this.accountService.save(account);
+        this.accountService.saveAccount(account);
 
         return ResponseEntity.ok(new MessageResponse("Account successfully created!"));
     }
