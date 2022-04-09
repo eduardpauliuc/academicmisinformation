@@ -1,11 +1,9 @@
-package com.example.security.services;
+package com.example.services;
 
 
 import com.example.models.Account;
 import com.example.repositories.IAccountRepository;
 import lombok.AllArgsConstructor;
-import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;

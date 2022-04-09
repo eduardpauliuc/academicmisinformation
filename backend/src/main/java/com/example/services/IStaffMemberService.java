@@ -1,4 +1,4 @@
-package com.example.security.services;
+package com.example.services;
 
 public interface IStaffMemberService {
 }
