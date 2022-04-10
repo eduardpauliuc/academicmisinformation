@@ -12,7 +12,7 @@ import { MySelect, MyTextInput } from "../helpers/FormComponents";
 
 import { toast } from "react-toastify";
 
-const CreateAccountPopup = ({ closePopup }) => {
+const CreateAccountPopup = ({ closePopup, addAccount }) => {
   const initialValues = {
     username: "",
     password: "",
@@ -36,7 +36,13 @@ const CreateAccountPopup = ({ closePopup }) => {
     )
       .then((response) => {
         closePopup();
-        toast.success("User created!");
+        addAccount({
+          id: formValue.username,
+          username: formValue.username,
+          email: formValue.email,
+          role: formValue.role,
+        });
+        toast.success("Account created!");
       })
       .catch((e) => {
         toast.error(e.message);
