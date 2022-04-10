@@ -1,4 +1,4 @@
-package com.example.security.services;
+package com.example.services;
 
 import com.example.models.Specialization;
 import com.example.repositories.ISpecializationRepository;
@@ -10,7 +10,7 @@ import java.util.Optional;
 
 @Service
 @AllArgsConstructor
-public class SpecializationService implements ISpecializationService{
+public class SpecializationService implements ISpecializationService {
 
     private final ISpecializationRepository specializationRepository;
 

@@ -1,6 +1,6 @@
 package com.example.security.jwt;
 
-import com.example.security.services.AccountDetailsService;
+import com.example.security.security_utils.AccountDetailsService;
 import org.flywaydb.core.internal.util.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -18,13 +18,11 @@ import java.io.IOException;
 
 public class AuthenticationTokenFilter extends OncePerRequestFilter {
 
+    private static final Logger logger = LoggerFactory.getLogger(AuthenticationTokenFilter.class);
     @Autowired
     private JwtUtils jwtUtils;
-
     @Autowired
     private AccountDetailsService accountDetailsService;
-
-    private static final Logger logger = LoggerFactory.getLogger(AuthenticationTokenFilter.class);
 
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
@@ -38,7 +36,7 @@ public class AuthenticationTokenFilter extends OncePerRequestFilter {
                 SecurityContextHolder.getContext().setAuthentication(authentication);
 
             }
-        } catch(Exception ex) {
+        } catch (Exception ex) {
             logger.error("Cannot set user authentication: {}", ex.getMessage());
         }
         filterChain.doFilter(request, response);

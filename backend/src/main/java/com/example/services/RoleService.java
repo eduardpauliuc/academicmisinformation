@@ -1,4 +1,4 @@
-package com.example.security.services;
+package com.example.services;
 
 
 import com.example.models.ERole;
@@ -12,7 +12,7 @@ import java.util.Optional;
 
 @Service
 @AllArgsConstructor
-public class RoleService implements IRoleService{
+public class RoleService implements IRoleService {
 
     private final IRoleRepository roleRepository;
 

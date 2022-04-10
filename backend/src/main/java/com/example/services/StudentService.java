@@ -1,4 +1,4 @@
-package com.example.security.services;
+package com.example.services;
 
 
 import com.example.models.Student;
@@ -11,7 +11,7 @@ import java.util.Optional;
 
 @Service
 @AllArgsConstructor
-public class StudentService implements IStudentService{
+public class StudentService implements IStudentService {
 
     private final IStudentRepository studentRepository;
 

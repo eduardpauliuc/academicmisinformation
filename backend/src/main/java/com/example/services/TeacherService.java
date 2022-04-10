@@ -1,4 +1,4 @@
-package com.example.security.services;
+package com.example.services;
 
 import com.example.models.Teacher;
 import com.example.repositories.ITeacherRepository;
@@ -10,7 +10,7 @@ import java.util.Optional;
 
 @Service
 @AllArgsConstructor
-public class TeacherService implements ITeacherService{
+public class TeacherService implements ITeacherService {
 
     private final ITeacherRepository teacherRepository;
 

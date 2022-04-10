@@ -24,10 +24,10 @@ public class Faculty {
     @Column(name = "name", nullable = false)
     private String name;
 
-    @OneToMany(mappedBy="faculty")
+    @OneToMany(mappedBy = "faculty")
     private List<Specialization> specializations;
 
-    @OneToMany(mappedBy="faculty")
+    @OneToMany(mappedBy = "faculty")
     private List<StaffMember> staffMembers;
 
 }

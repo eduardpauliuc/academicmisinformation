@@ -21,17 +21,17 @@ public class Course {
     @Column(name = "id")
     private Long id;
 
-    @OneToMany(mappedBy="course")
+    @OneToMany(mappedBy = "course")
     private List<OptionalPreference> optionalPreferences;
 
-    @OneToMany(mappedBy="course")
+    @OneToMany(mappedBy = "course")
     private List<Grade> grades;
 
     @ManyToMany
     @JoinTable(
-            name="teacher_courses",
-            joinColumns = { @JoinColumn(name = "course_id")},
-            inverseJoinColumns = { @JoinColumn(name = "teacher_id")}
+            name = "teacher_courses",
+            joinColumns = {@JoinColumn(name = "course_id")},
+            inverseJoinColumns = {@JoinColumn(name = "teacher_id")}
     )
     private List<Teacher> teachers;
 
@@ -39,10 +39,10 @@ public class Course {
     @JoinColumn(name = "specialization_id")
     private Specialization specialization;
 
-    @Column(name="name", nullable = false)
+    @Column(name = "name", nullable = false)
     private String name;
 
-    @Column(name = "credits",nullable = false)
+    @Column(name = "credits", nullable = false)
     private Integer credits;
 
     @Column(name = "description")

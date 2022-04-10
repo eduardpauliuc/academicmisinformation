@@ -1,6 +1,6 @@
 package com.example.controllers;
 
-import com.example.security.services.IStudentService;
+import com.example.services.IStudentService;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.RestController;
 

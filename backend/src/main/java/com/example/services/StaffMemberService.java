@@ -1,4 +1,4 @@
-package com.example.security.services;
+package com.example.services;
 
 import com.example.models.StaffMember;
 import com.example.repositories.IStaffMemberRepository;
@@ -10,7 +10,7 @@ import java.util.Optional;
 
 @Service
 @AllArgsConstructor
-public class StaffMemberService implements IStaffMemberService{
+public class StaffMemberService implements IStaffMemberService {
 
     private final IStaffMemberRepository staffMemberRepository;
 

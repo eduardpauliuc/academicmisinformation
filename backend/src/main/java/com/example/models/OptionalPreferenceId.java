@@ -14,7 +14,8 @@ public class OptionalPreferenceId implements Serializable {
     @Column(name = "course_id", nullable = false)
     private Long courseId;
 
-    public OptionalPreferenceId() {}
+    public OptionalPreferenceId() {
+    }
 
     public OptionalPreferenceId(Long studentId, Long courseId) {
         this.studentId = studentId;

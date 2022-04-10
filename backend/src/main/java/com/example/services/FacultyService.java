@@ -1,4 +1,4 @@
-package com.example.security.services;
+package com.example.services;
 
 import com.example.models.Faculty;
 import com.example.repositories.IFacultyRepository;
@@ -10,7 +10,7 @@ import java.util.Optional;
 
 @Service
 @AllArgsConstructor
-public class FacultyService implements IFacultyService{
+public class FacultyService implements IFacultyService {
 
     private final IFacultyRepository facultyRepository;
 
