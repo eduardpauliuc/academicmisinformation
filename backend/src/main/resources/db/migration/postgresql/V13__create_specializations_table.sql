@@ -1,13 +1,13 @@
 CREATE TABLE IF NOT EXISTS migrations.specializations
 (
-    id                      SERIAL,
-    faculty_id              INTEGER NOT NULL,
-    chief_of_department_id  INTEGER UNIQUE,
-    degree_id               INTEGER NOT NULL,
-    name                    TEXT,
-    study_language          TEXT,
-    letter_identifier       TEXT NOT NULL UNIQUE,
-    semesters               INTEGER,
+    id                     SERIAL,
+    faculty_id             INTEGER NOT NULL,
+    chief_of_department_id INTEGER UNIQUE,
+    degree_id              INTEGER NOT NULL,
+    name                   TEXT,
+    study_language         TEXT,
+    letter_identifier      TEXT    NOT NULL UNIQUE,
+    semesters              INTEGER,
 
     PRIMARY KEY (id),
 
@@ -22,4 +22,4 @@ CREATE TABLE IF NOT EXISTS migrations.specializations
     CONSTRAINT FK_specializations_degree_id FOREIGN KEY (degree_id) REFERENCES migrations.degrees (id)
         ON DELETE CASCADE
         ON UPDATE CASCADE
-    )
+)

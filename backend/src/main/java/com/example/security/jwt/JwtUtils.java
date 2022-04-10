@@ -1,6 +1,6 @@
 package com.example.security.jwt;
 
-import com.example.security.services.AccountDetails;
+import com.example.security.security_utils.AccountDetails;
 import io.jsonwebtoken.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

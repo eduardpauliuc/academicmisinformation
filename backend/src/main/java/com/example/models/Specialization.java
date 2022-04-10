@@ -55,5 +55,4 @@ public class Specialization {
     private Integer semesters;
 
 
-
 }

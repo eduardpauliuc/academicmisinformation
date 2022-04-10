@@ -1,4 +1,4 @@
-package com.example.security.services;
+package com.example.security.security_utils;
 
 import com.example.models.Account;
 import com.example.repositories.IAccountRepository;
@@ -14,7 +14,8 @@ public class AccountDetailsService implements org.springframework.security.core.
     @Autowired
     IAccountRepository accountRepository;
 
-    @Override @Transactional
+    @Override
+    @Transactional
     public org.springframework.security.core.userdetails.UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         Account account = this.accountRepository.findByUsername(username)
                 .orElseThrow(() -> new UsernameNotFoundException("No account found with the username: " + username));

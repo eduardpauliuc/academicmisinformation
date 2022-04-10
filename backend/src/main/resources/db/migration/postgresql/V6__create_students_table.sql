@@ -1,6 +1,6 @@
 CREATE TABLE IF NOT EXISTS migrations.students
 (
-    account_id  INTEGER,
+    account_id          INTEGER,
     registration_number TEXT UNIQUE,
 
     PRIMARY KEY (account_id),

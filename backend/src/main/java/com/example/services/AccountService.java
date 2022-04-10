@@ -1,11 +1,9 @@
-package com.example.security.services;
+package com.example.services;
 
 
 import com.example.models.Account;
 import com.example.repositories.IAccountRepository;
 import lombok.AllArgsConstructor;
-import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
@@ -27,13 +25,18 @@ public class AccountService implements IAccountService {
     }
 
     @Override
-    public Optional<Account> findByUsername(String username) {
+    public Optional<Account> findAccountByUsername(String username) {
         return accountRepository.findByUsername(username);
     }
 
     @Override
-    public Account save(Account account) {
+    public Account saveAccount(Account account) {
         return accountRepository.save(account);
+    }
+
+    @Override
+    public void deleteAccountById(Long id) {
+        accountRepository.deleteById(id);
     }
 
 

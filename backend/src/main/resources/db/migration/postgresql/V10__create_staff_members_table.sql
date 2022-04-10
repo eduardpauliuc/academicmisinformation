@@ -1,6 +1,7 @@
-CREATE TABLE IF NOT EXISTS migrations.staff_members(
-    account_id  INTEGER,
-    faculty_id  INTEGER,
+CREATE TABLE IF NOT EXISTS migrations.staff_members
+(
+    account_id INTEGER,
+    faculty_id INTEGER,
 
     PRIMARY KEY (account_id),
 
