@@ -1,7 +1,7 @@
 CREATE TABLE IF NOT EXISTS migrations.teachers
 (
-    account_id  INTEGER,
-    title_id    INTEGER,
+    account_id INTEGER,
+    title_id   INTEGER,
 
     PRIMARY KEY (account_id),
 

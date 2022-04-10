@@ -22,7 +22,7 @@ public class OptionalProposal {
     private Long id;
 
     @ManyToOne
-    @JoinColumn(name  = "specialization_id")
+    @JoinColumn(name = "specialization_id")
     private Specialization specialization;
 
     @ManyToOne

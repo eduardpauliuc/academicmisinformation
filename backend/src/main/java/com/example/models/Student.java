@@ -27,13 +27,13 @@ public class Student {
     @Column(name = "registration_number", unique = true)
     private String registrationNumber;
 
-    @OneToMany(mappedBy="student")
+    @OneToMany(mappedBy = "student")
     private List<Grade> grades;
 
-    @OneToMany(mappedBy="student")
+    @OneToMany(mappedBy = "student")
     private List<OptionalPreference> optionalPreferences;
 
-    @OneToMany(mappedBy="student")
+    @OneToMany(mappedBy = "student")
     private List<Contract> contracts;
 
 }
