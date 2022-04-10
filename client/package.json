@@ -16,6 +16,7 @@
     "react-router-dom": "^6.2.2",
     "react-scripts": "5.0.0",
     "react-select": "^5.2.2",
+    "react-toastify": "^8.2.0",
     "styled-components": "^5.3.5",
     "yup": "^0.32.11"
   },

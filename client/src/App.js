@@ -13,6 +13,9 @@ import TeacherHome from "./components/teacher/TeacherHome";
 import ChiefHome from "./components/chief/ChiefHome";
 import StaffHome from "./components/staff/StaffHome";
 
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
 const theme = {
   main: "#41B5F6",
   accent: "#BDF841",
@@ -83,6 +86,10 @@ function App() {
           />
         </Routes>
       </BrowserRouter>
+      <ToastContainer 
+        closeOnClick
+        theme="colored"
+      />
     </ThemeProvider>
   );
 }
