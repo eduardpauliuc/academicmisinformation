@@ -23,4 +23,28 @@ export const readableRole = (role) => {
   }
 };
 
+
+export const roleOptions = [
+  {
+    label: "Administrator",
+    value: Role.Admin,
+  },
+  {
+    label: "Student",
+    value: Role.Student,
+  },
+  {
+    label: "Staff",
+    value: Role.Staff,
+  },
+  {
+    label: "Teacher",
+    value: Role.Teacher,
+  },
+  {
+    label: "Chief of Department",
+    value: Role.Chief,
+  },
+];
+
 export default Role;

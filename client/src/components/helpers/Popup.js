@@ -7,7 +7,7 @@ import { Container, PopupContainer, Title, CustomIcon } from "./Popup.styles";
 const Popup = ({
   title,
   children,
-  // onCancel,
+  onCancel,
   // onSubmit,
   // cancelText,
   // submitText,
@@ -18,7 +18,7 @@ const Popup = ({
       <PopupContainer>
         <div>
           <Title>{title}</Title>
-          <CustomIcon icon="ci:off-outline-close" color="#bdf841" />
+          <CustomIcon icon="ci:off-outline-close" color="#bdf841" onClick={onCancel}/>
         </div>
         {children}
       </PopupContainer>

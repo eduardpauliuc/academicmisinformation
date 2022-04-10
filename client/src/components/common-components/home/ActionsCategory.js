@@ -15,7 +15,7 @@ const Container = styled.div`
   overflow: hidden;
   padding: 20px 20px 20px 40px;
 
-  & > svg {
+  & .one, .two {
     position: absolute;
     right: 0;
     top: 0;
@@ -88,7 +88,7 @@ const oneActionPath = (
   </svg>
 );
 
-const ActionsCategory = ({ title, actions, children }) => {
+const ActionsCategory = ({ title, actions, children, otherHeaderContent }) => {
   const numberOfActions = actions?.length;
   return (
     <Container>
@@ -102,6 +102,7 @@ const ActionsCategory = ({ title, actions, children }) => {
       <ContainerHeader>
         <CategoryName>{title}</CategoryName>
         {actions}
+        {otherHeaderContent}
       </ContainerHeader>
       {children}
     </Container>

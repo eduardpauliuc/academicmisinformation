@@ -7,33 +7,10 @@ import * as Yup from "yup";
 import { StyledButton } from "./helpers/Button.style";
 import { ButtonsWrapper } from "./helpers/Popup.styles";
 import { FormContainer, Label } from "./helpers/PopupForm.styles";
-import Role from "../helpers/role";
+import { roleOptions } from "../helpers/role";
 import { MySelect, MyTextInput } from "./helpers/FormComponents";
 import { updateProfile } from "../slices/authSlice";
 import ProfileService from "../services/profile.service";
-
-const roleOptions = [
-  {
-    label: "Administrator",
-    value: Role.Admin,
-  },
-  {
-    label: "Student",
-    value: Role.Student,
-  },
-  {
-    label: "Staff",
-    value: Role.Staff,
-  },
-  {
-    label: "Teacher",
-    value: Role.Teacher,
-  },
-  {
-    label: "Chief of department",
-    value: Role.Chief,
-  },
-];
 
 const ConfigureProfilePopup = (props) => {
   const { closePopup, user } = props;
