@@ -8,6 +8,7 @@ const Popup = ({
   title,
   children,
   onCancel,
+  large,
   // onSubmit,
   // cancelText,
   // submitText,
@@ -15,10 +16,14 @@ const Popup = ({
 }) => {
   return (
     <Container>
-      <PopupContainer>
+      <PopupContainer large={large}>
         <div>
           <Title>{title}</Title>
-          <CustomIcon icon="ci:off-outline-close" color="#bdf841" onClick={onCancel}/>
+          <CustomIcon
+            icon="ci:off-outline-close"
+            color="#bdf841"
+            onClick={onCancel}
+          />
         </div>
         {children}
       </PopupContainer>

@@ -61,7 +61,7 @@ const ConfigureProfilePopup = (props) => {
   });
 
   return (
-    <Popup title="Configure profile">
+    <Popup title="Configure profile" onCancel={closePopup}>
       <Formik
         initialValues={initialValues}
         validationSchema={validationSchema}

@@ -34,6 +34,9 @@ const AdminHome = () => {
       console.log(response.data);
       setIsLoading(false);
       setAccounts(response.data);
+    }).catch((e)=>{
+      toast.error(e.message);
+      setIsLoading(false);
     });
   }, []);
 

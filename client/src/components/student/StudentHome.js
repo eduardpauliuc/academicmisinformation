@@ -5,11 +5,13 @@ import StudentService from "../../services/student.service";
 
 import * as HomeStyles from "../common-components/home/HomePage.styles";
 import Navbar from "../Navbar";
-import Contracts from "./action-categories/Contracts";
+import Contracts from "./contracts/Contracts";
 import Courses from "./action-categories/Courses";
 import Grades from "./action-categories/Grades";
 
 import styled from "styled-components/macro";
+import GeneratePopup from "./contracts/GeneratePopup";
+import UploadPopup from "./contracts/UploadPopup";
 
 const SpecializedContainer = styled.div`
   background-color: #58bef7;
@@ -34,6 +36,9 @@ const StudentHome = () => {
   const [specializations, setSpecializations] = useState([]);
   const [selectedSpec, setSelectedSpec] = useState(undefined);
 
+  const [generatePopupVisible, setGeneratePopupVisible] = useState(false);
+  const [uploadPopupVisible, setUploadPopupVisible] = useState(false);
+
   useEffect(() => {
     StudentService.getStudentSpecializations(user.id).then((response) => {
       setSpecializations(response.data);
@@ -57,7 +62,11 @@ const StudentHome = () => {
     <>
       <Navbar user={user} />
       <HomeStyles.HomeContainer>
-        <Contracts />
+        <Contracts
+          user={user}
+          setGenerateVisible={setGeneratePopupVisible}
+          setUploadVisible={setUploadPopupVisible}
+        />
 
         <SpecializedContainer>
           <StyledSelect
@@ -70,6 +79,19 @@ const StudentHome = () => {
           <Grades />
         </SpecializedContainer>
       </HomeStyles.HomeContainer>
+
+      {generatePopupVisible && (
+        <GeneratePopup
+          closePopup={() => setGeneratePopupVisible(false)}
+          user={user}
+        />
+      )}
+      {uploadPopupVisible && (
+        <UploadPopup
+          closePopup={() => setUploadPopupVisible(false)}
+          user={user}
+        />
+      )}
     </>
   );
 };
