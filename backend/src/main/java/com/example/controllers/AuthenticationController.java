@@ -3,6 +3,7 @@ package com.example.controllers;
 import com.example.models.Account;
 import com.example.models.ERole;
 import com.example.models.Role;
+import com.example.models.Student;
 import com.example.payload.requests.LoginRequest;
 import com.example.payload.requests.SignupRequest;
 import com.example.payload.responses.JwtResponse;
@@ -11,6 +12,7 @@ import com.example.security.jwt.JwtUtils;
 import com.example.security.security_utils.AccountDetails;
 import com.example.services.IAccountService;
 import com.example.services.IRoleService;
+import com.example.services.IStudentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -48,6 +50,8 @@ public class AuthenticationController {
     @Autowired
     private IRoleService roleService;
 
+    @Autowired
+    private IStudentService studentService;
 
     @PostMapping("/signin")
     public ResponseEntity<?> authenticateUser(@Valid @RequestBody LoginRequest loginRequest) {
@@ -134,6 +138,8 @@ public class AuthenticationController {
 
         account.setRole(role);
         this.accountService.saveAccount(account);
+        Student student = new Student(account, "abcde");
+        this.studentService.saveStudent(student);
 
         return ResponseEntity.ok(new MessageResponse("Account successfully created!"));
     }
