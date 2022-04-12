@@ -1,6 +1,7 @@
 package com.example.models;
 
 
+import com.example.payload.responses.CourseDTO;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -51,5 +52,8 @@ public class OptionalProposal {
     @Column(name = "name", nullable = false)
     private String name;
 
+    public CourseDTO convertToCourseDTO() {
+        return new CourseDTO(this);
+    }
 
 }

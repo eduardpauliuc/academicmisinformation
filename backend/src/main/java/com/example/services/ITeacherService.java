@@ -1,5 +1,7 @@
 package com.example.services;
 
+import com.example.models.Course;
+import com.example.models.OptionalProposal;
 import com.example.models.Teacher;
 
 import java.util.List;
@@ -14,5 +16,9 @@ public interface ITeacherService {
     Optional<Teacher> findTeacherById(Long id);
 
     void deleteTeacherById(Long id);
+
+    List<Course> getAllCourses(Teacher teacher);
+
+    List<OptionalProposal> getAllOptionalProposals(Teacher teacher);
 
 }
