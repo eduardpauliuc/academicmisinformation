@@ -14,4 +14,8 @@ public interface IStudentService {
     void deleteStudentById(Long id);
 
     Optional<Student> findStudentById(Long id);
+
+    Boolean existsByRegistrationNumber(String registrationNumber);
+
+    String generateUniqueRegistrationNumber();
 }
