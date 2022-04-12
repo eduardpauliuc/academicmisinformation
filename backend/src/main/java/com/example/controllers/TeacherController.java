@@ -30,13 +30,13 @@ public class TeacherController {
         if (teacher == null) {
             return null;
         } else {
-            // convert courses to DTOs
+            // convert mandatory and optional Courses to DTOs
             List<CourseDTO> courseDTOS = this.teacherService.getAllCourses(teacher)
                     .stream()
                     .map(Course::convertToCourseDTO)
                     .collect(Collectors.toList());
 
-            // convert not accepted optional proposals to DTOs
+            // convert pending or rejected OptionalProposals to DTOs
             List<CourseDTO> optionalDTOs = this.teacherService.getAllOptionalProposals(teacher)
                     .stream()
                     .map(OptionalProposal::convertToCourseDTO)
@@ -44,7 +44,5 @@ public class TeacherController {
 
             return Stream.concat(courseDTOS.stream(), optionalDTOs.stream()).collect(Collectors.toList());
         }
-
     }
-
 }
