@@ -4,11 +4,12 @@ import com.example.models.Course;
 import com.example.models.OptionalProposal;
 import com.example.models.Teacher;
 import com.example.payload.responses.CourseDTO;
+import com.example.security.security_utils.AccountDetails;
 import com.example.services.ITeacherService;
 import lombok.AllArgsConstructor;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -18,15 +19,19 @@ import java.util.stream.Stream;
 
 @RestController
 @AllArgsConstructor
-@RequestMapping("/api/teacher/{id}")
+@RequestMapping("/api/teacher")
 public class TeacherController {
 
     private final ITeacherService teacherService;
 
     @GetMapping("/courses")
-    @PreAuthorize("hasRole('TEACHER') or hasRole('CHIEF') or hasRole('ADMINISTRATOR')")
-    public List<CourseDTO> getTeacherCourses(@PathVariable("id") Long teacherId) {
+    @PreAuthorize("hasRole('TEACHER') or hasRole('CHIEF')")
+    public List<CourseDTO> getTeacherCourses() {
+        // principal = user of current session
+        AccountDetails principal = (AccountDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        Long teacherId = principal.getId();
         Teacher teacher = this.teacherService.findTeacherById(teacherId).orElse(null);
+
         if (teacher == null) {
             return null;
         } else {
