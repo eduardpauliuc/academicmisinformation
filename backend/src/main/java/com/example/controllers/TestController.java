@@ -23,9 +23,15 @@ public class TestController {
     }
 
     @GetMapping("/teacher")
-    @PreAuthorize("hasRole('TEACHER') or hasRole('ADMINISTRATOR')")
+    @PreAuthorize("hasRole('TEACHER') or  hasRole('CHIEF') or hasRole('ADMINISTRATOR')")
     public String teacherAccess() {
         return "Teacher Board";
+    }
+
+    @GetMapping("/chief")
+    @PreAuthorize("hasRole('CHIEF') or hasRole('ADMINISTRATOR')")
+    public String chiefAccess() {
+        return "Chief Board";
     }
 
     @GetMapping("/staff")

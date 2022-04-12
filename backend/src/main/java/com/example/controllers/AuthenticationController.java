@@ -110,21 +110,23 @@ public class AuthenticationController {
         Role role;
 
         switch (requestRole) {
-            case "staff":
-                role = this.roleService.findByName(ERole.ROLE_STAFF)
-                        .orElseThrow(() -> new RuntimeException("Error: Role not found!"));
-                break;
-
-            case "teacher":
-                role = this.roleService.findByName(ERole.ROLE_TEACHER)
-                        .orElseThrow(() -> new RuntimeException("Error: Role not found!"));
-                break;
-
             case "administrator":
                 role = this.roleService.findByName(ERole.ROLE_ADMINISTRATOR)
                         .orElseThrow(() -> new RuntimeException("Error: Role not found!"));
                 break;
 
+            case "staff":
+                role = this.roleService.findByName(ERole.ROLE_STAFF)
+                        .orElseThrow(() -> new RuntimeException("Error: Role not found!"));
+                break;
+
+            case "chief":
+            case "teacher":
+                role = this.roleService.findByName(ERole.ROLE_TEACHER)
+                        .orElseThrow(() -> new RuntimeException("Error: Role not found!"));
+                break;
+
+            case "student":
             default:
                 role = this.roleService.findByName(ERole.ROLE_STUDENT)
                         .orElseThrow(() -> new RuntimeException("Error: Role not found!"));
