@@ -14,4 +14,6 @@ public interface IStudentService {
     void deleteStudentById(Long id);
 
     Optional<Student> findStudentById(Long id);
+
+    double computeAverageOfLatestSemester(Student student);
 }
