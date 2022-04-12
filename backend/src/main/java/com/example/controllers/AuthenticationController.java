@@ -1,16 +1,13 @@
 package com.example.controllers;
 
-import com.example.models.Account;
-import com.example.models.ERole;
-import com.example.models.Role;
+import com.example.models.*;
 import com.example.payload.requests.LoginRequest;
 import com.example.payload.requests.SignupRequest;
 import com.example.payload.responses.JwtResponse;
 import com.example.payload.responses.MessageResponse;
 import com.example.security.jwt.JwtUtils;
 import com.example.security.security_utils.AccountDetails;
-import com.example.services.IAccountService;
-import com.example.services.IRoleService;
+import com.example.services.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -23,7 +20,6 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.sql.Date;
-import java.text.ParseException;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -48,6 +44,15 @@ public class AuthenticationController {
     @Autowired
     private IRoleService roleService;
 
+    @Autowired
+    private IStudentService studentService;
+
+    @Autowired
+    private ITeacherService teacherService;
+
+    @Autowired
+    private IStaffMemberService staffMemberService;
+
 
     @PostMapping("/signin")
     public ResponseEntity<?> authenticateUser(@Valid @RequestBody LoginRequest loginRequest) {
@@ -59,7 +64,8 @@ public class AuthenticationController {
         String jwt = this.jwtUtils.generateJwtToken(authentication);
 
         AccountDetails accountDetails = (AccountDetails) authentication.getPrincipal();
-        List<String> roles = accountDetails.getAuthorities().stream()
+        List<String> roles = accountDetails.getAuthorities()
+                .stream()
                 .map(GrantedAuthority::getAuthority)
                 .collect(Collectors.toList());
         Optional<String> roleWrapper = roles.stream().findFirst(); // each user has exactly one role
@@ -78,7 +84,7 @@ public class AuthenticationController {
     }
 
     @PostMapping("/signup")
-    public ResponseEntity<?> registerUser(@Valid @RequestBody SignupRequest signupRequest) throws ParseException {
+    public ResponseEntity<?> registerUser(@Valid @RequestBody SignupRequest signupRequest) {
         if (this.accountService.existsByUsername(signupRequest.getUsername())) {
             return ResponseEntity
                     .badRequest()
@@ -91,16 +97,13 @@ public class AuthenticationController {
                     .body(new MessageResponse("Error: Email already exists!"));
         }
 
-        // the format of the date must be 'yyyy-MM-dd'
-        Date date = Date.valueOf(signupRequest.getBirthDate());
-
         Account account = new Account(
                 signupRequest.getUsername(),
                 signupRequest.getEmail(),
                 encoder.encode(signupRequest.getPassword()),
                 signupRequest.getFirstName(),
                 signupRequest.getLastName(),
-                date
+                Date.valueOf(signupRequest.getBirthDate()) // the format of the date must be 'yyyy-MM-dd'
         );
 
         String requestRole = signupRequest.getRole();
@@ -108,32 +111,47 @@ public class AuthenticationController {
 
         switch (requestRole) {
             case "staff":
-                Role staffRole = this.roleService.findByName(ERole.ROLE_STAFF)
+                role = this.roleService.findByName(ERole.ROLE_STAFF)
                         .orElseThrow(() -> new RuntimeException("Error: Role not found!"));
-                role = staffRole;
                 break;
 
             case "teacher":
-                Role teacherRole = this.roleService.findByName(ERole.ROLE_TEACHER)
+                role = this.roleService.findByName(ERole.ROLE_TEACHER)
                         .orElseThrow(() -> new RuntimeException("Error: Role not found!"));
-                role = teacherRole;
                 break;
 
             case "administrator":
-                Role administratorRole = this.roleService.findByName(ERole.ROLE_ADMINISTRATOR)
+                role = this.roleService.findByName(ERole.ROLE_ADMINISTRATOR)
                         .orElseThrow(() -> new RuntimeException("Error: Role not found!"));
-                role = administratorRole;
                 break;
 
             default:
-                Role studentRole = this.roleService.findByName(ERole.ROLE_STUDENT)
+                role = this.roleService.findByName(ERole.ROLE_STUDENT)
                         .orElseThrow(() -> new RuntimeException("Error: Role not found!"));
-                role = studentRole;
-                break;
         }
 
         account.setRole(role);
-        this.accountService.saveAccount(account);
+        account = this.accountService.saveAccount(account);
+
+        // create the persons associated with the new account
+        switch (account.getRole().getName()) {
+            case ROLE_STAFF:
+                StaffMember staffMember = new StaffMember(account);
+                this.staffMemberService.saveStaffMember(staffMember);
+                break;
+
+            case ROLE_STUDENT:
+                String registrationNumber = this.studentService.generateUniqueRegistrationNumber();
+                Student student = new Student(account, registrationNumber);
+                this.studentService.saveStudent(student);
+                break;
+
+            case ROLE_TEACHER:
+            case ROLE_CHIEF:
+                Teacher teacher = new Teacher(account);
+                this.teacherService.saveTeacher(teacher);
+                break;
+        }
 
         return ResponseEntity.ok(new MessageResponse("Account successfully created!"));
     }

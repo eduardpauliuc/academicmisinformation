@@ -37,4 +37,8 @@ public class Teacher {
     @OneToOne(mappedBy = "chiefOfDepartment")
     private Specialization specialization;
 
+    public Teacher(Account account) {
+        this.account = account;
+    }
+
 }

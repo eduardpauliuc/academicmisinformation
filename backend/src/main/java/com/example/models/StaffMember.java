@@ -28,4 +28,8 @@ public class StaffMember {
     @JoinColumn(name = "faculty_id")
     private Faculty faculty;
 
+    public StaffMember(Account account) {
+        this.account = account;
+    }
+
 }

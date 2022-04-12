@@ -36,4 +36,9 @@ public class Student {
     @OneToMany(mappedBy = "student")
     private List<Contract> contracts;
 
+    public Student(Account account, String registrationNumber) {
+        this.account = account;
+        this.registrationNumber = registrationNumber;
+    }
+
 }
