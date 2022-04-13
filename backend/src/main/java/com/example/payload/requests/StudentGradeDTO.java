@@ -3,16 +3,16 @@ package com.example.payload.requests;
 import com.example.models.Student;
 
 public class StudentGradeDTO {
-    private final Student student;
+    private final Long studentId;
     private final Double average;
 
-    public StudentGradeDTO(Student student, Double average) {
-        this.student = student;
+    public StudentGradeDTO(Long studentId, Double average) {
+        this.studentId = studentId;
         this.average = average;
     }
 
-    public Student getStudent() {
-        return student;
+    public Long getStudentId() {
+        return studentId;
     }
 
     public Double getAverage() {

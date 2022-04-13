@@ -1,15 +1,19 @@
 package com.example.services;
 
 
+import com.example.models.Specialization;
 import com.example.models.Student;
 import com.example.repositories.IStudentRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.Comparator;
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.concurrent.atomic.AtomicInteger;
+import java.util.stream.Collectors;
 
 @Service
 @AllArgsConstructor
@@ -38,36 +42,34 @@ public class StudentService implements IStudentService {
     }
 
     @Override
-    public double computeAverageOfLatestSemester(Student student) {
-        AtomicInteger maxSemesterNumber = new AtomicInteger(-1);
-        AtomicBoolean areFullyGraded = new AtomicBoolean(true);
-        AtomicInteger creditsSum = new AtomicInteger(0);
-        AtomicInteger gradesSum = new AtomicInteger(0);
+    public List<Student> sortStudentsByAverage(Specialization specialization, Integer semester) {
+        var students = studentRepository.findAll()
+                .stream()
+                // filter out students which aren't in our required semester for our specialization
+                .filter(student -> student.getSemester(specialization).equals(semester))
+                // sort the students by their averages
+                .sorted((student1, student2) -> Double.compare(student2.findAverageForSemester(specialization, semester),
+                        student1.findAverageForSemester(specialization, semester)))
+                .collect(Collectors.toList());
+        // finish up by removing those with the average -1, that would be
+        // students with no grades in that semester, but with signed contracts or
+        // with non-graded courses
+        return students.stream().filter(student -> student.findAverageForSemester(specialization, semester) != -1)
+                .collect(Collectors.toList());
+    }
 
-        var grades = student.getGrades();
-        grades.forEach(
-                grade ->{
-                    int currentSemester = grade.getCourse().getSemesterNumber();
-                    if (currentSemester > maxSemesterNumber.get()){
-                        maxSemesterNumber.set(currentSemester);
-                        creditsSum.set(grade.getCourse().getCredits());
-                        if (grade.getGrade() != null) {
-                            gradesSum.set(grade.getGrade() * grade.getCourse().getCredits());
-                        }
-                        areFullyGraded.set(grade.getGrade() != null);
-                    }
-                    else{
-                        if (currentSemester == maxSemesterNumber.get() && areFullyGraded.get()){
-                            creditsSum.addAndGet(grade.getCourse().getCredits());
-                            gradesSum.addAndGet(grade.getGrade() * grade.getCourse().getCredits());
-                        }
-                    }
-
-                }
-        );
-
-        if (!areFullyGraded.get() || gradesSum.get() == 0)
-            return -1;
-        return (double) gradesSum.get() / (double) creditsSum.get();
+    @Override
+    public List<Student> sortStudentsByName(Specialization specialization, Integer semester){
+        return studentRepository.findAll()
+                .stream()
+                // filter out students which aren't in our required semester for our specialization
+                .filter(student -> student.getSemester(specialization).equals(semester))
+                // sort the students by their full name (firstName + lastName)
+                .sorted((student1, student2) -> {
+                    var name1 = student1.getAccount().getFirstName() + " " + student1.getAccount().getLastName();
+                    var name2 = student2.getAccount().getFirstName() + " " + student2.getAccount().getLastName();
+                    return name1.compareTo(name2);
+                })
+                .collect(Collectors.toList());
     }
 }
