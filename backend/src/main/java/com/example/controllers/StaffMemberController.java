@@ -112,7 +112,7 @@ public class StaffMemberController {
                 });
     }
 
-    @PutMapping("/{specializationId}/{semester}/assignment/groups")
+    @PutMapping("/{specializationId}/{semester}/assignment/optional")
     public void assignStudentsToOptionals(@PathVariable("id") Long staffMemberId,
                                           @PathVariable("specializationId") Long specializationId,
                                           @PathVariable("semester") Integer semester){
