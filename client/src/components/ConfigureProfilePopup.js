@@ -12,6 +12,8 @@ import { MySelect, MyTextInput } from "./helpers/FormComponents";
 import { updateProfile } from "../slices/authSlice";
 import ProfileService from "../services/profile.service";
 
+import { toast } from "react-toastify";
+
 const ConfigureProfilePopup = (props) => {
   const { closePopup, user } = props;
   const dispatch = useDispatch();
@@ -22,10 +24,12 @@ const ConfigureProfilePopup = (props) => {
     ProfileService.updateProfile(formValue)
       .then((response) => {
         dispatch(updateProfile(response.data));
+        toast.success("Profile updated");
         closePopup();
       })
       .catch((e) => {
         actions.setSubmitting(false);
+        toast.error(e.message);
       });
   };
 
@@ -57,7 +61,7 @@ const ConfigureProfilePopup = (props) => {
   });
 
   return (
-    <Popup title="Configure profile">
+    <Popup title="Configure profile" onCancel={closePopup}>
       <Formik
         initialValues={initialValues}
         validationSchema={validationSchema}

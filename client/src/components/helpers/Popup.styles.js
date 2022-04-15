@@ -1,4 +1,5 @@
 import { Icon } from "@iconify/react";
+import { css } from "styled-components";
 import styled from "styled-components/macro";
 
 export const Container = styled.div`
@@ -24,6 +25,12 @@ export const PopupContainer = styled.div`
 
   display: flex;
   flex-direction: column;
+
+  ${({ large }) =>
+    large &&
+    css`
+      min-width: 700px;
+    `}
 `;
 
 export const Title = styled.div`
@@ -43,4 +50,3 @@ export const ButtonsWrapper = styled.div`
 
   gap: 20px;
 `;
-

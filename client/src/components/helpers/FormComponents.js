@@ -56,18 +56,27 @@ export const MyCheckbox = ({ children, ...props }) => {
   );
 };
 
-export const MySelect = ({ label, ...props }) => {
+export const MySelect = ({ ...props }) => {
   const [field, meta, helpers] = useField(props);
 
-  const { options, isDisabled, isLoading, isClearable, isSearchable } = props;
+  const {
+    options,
+    isDisabled,
+    isLoading,
+    isClearable,
+    isSearchable,
+    valueChanged,
+  } = props;
   const { setValue } = helpers;
 
   const onChange = (option) => {
     setValue(option.value);
+    if (valueChanged) valueChanged(option.value);
+    if (props.fieldToReset) props.setFieldValue(props.fieldToReset, null);
   };
 
   const getValue = () => {
-    if (options) {
+    if (options && field.value) {
       return options.find((option) => option.value === field.value);
     } else {
       return "";
@@ -97,3 +106,29 @@ export const MySelect = ({ label, ...props }) => {
 export const FormLabel = styled.div`
   color: darkblue;
 `;
+
+export const StyledFileInput = styled.input`
+  margin: 10px 0px 10px 0px;
+`;
+
+export const MyFileUpload = (props) => {
+  const [field, meta] = useField(props);
+
+  const { setFieldValue } = props;
+
+  return (
+    <div>
+      <StyledFileInput
+        name={field.name}
+        type="file"
+        onChange={(event) => {
+          const file = event.target.files[0];
+          setFieldValue(field.name, file);
+        }}
+      />
+      {meta.error ? (
+        <StyledErrorMessage>{meta.error}</StyledErrorMessage>
+      ) : null}
+    </div>
+  );
+};

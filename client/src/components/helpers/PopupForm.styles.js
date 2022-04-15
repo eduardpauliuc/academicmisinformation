@@ -18,3 +18,8 @@ export const FormContainer = styled.div`
   column-gap: 10px;
   align-items: baseline;
 `;
+
+export const LargeFormContainer = styled(FormContainer)`
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+
+`
