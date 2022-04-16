@@ -64,29 +64,32 @@ public class StudentController {
                 .orElse(null);
     }
 
-    @GetMapping("/generate")
+    @GetMapping("/contracts/generate")
     public void generateContract(@PathVariable("id") Long id, HttpServletResponse response,
                                  @RequestParam Long specializationId, @RequestParam Integer semester) {
+
+        Optional<Student> student = studentService.findStudentById(id);
+        if(student.isEmpty()){
+            throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "Student not found.");
+        }
+
         response.setContentType("application/pdf");
         DateFormat dateFormatter = new SimpleDateFormat("yyyy-MM-dd:hh:mm:ss");
         String currentDateTime = dateFormatter.format(new Date());
         String headerKey = "Content-Disposition";
         String headerValue = "attachment; filename=contract_" + currentDateTime + ".pdf";
         response.setHeader(headerKey, headerValue);
-
-        Optional<Student> student = studentService.findStudentById(id);
-        if (student.isPresent()){
-            Optional<Specialization> specialization = specializationService.findSpecializationById(id);
-            if (specialization.isPresent()){
-                PdfDTO dto = new PdfDTO(specialization.get(), semester);
-                try {
-                    pdfGeneratorService.export(response, dto);
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
+        Optional<Specialization> specialization = specializationService.findSpecializationById(id);
+        if (specialization.isPresent()){
+            PdfDTO dto = new PdfDTO(student.get(), specialization.get(), semester);
+            try {
+                pdfGeneratorService.export(response, dto);
+            } catch (IOException e) {
+                e.printStackTrace();
             }
-            else throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "Specialization not found");
-        } else throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "Student not found.");
+        }
+        else throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "Specialization not found");
+
     }
 
 }

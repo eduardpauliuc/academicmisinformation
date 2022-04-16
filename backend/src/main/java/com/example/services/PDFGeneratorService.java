@@ -1,6 +1,8 @@
 package com.example.services;
 
 
+import com.example.models.Specialization;
+import com.example.models.Student;
 import com.example.payload.requests.PdfDTO;
 import com.lowagie.text.*;
 import com.lowagie.text.pdf.PdfWriter;
@@ -19,13 +21,16 @@ public class PDFGeneratorService implements IDocumentGenerator{
         document.open();
         Font fontTitle = FontFactory.getFont(FontFactory.HELVETICA_BOLD);
         fontTitle.setSize(18);
-        Paragraph paragraph = new Paragraph("Title", fontTitle);
+        Paragraph paragraph = new Paragraph("Contract", fontTitle);
         paragraph.setAlignment(Paragraph.ALIGN_CENTER);
 
 
         Font fontParagraph = FontFactory.getFont(FontFactory.HELVETICA);
         fontParagraph.setSize(12);
-        Paragraph paragraph2 = new Paragraph(dto.getSpecialization().getStudyLanguage(), fontParagraph);
+        Student student = dto.getStudent();
+        Specialization specialization = dto.getSpecialization();
+        Integer semester = dto.getSemester();
+        Paragraph paragraph2 = new Paragraph("Student " + student.getAccount().getFirstName() + " " + student.getAccount().getLastName() + " is enrolling into " + specialization.getName() + " for semester " + semester , fontParagraph);
         paragraph2.setAlignment(Paragraph.ALIGN_LEFT);
 
         document.add(paragraph);
