@@ -147,7 +147,7 @@ public class AuthenticationController {
                 int rightLimit = 122; // letter 'z'
                 int targetStringLength = 10;
                 Random random = new Random();
-
+                // TODO: take from student service
                 String registrationNumber = random.ints(leftLimit, rightLimit + 1)
                         .filter(i -> (i <= 57 || i >= 65) && (i <= 90 || i >= 97))
                         .limit(targetStringLength)
