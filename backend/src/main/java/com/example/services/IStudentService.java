@@ -1,5 +1,6 @@
 package com.example.services;
 
+import com.example.models.Specialization;
 import com.example.models.Student;
 
 import java.util.List;
@@ -18,4 +19,14 @@ public interface IStudentService {
     Boolean existsByRegistrationNumber(String registrationNumber);
 
     String generateUniqueRegistrationNumber();
+
+    // sorts the list of students from a given specialization and who are studying
+    // in a given semester by their average
+    // we could return a list of StudentGradeDTO so we do not recompute the
+    // average wherever we use this function
+    List<Student> sortStudentsByAverage(Specialization specialization, Integer semester);
+
+    // sorts the list of students from a given specialization and who are studying
+    // in a given semester by their name
+    List<Student> sortStudentsByName(Specialization specialization, Integer semester);
 }
