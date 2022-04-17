@@ -22,6 +22,8 @@ public class StaffMemberController {
     private final ISpecializationService specializationService;
     private final ICourseService courseService;
     private final IContractService contractService;
+    private final IGradeService gradeService;
+    private final IOptionalPreferenceService optionalPreferenceService;
 
     @GetMapping("/{specializationId}/{semester}/students")
     public List<StudentGradeDTO> getStudents(@PathVariable("id") Long staffMemberId,
@@ -148,7 +150,6 @@ public class StaffMemberController {
             students = studentService.sortStudentsByAverage(specialization, semester - 1);
 
 
-        System.out.println("am trecut de sortare");
         // each optional is mapped to how many empty places they have left
         // initially, each optional is mapped to its maximum number of students
         // use a concurrent map maybe?
@@ -157,28 +158,23 @@ public class StaffMemberController {
         courseService.getAllCourses()
                 .stream().filter(course -> course.getIsOptional() && semester.equals(course.getSemesterNumber()))
                 .forEach(course -> optionalsMap.put(course, course.getMaximumStudentsNumber()));
-        System.out.println("am intors cursurile");
 
         for (Student student : students){
             // optionalsConfirmed holds the number of optionals our student is currently assigned to
             int optionalsConfirmed = 0;
             // sort the preferences by their rank
-//            var preferences = student.getOptionalPreferences().stream()
-//                    .sorted(Comparator.comparingInt(OptionalPreference::getRank))
-//                    .collect(Collectors.toList());
-            var preferences = student.getOptionalPreferences();
-            System.out.println("preferinte");
+            var preferences = student.getOptionalPreferences().stream()
+                    .sorted(Comparator.comparingInt(OptionalPreference::getRank))
+                    .collect(Collectors.toList());
             int currentIndex = 0;
             // while we haven't signed our student to a number of optionals,
             // and we aren't at the end of the list
             while (optionalsConfirmed < 2 && currentIndex < preferences.size()){
-                System.out.println("Pula");
                 var currentOptional = preferences.get(currentIndex).getCourse();
                 var placesLeft = optionalsMap.get(currentOptional);
                 if (placesLeft > 0){
                     optionalsMap.replace(currentOptional, placesLeft - 1);
-//                    student.getGrades().add(new Grade(null, null, student, currentOptional));
-                    // TODO: add the optional to grades
+                    gradeService.saveGrade(new Grade(null, null, student, currentOptional));
                     // not sure at the moment how to, though
                     // consult me beforehand
                     optionalsConfirmed += 1;
@@ -187,6 +183,7 @@ public class StaffMemberController {
                     currentIndex += 1;
                 }
             }
+            optionalPreferenceService.removePreferencesForStudent(student, specialization);
         }
         // TODO: delete all preferences after for our specialization and semester
 
