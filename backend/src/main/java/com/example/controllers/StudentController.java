@@ -2,8 +2,10 @@ package com.example.controllers;
 
 import com.example.models.*;
 import com.example.payload.requests.PdfDTO;
+import com.example.payload.requests.UploadContractRequest;
 import com.example.payload.responses.*;
 import com.example.services.IDocumentGenerator;
+import com.example.services.IDocumentUploadService;
 import com.example.services.ISpecializationService;
 import com.example.services.IStudentService;
 import lombok.AllArgsConstructor;
@@ -14,6 +16,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.server.ResponseStatusException;
 
 import javax.servlet.http.HttpServletResponse;
@@ -26,16 +29,17 @@ import java.util.stream.Collectors;
 
 @RestController
 @AllArgsConstructor
-@RequestMapping("/api/student/{student_id}")
+@RequestMapping("/api/student/{studentId}")
 public class StudentController {
 
     private final IStudentService studentService;
     private final ISpecializationService specializationService;
     private final IDocumentGenerator pdfGeneratorService;
+    private final IDocumentUploadService contractUploadService;
 
 
     @GetMapping("/contracts")
-    public List<ContractDTO> getStudentsContracts(@PathVariable("student_id") Long id){
+    public List<ContractDTO> getStudentsContracts(@PathVariable("studentId") Long id){
         Optional<Student> student = studentService.findStudentById(id);
         if (student.isEmpty()){
             throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "Student not found.");
@@ -44,7 +48,7 @@ public class StudentController {
     }
 
     @GetMapping("/specializations")
-    public List<SpecializationDTO> getStudentsSpecializations(@PathVariable("student_id") Long id){
+    public List<SpecializationDTO> getStudentsSpecializations(@PathVariable("studentId") Long id){
         // TODO: get currently active specializations? check dates on contracts?
         Optional<Student> student = studentService.findStudentById(id);
         if (student.isEmpty()){
@@ -54,7 +58,7 @@ public class StudentController {
     }
 
     @GetMapping("/{specializationId}/courses")
-    public List<CourseDTO> getCoursesForSpecialization(@PathVariable("student_id") Long id, @PathVariable("specializationId") Long specializationId){
+    public List<CourseDTO> getCoursesForSpecialization(@PathVariable("studentId") Long id, @PathVariable("specializationId") Long specializationId){
         Optional<Student> student = studentService.findStudentById(id);
         if(student.isEmpty()){
             throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "Student not found.");
@@ -75,7 +79,7 @@ public class StudentController {
     }
 
     @GetMapping("/contracts/generate")
-    public void generateContract(@PathVariable("student_id") Long id, HttpServletResponse response,
+    public void generateContract(@PathVariable("studentId") Long id, HttpServletResponse response,
                                  @RequestParam Long specializationId, @RequestParam Integer semester) {
 
         Optional<Student> student = studentService.findStudentById(id);
@@ -112,7 +116,8 @@ public class StudentController {
 
 
     @GetMapping("/{specializationId}/courses/optionals")
-    public List<OptionalPreferenceDTO> getOptionalCourses(@PathVariable("student_id") Long id, @PathVariable Long specializationId){
+    public List<OptionalPreferenceDTO> getOptionalCourses(@PathVariable("studentId") Long id, @PathVariable Long specializationId){
+        // TODO: for current semester?
         Optional<Student> student = studentService.findStudentById(id);
         if(student.isEmpty()){
             throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "Student not found.");
@@ -129,8 +134,8 @@ public class StudentController {
 
 
     @GetMapping("/{specializationId}/grades")
-    public List<GradeDTO> getGrades(@PathVariable Long specializationId, @PathVariable Long student_id){
-        Optional<Student> student = studentService.findStudentById(student_id);
+    public List<GradeDTO> getGrades(@PathVariable Long specializationId, @PathVariable Long studentId){
+        Optional<Student> student = studentService.findStudentById(studentId);
         if(student.isEmpty()){
             throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "Student not found.");
         }
@@ -141,6 +146,30 @@ public class StudentController {
         }
 
         return student.get().getGrades().stream().filter(g -> g.getCourse().getSpecialization() == specialization.get()).map(g -> new GradeDTO(g, g.getCourse().getSemesterNumber())).collect(Collectors.toList());
+
+    }
+
+    @PostMapping(value = "contracts/upload", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
+    public void uploadContract(@PathVariable Long studentId, @RequestPart("file") MultipartFile file, @RequestPart("data") UploadContractRequest uploadContractRequest){
+        Optional<Student> student = studentService.findStudentById(studentId);
+        if(student.isEmpty()){
+            throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "Student not found.");
+        }
+
+        Optional<Specialization> specialization = specializationService.findSpecializationById(uploadContractRequest.getSpecializationId());
+        if(specialization.isEmpty()){
+            throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "Specialization not found.");
+        }
+
+        String name = student.get().getAccount().getLastName() + "-" + student.get().getAccount().getFirstName() + "_" + specialization.get().getName().replace(' ', '-') + "_" + uploadContractRequest.getSemester() + ".pdf";
+
+        try{
+            contractUploadService.saveFile(name, file);
+        }catch (IOException exception){
+            System.out.println(exception.getMessage());
+        }
+
+        // TODO: add contract, send APIResponse
 
     }
 
