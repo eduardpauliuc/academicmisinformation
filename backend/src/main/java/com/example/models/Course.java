@@ -1,6 +1,7 @@
 package com.example.models;
 
 
+import com.example.payload.responses.CourseDTO;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -56,5 +57,9 @@ public class Course {
 
     @Column(name = "maximum_students_number")
     private Integer maximumStudentsNumber;
+
+    public CourseDTO convertToCourseDTO() {
+        return new CourseDTO(this);
+    }
 
 }

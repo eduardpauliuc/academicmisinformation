@@ -3,18 +3,24 @@ package com.example.payload.responses;
 import com.example.models.Course;
 import com.example.models.EStatus;
 import com.example.models.OptionalProposal;
-import com.example.models.Status;
 
 public class CourseDTO {
 
     private final String name;
+
     private final String specializationName;
+
     private final Integer credits;
+
     private final String description;
+
     private final Integer semesterNumber;
-    private final Boolean isOptional;
-    private final Integer maximumStudentsNumber;
-    private final EStatus status;
+
+    private final Boolean isOptional; // null for CourseDTOs converted from OptionalProposal
+
+    private final Integer maximumStudentsNumber; // null for CourseDTOs converted from Course that was not an optional
+
+    private final EStatus status; // null for CourseDTOs converted from Course
 
     public CourseDTO(Course course) {
         this.name = course.getName();
@@ -22,20 +28,20 @@ public class CourseDTO {
         this.credits = course.getCredits();
         this.description = course.getDescription();
         this.semesterNumber = course.getSemesterNumber();
-        this.maximumStudentsNumber = course.getMaximumStudentsNumber();
         this.isOptional = course.getIsOptional();
+        this.maximumStudentsNumber = course.getMaximumStudentsNumber();
         this.status = null;
     }
 
-    public CourseDTO(OptionalProposal optional) {
-        this.name = optional.getName();
-        this.specializationName = optional.getSpecialization().getName();
-        this.credits = optional.getCredits();
-        this.description = optional.getDescription();
-        this.semesterNumber = optional.getSemesterNumber();
-        this.maximumStudentsNumber = optional.getMaximumStudentsNumber();
-        this.isOptional = Boolean.TRUE;
-        this.status = optional.getStatus().getName();
+    public CourseDTO(OptionalProposal optionalProposal) {
+        this.name = optionalProposal.getName();
+        this.specializationName = optionalProposal.getSpecialization().getName();
+        this.credits = optionalProposal.getCredits();
+        this.description = optionalProposal.getDescription();
+        this.semesterNumber = optionalProposal.getSemesterNumber();
+        this.isOptional = null;
+        this.maximumStudentsNumber = optionalProposal.getMaximumStudentsNumber();
+        this.status = optionalProposal.getStatus().getName();
     }
 
     public String getName() {
@@ -58,7 +64,7 @@ public class CourseDTO {
         return semesterNumber;
     }
 
-    public Boolean getIsOptional() {
+    public Boolean getOptional() {
         return isOptional;
     }
 

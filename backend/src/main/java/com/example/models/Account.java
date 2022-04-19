@@ -21,7 +21,6 @@ public class Account {
     @Column(name = "id")
     private Long id;
 
-
     @OneToOne(mappedBy = "account")
     private Teacher teacher;
 

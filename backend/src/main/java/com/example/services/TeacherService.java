@@ -1,5 +1,7 @@
 package com.example.services;
 
+import com.example.models.Course;
+import com.example.models.OptionalProposal;
 import com.example.models.Teacher;
 import com.example.repositories.ITeacherRepository;
 import lombok.AllArgsConstructor;
@@ -32,5 +34,15 @@ public class TeacherService implements ITeacherService {
     @Override
     public void deleteTeacherById(Long id) {
         teacherRepository.deleteById(id);
+    }
+
+    @Override
+    public List<Course> getAllCourses(Teacher teacher) {
+        return teacher.getCourses();
+    }
+
+    @Override
+    public List<OptionalProposal> getAllOptionalProposals(Teacher teacher) {
+        return teacher.getOptionalProposals();
     }
 }

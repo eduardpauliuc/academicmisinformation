@@ -111,21 +111,23 @@ public class AuthenticationController {
         Role role;
 
         switch (requestRole) {
-            case "staff":
-                role = this.roleService.findByName(ERole.ROLE_STAFF)
-                        .orElseThrow(() -> new RuntimeException("Error: Role not found!"));
-                break;
-
-            case "teacher":
-                role = this.roleService.findByName(ERole.ROLE_TEACHER)
-                        .orElseThrow(() -> new RuntimeException("Error: Role not found!"));
-                break;
-
             case "administrator":
                 role = this.roleService.findByName(ERole.ROLE_ADMINISTRATOR)
                         .orElseThrow(() -> new RuntimeException("Error: Role not found!"));
                 break;
 
+            case "staff":
+                role = this.roleService.findByName(ERole.ROLE_STAFF)
+                        .orElseThrow(() -> new RuntimeException("Error: Role not found!"));
+                break;
+
+            case "chief":
+            case "teacher":
+                role = this.roleService.findByName(ERole.ROLE_TEACHER)
+                        .orElseThrow(() -> new RuntimeException("Error: Role not found!"));
+                break;
+
+            case "student":
             default:
                 role = this.roleService.findByName(ERole.ROLE_STUDENT)
                         .orElseThrow(() -> new RuntimeException("Error: Role not found!"));
@@ -142,20 +144,10 @@ public class AuthenticationController {
                 break;
 
             case ROLE_STUDENT:
-//                String registrationNumber = this.studentService.generateUniqueRegistrationNumber();
-                int leftLimit = 48; // numeral '0'
-                int rightLimit = 122; // letter 'z'
-                int targetStringLength = 10;
-                Random random = new Random();
-                // TODO: take from student service
-                String registrationNumber = random.ints(leftLimit, rightLimit + 1)
-                        .filter(i -> (i <= 57 || i >= 65) && (i <= 90 || i >= 97))
-                        .limit(targetStringLength)
-                        .collect(StringBuilder::new, StringBuilder::appendCodePoint, StringBuilder::append)
-                        .toString();
+                String registrationNumber = this.studentService.generateUniqueRegistrationNumber();
                 Student student = new Student(account, registrationNumber);
-                        this.studentService.saveStudent(student);
-                        break;
+                this.studentService.saveStudent(student);
+                break;
 
             case ROLE_TEACHER:
             case ROLE_CHIEF:
