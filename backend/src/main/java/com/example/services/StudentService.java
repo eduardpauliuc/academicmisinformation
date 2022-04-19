@@ -23,6 +23,8 @@ public class StudentService implements IStudentService {
 
     private final IStudentRepository studentRepository;
 
+    //TODO: get active contracts
+
     @Override
     public List<Student> getAllStudents() {
         return studentRepository.findAll();

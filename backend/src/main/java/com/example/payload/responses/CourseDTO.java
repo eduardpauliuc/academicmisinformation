@@ -1,6 +1,8 @@
 package com.example.payload.responses;
 
 import com.example.models.Course;
+import com.example.models.EStatus;
+import com.example.models.OptionalProposal;
 import com.example.models.Status;
 
 public class CourseDTO {
@@ -10,19 +12,30 @@ public class CourseDTO {
     private final Integer credits;
     private final String description;
     private final Integer semesterNumber;
-    private final Boolean optional;
+    private final Boolean isOptional;
     private final Integer maximumStudentsNumber;
-    private final Status status;
+    private final EStatus status;
 
-    public CourseDTO(Course course, Boolean optional, Status status) {
+    public CourseDTO(Course course) {
         this.name = course.getName();
         this.specializationName = course.getSpecialization().getName();
         this.credits = course.getCredits();
         this.description = course.getDescription();
         this.semesterNumber = course.getSemesterNumber();
         this.maximumStudentsNumber = course.getMaximumStudentsNumber();
-        this.optional = optional;
-        this.status = status;
+        this.isOptional = course.getIsOptional();
+        this.status = null;
+    }
+
+    public CourseDTO(OptionalProposal optional) {
+        this.name = optional.getName();
+        this.specializationName = optional.getSpecialization().getName();
+        this.credits = optional.getCredits();
+        this.description = optional.getDescription();
+        this.semesterNumber = optional.getSemesterNumber();
+        this.maximumStudentsNumber = optional.getMaximumStudentsNumber();
+        this.isOptional = Boolean.TRUE;
+        this.status = optional.getStatus().getName();
     }
 
     public String getName() {
@@ -45,15 +58,15 @@ public class CourseDTO {
         return semesterNumber;
     }
 
-    public Boolean getOptional() {
-        return optional;
+    public Boolean getIsOptional() {
+        return isOptional;
     }
 
     public Integer getMaximumStudentsNumber() {
         return maximumStudentsNumber;
     }
 
-    public Status getStatus() {
+    public EStatus getStatus() {
         return status;
     }
 }

@@ -4,10 +4,7 @@ import com.example.models.*;
 import com.example.payload.requests.PdfDTO;
 import com.example.payload.requests.UploadContractRequest;
 import com.example.payload.responses.*;
-import com.example.services.IDocumentGenerator;
-import com.example.services.IDocumentUploadService;
-import com.example.services.ISpecializationService;
-import com.example.services.IStudentService;
+import com.example.services.*;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 import org.springframework.core.io.InputStreamResource;
@@ -36,6 +33,7 @@ public class StudentController {
     private final ISpecializationService specializationService;
     private final IDocumentGenerator pdfGeneratorService;
     private final IDocumentUploadService contractUploadService;
+    private final IContractService contractService;
 
 
     @GetMapping("/contracts")
@@ -49,7 +47,7 @@ public class StudentController {
 
     @GetMapping("/specializations")
     public List<SpecializationDTO> getStudentsSpecializations(@PathVariable("studentId") Long id){
-        // TODO: get currently active specializations? check dates on contracts?
+        // TODO: use getActiveContracts from studentService
         Optional<Student> student = studentService.findStudentById(id);
         if (student.isEmpty()){
             throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "Student not found.");
@@ -75,7 +73,7 @@ public class StudentController {
 
         Integer semester = contract.get().getSemesterNumber();
 
-        return specialization.get().getCourses().stream().filter(c -> Objects.equals(c.getSemesterNumber(), semester)).map(c -> new CourseDTO(c,c.getIsOptional(), null )).collect(Collectors.toList());
+        return specialization.get().getCourses().stream().filter(course -> Objects.equals(course.getSemesterNumber(), semester)).map(CourseDTO::new).collect(Collectors.toList());
     }
 
     @GetMapping("/contracts/generate")
@@ -128,7 +126,12 @@ public class StudentController {
             throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "Specialization not found.");
         }
 
-        return student.get().getOptionalPreferences().stream().filter(o -> o.getCourse().getSpecialization().equals(specialization.get())).sorted(Comparator.comparing(OptionalPreference::getRank)).map(item -> new OptionalPreferenceDTO( new CourseDTO(item.getCourse(), true, null), item.getRank())).collect(Collectors.toList());
+        return student.get().getOptionalPreferences()
+                .stream().filter(o -> o.getCourse().getSpecialization()
+                .equals(specialization.get()))
+                .sorted(Comparator.comparing(OptionalPreference::getRank))
+                .map(item -> new OptionalPreferenceDTO( new CourseDTO(item.getCourse()), item.getRank()))
+                .collect(Collectors.toList());
 
     }
 
@@ -145,7 +148,8 @@ public class StudentController {
             throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "Specialization not found.");
         }
 
-        return student.get().getGrades().stream().filter(g -> g.getCourse().getSpecialization() == specialization.get()).map(g -> new GradeDTO(g, g.getCourse().getSemesterNumber())).collect(Collectors.toList());
+        return student.get().getGrades().stream().filter(g -> g.getCourse().getSpecialization() == specialization.get())
+                .map(g -> new GradeDTO(g, g.getCourse().getSemesterNumber())).collect(Collectors.toList());
 
     }
 
@@ -163,15 +167,17 @@ public class StudentController {
             throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "Specialization not found.");
         }
 
-        String name = student.get().getAccount().getLastName() + "-" + student.get().getAccount().getFirstName() + "_" + specialization.get().getName().replace(' ', '-') + "_" + uploadContractRequest.getSemester() + ".pdf";
+        String name = student.get().getAccount()
+                .getLastName() + "-" + student.get()
+                .getAccount().getFirstName() + "_" + specialization.get().getName().replace(' ', '-') + "_" + uploadContractRequest.getSemester() + ".pdf";
 
         try{
             contractUploadService.saveFile(name, file);
         }catch (IOException exception){
-            System.out.println(exception.getMessage());
+            throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, exception.getMessage());
         }
 
-        // TODO: add contract, send APIResponse
+        contractService.saveContract(new Contract(null, specialization.get(), student.get(), java.sql.Date.valueOf("2020-02-20"), java.sql.Date.valueOf("2021-02-20"), 1, "A17"));
 
     }
 
