@@ -22,11 +22,11 @@ public class OptionalPreference {
     private OptionalPreferenceId id;
 
     @ManyToOne
-    @MapsId("student_id")
+    @JoinColumn(name = "student_id", insertable = false, updatable = false)
     private Student student;
 
     @ManyToOne
-    @MapsId("course_id")
+    @JoinColumn(name = "course_id", insertable = false, updatable = false)
     private Course course;
 
     @Column(name = "rank", nullable = false)
