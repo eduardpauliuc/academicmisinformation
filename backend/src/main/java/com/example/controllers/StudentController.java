@@ -149,8 +149,10 @@ public class StudentController {
 
     }
 
-    @PostMapping(value = "contracts/upload", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
-    public void uploadContract(@PathVariable Long studentId, @RequestPart("file") MultipartFile file, @RequestPart("data") UploadContractRequest uploadContractRequest){
+    @PostMapping(value = "contracts/upload", consumes = {MediaType.MULTIPART_FORM_DATA_VALUE})
+    public void uploadContract(@PathVariable Long studentId, @ModelAttribute UploadContractRequest uploadContractRequest){
+        MultipartFile file = uploadContractRequest.getFile();
+
         Optional<Student> student = studentService.findStudentById(studentId);
         if(student.isEmpty()){
             throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "Student not found.");

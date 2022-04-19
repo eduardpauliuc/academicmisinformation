@@ -5,14 +5,15 @@ public class UploadContractRequest {
     private final Long facultyId;
     private final Long specializationId;
     private final Integer semester;
+    private final MultipartFile file;
 
 
-    public UploadContractRequest(Long facultyId, Long specializationId, Integer semester) {
+    public UploadContractRequest(Long facultyId, Long specializationId, Integer semester, MultipartFile file) {
         this.facultyId = facultyId;
         this.specializationId = specializationId;
         this.semester = semester;
+        this.file = file;
     }
-
 
     public Long getFacultyId() {
         return facultyId;
@@ -26,4 +27,7 @@ public class UploadContractRequest {
         return semester;
     }
 
+    public MultipartFile getFile() {
+        return file;
+    }
 }
