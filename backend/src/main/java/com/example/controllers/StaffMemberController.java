@@ -28,7 +28,7 @@ public class StaffMemberController {
     @GetMapping("/{specializationId}/{semester}/students")
     public List<StudentGradeDTO> getStudents(@PathVariable("id") Long staffMemberId,
                                              @PathVariable("specializationId") Long specializationId,
-                                             @PathVariable("semester") Integer semester){
+                                             @PathVariable("semester") Integer semester) {
         var specializationOptional = specializationService.findSpecializationById(specializationId);
 
         // if the current staff member does not exist, exit the function here
@@ -56,7 +56,7 @@ public class StaffMemberController {
         var studentGradeDTOs = new LinkedList<StudentGradeDTO>();
         students.forEach(
                 student ->
-                    studentGradeDTOs.add(new StudentGradeDTO(student.getId(), student.findAverageForSemester(specialization, semester)))
+                        studentGradeDTOs.add(new StudentGradeDTO(student.getId(), student.findAverageForSemester(specialization, semester)))
         );
         return studentGradeDTOs;
     }
@@ -64,8 +64,8 @@ public class StaffMemberController {
     // we should return something when something goes wrong, but I am not sure what yet
     @PutMapping("/{specializationId}/{semester}/assignment/groups")
     public void assignStudentsToGroups(@PathVariable("id") Long staffMemberId,
-                                          @PathVariable("specializationId") Long specializationId,
-                                          @PathVariable("semester") Integer semester){
+                                       @PathVariable("specializationId") Long specializationId,
+                                       @PathVariable("semester") Integer semester) {
         // same checks as in the first function
         var specializationOptional = specializationService.findSpecializationById(specializationId);
 
@@ -116,7 +116,7 @@ public class StaffMemberController {
     @PutMapping("/{specializationId}/{semester}/assignment/optionals")
     public void assignStudentsToOptionals(@PathVariable("id") Long staffMemberId,
                                           @PathVariable("specializationId") Long specializationId,
-                                          @PathVariable("semester") Integer semester){
+                                          @PathVariable("semester") Integer semester) {
         // same checks as before
         // we could make it a function,
         // but we want it to return it something in case it crashes for the frontend so IDK
@@ -159,7 +159,7 @@ public class StaffMemberController {
                 .stream().filter(course -> course.getIsOptional() && semester.equals(course.getSemesterNumber()))
                 .forEach(course -> optionalsMap.put(course, course.getMaximumStudentsNumber()));
 
-        for (Student student : students){
+        for (Student student : students) {
             // optionalsConfirmed holds the number of optionals our student is currently assigned to
             int optionalsConfirmed = 0;
             // sort the preferences by their rank
@@ -169,19 +169,17 @@ public class StaffMemberController {
             int currentIndex = 0;
             // while we haven't signed our student to a number of optionals,
             // and we aren't at the end of the list
-            while (optionalsConfirmed < 2 && currentIndex < preferences.size()){
+            while (optionalsConfirmed < 2 && currentIndex < preferences.size()) {
                 var currentOptional = preferences.get(currentIndex).getCourse();
                 var placesLeft = optionalsMap.get(currentOptional);
-                if (placesLeft > 0){
+                if (placesLeft > 0) {
                     optionalsMap.replace(currentOptional, placesLeft - 1);
                     gradeService.saveGrade(new Grade(null, null, student, currentOptional));
                     // not sure at the moment how to, though
                     // consult me beforehand
                     optionalsConfirmed += 1;
                 }
-                else{
-                    currentIndex += 1;
-                }
+                currentIndex += 1;
             }
             optionalPreferenceService.removePreferencesForStudent(student, specialization);
         }
