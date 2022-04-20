@@ -6,8 +6,8 @@ import StudentService from "../../services/student.service";
 import * as HomeStyles from "../common-components/home/HomePage.styles";
 import Navbar from "../Navbar";
 import Contracts from "./contracts/Contracts";
-import Courses from "./action-categories/Courses";
-import Grades from "./action-categories/Grades";
+import Courses from "./courses/Courses";
+import Grades from "./grades/Grades";
 
 import styled from "styled-components/macro";
 import GeneratePopup from "./contracts/GeneratePopup";
@@ -75,8 +75,8 @@ const StudentHome = () => {
             value={{ value: selectedSpec, label: selectedSpec?.name }}
           />
 
-          <Courses />
-          <Grades />
+          <Courses specializationID={selectedSpec?.id} />
+          <Grades specializationID={selectedSpec?.id} />
         </SpecializedContainer>
       </HomeStyles.HomeContainer>
 

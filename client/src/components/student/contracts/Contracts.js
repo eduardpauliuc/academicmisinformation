@@ -12,10 +12,10 @@ const Contracts = ({ user, setGenerateVisible, setUploadVisible }) => {
   const [isLoading, setIsLoading] = useState(true);
 
   const generateClicked = () => {
-    if (contracts.length == 2) {
-      toast.error("Maximum number of contracts!");
-      return;
-    }
+    // if (contracts.length == 2) {
+    //   toast.error("Maximum number of contracts!");
+    //   return;
+    // }
 
     setGenerateVisible(true);
   };

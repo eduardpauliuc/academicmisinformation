@@ -7,8 +7,12 @@ const ContractsTable = ({ contracts, isLoading }) => {
   const columns = [
     {
       name: "Specialization",
-      selector: (row) => row.specializationName,
+      selector: (row) => row.specialization.name,
       grow: 2,
+    },
+    {
+      name: "Type",
+      selector: (row) => row.specialization.degreeType,
     },
     {
       name: "Start date",
