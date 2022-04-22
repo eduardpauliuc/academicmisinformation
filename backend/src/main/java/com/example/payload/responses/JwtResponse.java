@@ -9,7 +9,7 @@ public class JwtResponse {
     private Long id;
     private String username;
     private String email;
-    private String role;
+    private final String role;
     private String firstName;
     private String lastName;
     private Date birthDate;

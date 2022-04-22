@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 @Service
-public class PDFGeneratorService implements IDocumentGenerator{
+public class PDFGeneratorService implements IDocumentGenerator {
 
     public void export(HttpServletResponse response, PdfDTO dto) throws IOException {
 
@@ -30,7 +30,7 @@ public class PDFGeneratorService implements IDocumentGenerator{
         Student student = dto.getStudent();
         Specialization specialization = dto.getSpecialization();
         Integer semester = dto.getSemester();
-        Paragraph paragraph2 = new Paragraph("Student " + student.getAccount().getFirstName() + " " + student.getAccount().getLastName() + " is enrolling into " + specialization.getName() + " for semester " + semester , fontParagraph);
+        Paragraph paragraph2 = new Paragraph("Student " + student.getAccount().getFirstName() + " " + student.getAccount().getLastName() + " is enrolling into " + specialization.getName() + " for semester " + semester, fontParagraph);
         paragraph2.setAlignment(Paragraph.ALIGN_LEFT);
 
         document.add(paragraph);

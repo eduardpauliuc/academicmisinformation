@@ -7,9 +7,10 @@ import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.stream.Collectors;
+
 @Service
 @AllArgsConstructor
-public class OptionalPreferenceService implements IOptionalPreferenceService{
+public class OptionalPreferenceService implements IOptionalPreferenceService {
     private IOptionalPreferenceRepository optionalPreferenceRepository;
 
 

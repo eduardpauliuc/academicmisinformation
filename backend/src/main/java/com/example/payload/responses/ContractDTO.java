@@ -1,7 +1,6 @@
 package com.example.payload.responses;
 
 import com.example.models.Contract;
-import com.example.models.Specialization;
 
 import java.sql.Date;
 
@@ -12,7 +11,7 @@ public class ContractDTO {
     private final Date endDate;
     private final Integer semester;
 
-    public ContractDTO( Contract contract) {
+    public ContractDTO(Contract contract) {
         this.studentId = contract.getStudent().getId();
         this.specialization = new SpecializationDTO(contract.getSpecialization());
         this.startDate = contract.getStartDate();

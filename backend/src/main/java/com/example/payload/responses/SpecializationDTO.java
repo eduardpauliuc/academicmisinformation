@@ -1,6 +1,5 @@
 package com.example.payload.responses;
 
-import com.example.models.Degree;
 import com.example.models.Specialization;
 
 public class SpecializationDTO {

@@ -47,7 +47,7 @@ public class Student {
     // gets the highest semester on a contract for a specialization
     // ideally, this should be the current semester of the current student
     // returns -1 if the student has no contracts for the given specialization
-    public Integer getSemester(Specialization specialization){
+    public Integer getSemester(Specialization specialization) {
         return contracts.stream()
                 .filter(contract -> contract.getSpecialization() == specialization)
                 .map(Contract::getSemesterNumber)
@@ -58,13 +58,13 @@ public class Student {
     // gets the latest contract for a given specialization
     // representing the contract signed for the highest semester for a specialization
     // or an empty Optional if there are none
-    public Optional<Contract> getLatestContract(Specialization specialization){
+    public Optional<Contract> getLatestContract(Specialization specialization) {
         //TODO: check dates
         Integer semester = getSemester(specialization);
         if (semester == -1)
             return Optional.empty();
         return contracts.stream().findAny().filter(contract -> contract.getSpecialization().equals(specialization)
-                        && contract.getSemesterNumber().equals(semester));
+                && contract.getSemesterNumber().equals(semester));
     }
 
     // computes the average of the student for a specialization and a semester
@@ -73,7 +73,7 @@ public class Student {
     // if there are any ungraded courses or if there are no courses at all,
     // the average is discarded, and we return -1
     // otherwise, we compute the pondered mean
-    public double findAverageForSemester(Specialization specialization, Integer semester){
+    public double findAverageForSemester(Specialization specialization, Integer semester) {
         AtomicBoolean areFullyGraded = new AtomicBoolean(true);
         AtomicInteger creditsSum = new AtomicInteger(0);
         AtomicInteger gradesSum = new AtomicInteger(0);
@@ -81,7 +81,7 @@ public class Student {
                 .stream().filter(grade -> grade.getCourse().getSemesterNumber().equals(semester)
                         && grade.getCourse().getSpecialization().equals(specialization));
         grades.forEach(
-                grade ->{
+                grade -> {
                     creditsSum.addAndGet(grade.getCourse().getCredits());
                     if (grade.getGrade() == null)
                         areFullyGraded.set(false);

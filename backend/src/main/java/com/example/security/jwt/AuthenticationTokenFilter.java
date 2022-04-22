@@ -45,7 +45,7 @@ public class AuthenticationTokenFilter extends OncePerRequestFilter {
     private String parseJwt(HttpServletRequest request) {
         String authenticationHeader = request.getHeader("Authorization");
         if (StringUtils.hasText(authenticationHeader) && authenticationHeader.startsWith("Bearer ")) {
-            return authenticationHeader.substring(7, authenticationHeader.length());
+            return authenticationHeader.substring(7);
         }
 
         return null;
