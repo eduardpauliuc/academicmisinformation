@@ -5,7 +5,7 @@ public class OptionalPreferenceDTO {
     private final CourseDTO course;
     private final Integer rank;
 
-    public OptionalPreferenceDTO( CourseDTO course, Integer rank) {
+    public OptionalPreferenceDTO(CourseDTO course, Integer rank) {
 
         this.course = course;
         this.rank = rank;

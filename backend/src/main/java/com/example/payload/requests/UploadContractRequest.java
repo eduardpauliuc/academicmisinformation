@@ -1,5 +1,7 @@
 package com.example.payload.requests;
+
 import org.springframework.web.multipart.MultipartFile;
+
 public class UploadContractRequest {
 
     private final Long specializationId;
@@ -7,7 +9,7 @@ public class UploadContractRequest {
     private final MultipartFile file;
 
 
-    public UploadContractRequest( Long specializationId, Integer semester, MultipartFile file) {
+    public UploadContractRequest(Long specializationId, Integer semester, MultipartFile file) {
         this.specializationId = specializationId;
         this.semester = semester;
         this.file = file;

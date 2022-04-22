@@ -14,15 +14,15 @@ import java.nio.file.StandardCopyOption;
 
 @Service
 @AllArgsConstructor
-public class ContractUploadService implements IDocumentUploadService{
+public class ContractUploadService implements IDocumentUploadService {
     @Override
     public void saveFile(String name, MultipartFile file) throws IOException {
         Path uploadDirectory = Paths.get("Contracts");
-        try(InputStream inputStream = file.getInputStream()){
+        try (InputStream inputStream = file.getInputStream()) {
             Path filePath = uploadDirectory.resolve(name);
             Files.copy(inputStream, filePath, StandardCopyOption.REPLACE_EXISTING);
-        }catch (IOException exception){
-        throw new IOException("Error saving file.pdf " + name, exception);
+        } catch (IOException exception) {
+            throw new IOException("Error saving file.pdf " + name, exception);
         }
     }
 

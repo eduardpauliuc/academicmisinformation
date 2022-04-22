@@ -7,7 +7,7 @@ import org.springframework.stereotype.Service;
 
 @Service
 @AllArgsConstructor
-public class GradeService implements IGradeService{
+public class GradeService implements IGradeService {
     private IGradeRepository gradeRepository;
 
     @Override

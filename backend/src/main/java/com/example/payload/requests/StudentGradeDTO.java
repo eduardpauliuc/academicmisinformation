@@ -1,7 +1,5 @@
 package com.example.payload.requests;
 
-import com.example.models.Student;
-
 public class StudentGradeDTO {
     private final Long studentId;
     private final Double average;

@@ -16,15 +16,15 @@ import java.util.Objects;
 public class AccountDetails implements org.springframework.security.core.userdetails.UserDetails {
     private static final long serialVersionUID = 1L;
 
-    private Long id;
-    private String username;
-    private String email;
+    private final Long id;
+    private final String username;
+    private final String email;
     @JsonIgnore
-    private String password;
-    private Collection<? extends GrantedAuthority> authorities;
-    private String firstName;
-    private String lastName;
-    private Date birthDate;
+    private final String password;
+    private final Collection<? extends GrantedAuthority> authorities;
+    private final String firstName;
+    private final String lastName;
+    private final Date birthDate;
 
     public AccountDetails(Long id, String username, String email, String password, Collection<? extends GrantedAuthority> authorities, String firstName, String lastName, Date birthDate) {
         this.id = id;

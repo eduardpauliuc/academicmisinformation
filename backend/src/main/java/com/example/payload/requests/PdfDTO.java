@@ -1,6 +1,5 @@
 package com.example.payload.requests;
 
-import com.example.models.Faculty;
 import com.example.models.Specialization;
 import com.example.models.Student;
 
@@ -10,7 +9,7 @@ public class PdfDTO {
     private final Specialization specialization;
     private final Integer semester;
 
-    public PdfDTO( Student student, Specialization specialization, Integer semester) {
+    public PdfDTO(Student student, Specialization specialization, Integer semester) {
 
         this.student = student;
         this.specialization = specialization;

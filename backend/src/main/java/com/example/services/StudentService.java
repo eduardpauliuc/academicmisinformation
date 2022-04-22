@@ -8,13 +8,9 @@ import lombok.AllArgsConstructor;
 import org.apache.commons.lang3.RandomStringUtils;
 import org.springframework.stereotype.Service;
 
-import java.util.Comparator;
 import java.util.List;
 import java.util.Locale;
-import java.util.Objects;
 import java.util.Optional;
-import java.util.concurrent.atomic.AtomicBoolean;
-import java.util.concurrent.atomic.AtomicInteger;
 import java.util.stream.Collectors;
 
 @Service
@@ -77,7 +73,7 @@ public class StudentService implements IStudentService {
     }
 
     @Override
-    public List<Student> sortStudentsByName(Specialization specialization, Integer semester){
+    public List<Student> sortStudentsByName(Specialization specialization, Integer semester) {
         return studentRepository.findAll()
                 .stream()
                 // filter out students which aren't in our required semester for our specialization
