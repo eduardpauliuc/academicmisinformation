@@ -36,61 +36,77 @@ public class StudentController {
 
     @GetMapping("/contracts")
     public List<ContractDTO> getStudentsContracts(@PathVariable("studentId") Long id) {
-        Optional<Student> student = studentService.findStudentById(id);
-        if (student.isEmpty()) {
-            throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "Student not found.");
-        }
-        return student.get().getContracts().stream().map(ContractDTO::new).collect(Collectors.toList());
+        Student student = this.studentService.findStudentById(id).orElseThrow(
+                () -> new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "Student not found.")
+        );
+
+        return student.getContracts()
+                .stream()
+                .map(ContractDTO::new)
+                .collect(Collectors.toList());
     }
 
     @GetMapping("/specializations")
     public List<SpecializationDTO> getStudentsSpecializations(@PathVariable("studentId") Long id) {
         // TODO: use getActiveContracts from studentService
-        Optional<Student> student = studentService.findStudentById(id);
-        if (student.isEmpty()) {
-            throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "Student not found.");
-        }
-        return student.get().getContracts().stream().map(Contract::getSpecialization).map(SpecializationDTO::new).collect(Collectors.toList());
+        Student student = this.studentService.findStudentById(id).orElseThrow(
+                () -> new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "Student not found.")
+        );
+
+        return student.getContracts()
+                .stream()
+                .map(Contract::getSpecialization)
+                .map(SpecializationDTO::new)
+                .collect(Collectors.toList());
     }
 
     @GetMapping("/{specializationId}/courses")
-    public List<CourseDTO> getCoursesForSpecialization(@PathVariable("studentId") Long id, @PathVariable("specializationId") Long specializationId) {
-        Optional<Student> student = studentService.findStudentById(id);
-        if (student.isEmpty()) {
-            throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "Student not found.");
-        }
-        Optional<Specialization> specialization = specializationService.findSpecializationById(specializationId);
-        if (specialization.isEmpty()) {
-            throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "Specialization not found.");
-        }
-        Optional<Contract> contract = student.get().getLatestContract(specialization.get());
+    public List<CourseDTO> getCoursesForSpecialization(@PathVariable("studentId") Long id,
+                                                       @PathVariable("specializationId") Long specializationId) {
+        Student student = this.studentService.findStudentById(id).orElseThrow(
+                () -> new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "Student not found.")
+        );
 
-        if (contract.isEmpty()) {
-            throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "Student has no contracts for this specialization.");
-        }
+        Specialization specialization = this.specializationService.findSpecializationById(specializationId).orElseThrow(
+                () -> new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "Specialization not found.")
+        );
 
-        Integer semester = contract.get().getSemesterNumber();
+        Contract contract = student.getLatestContract(specialization).orElseThrow(
+                () -> new ResponseStatusException(
+                        HttpStatus.INTERNAL_SERVER_ERROR,
+                        "Student has no contracts for this specialization."
+                )
+        );
 
-        return specialization.get().getCourses().stream().filter(course -> Objects.equals(course.getSemesterNumber(), semester)).map(CourseDTO::new).collect(Collectors.toList());
+        Integer semester = contract.getSemesterNumber();
+
+        return specialization.getCourses()
+                .stream()
+                .filter(course -> Objects.equals(course.getSemesterNumber(), semester))
+                .map(CourseDTO::new)
+                .collect(Collectors.toList());
     }
 
     @GetMapping("/contracts/generate")
     public void generateContract(@PathVariable("studentId") Long id, HttpServletResponse response,
                                  @RequestParam Long specializationId, @RequestParam Integer semester) {
 
-        Optional<Student> student = studentService.findStudentById(id);
-        if (student.isEmpty()) {
-            throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "Student not found.");
-        }
-        Optional<Specialization> specialization = specializationService.findSpecializationById(specializationId);
-        if (specialization.isEmpty()) {
-            throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "Specialization not found.");
-        }
-        Optional<Contract> contract = student.get().getLatestContract(specialization.get());
+        Student student = this.studentService.findStudentById(id).orElseThrow(
+                () -> new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "Student not found.")
+        );
+
+        Specialization specialization = this.specializationService.findSpecializationById(specializationId).orElseThrow(
+                () -> new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "Specialization not found.")
+        );
+
+        Optional<Contract> contract = student.getLatestContract(specialization);
 
         if (semester != 1) {
             if (contract.isEmpty() || contract.get().getSemesterNumber() != semester - 1) {
-                throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "Contract for previous semester not found.");
+                throw new ResponseStatusException(
+                        HttpStatus.INTERNAL_SERVER_ERROR,
+                        "Contract for previous semester not found."
+                );
             }
         }
 
@@ -101,7 +117,8 @@ public class StudentController {
         String headerValue = "attachment; filename=contract_" + currentDateTime + ".pdf";
         response.setHeader(headerKey, headerValue);
 
-        PdfDTO dto = new PdfDTO(student.get(), specialization.get(), semester);
+        PdfDTO dto = new PdfDTO(student, specialization, semester);
+
         try {
             pdfGeneratorService.export(response, dto);
         } catch (IOException e) {
@@ -135,7 +152,7 @@ public class StudentController {
 
 
     @GetMapping("/{specializationId}/grades")
-    public List<GradeDTO> getGrades(@PathVariable Long specializationId, @PathVariable Long studentId) {
+    public List<GradeResponseDTO> getGrades(@PathVariable Long specializationId, @PathVariable Long studentId) {
         Optional<Student> student = studentService.findStudentById(studentId);
         if (student.isEmpty()) {
             throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "Student not found.");
@@ -146,8 +163,10 @@ public class StudentController {
             throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "Specialization not found.");
         }
 
-        return student.get().getGrades().stream().filter(g -> g.getCourse().getSpecialization() == specialization.get())
-                .map(g -> new GradeDTO(g, g.getCourse().getSemesterNumber())).collect(Collectors.toList());
+        return student.get().getGrades().stream()
+                .filter(g -> g.getCourse().getSpecialization() == specialization.get())
+                .map(g -> new GradeResponseDTO(g, g.getCourse().getSemesterNumber()))
+                .collect(Collectors.toList());
 
     }
 

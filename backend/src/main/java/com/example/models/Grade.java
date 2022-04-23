@@ -32,5 +32,4 @@ public class Grade {
     @JoinColumn(name = "course_id", nullable = false)
     private Course course;
 
-
 }
