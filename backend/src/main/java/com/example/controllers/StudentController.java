@@ -117,10 +117,10 @@ public class StudentController {
         String headerValue = "attachment; filename=contract_" + currentDateTime + ".pdf";
         response.setHeader(headerKey, headerValue);
 
-        PdfDTO dto = new PdfDTO(student, specialization, semester);
+        PdfDTO pdfDTO = new PdfDTO(student, specialization, semester);
 
         try {
-            pdfGeneratorService.export(response, dto);
+            pdfGeneratorService.export(response, pdfDTO);
         } catch (IOException e) {
             e.printStackTrace();
             throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "Error while generating contract pdf.");
