@@ -17,8 +17,9 @@ public class AccountDetailsService implements org.springframework.security.core.
     @Override
     @Transactional
     public org.springframework.security.core.userdetails.UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        Account account = this.accountRepository.findByUsername(username)
-                .orElseThrow(() -> new UsernameNotFoundException("No account found with the username: " + username));
+        Account account = this.accountRepository.findByUsername(username).orElseThrow(
+                () -> new UsernameNotFoundException("No account found with the username: " + username)
+        );
 
         return AccountDetails.build(account);
     }

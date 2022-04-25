@@ -38,7 +38,11 @@ public class AccountDetails implements org.springframework.security.core.userdet
     }
 
     public static AccountDetails build(Account account) {
-        List<GrantedAuthority> authorities = Collections.singletonList(new SimpleGrantedAuthority(account.getRole().getName().name()));
+        List<GrantedAuthority> authorities = Collections.singletonList(
+                new SimpleGrantedAuthority(
+                        account.getRole().getName().name()
+                )
+        );
 
         return new AccountDetails(
                 account.getId(),
