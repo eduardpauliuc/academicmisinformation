@@ -1,10 +1,8 @@
 package com.example.controllers;
 
-import com.example.models.Contract;
-import com.example.models.OptionalPreference;
-import com.example.models.Specialization;
-import com.example.models.Student;
+import com.example.models.*;
 import com.example.payload.requests.PdfDTO;
+import com.example.payload.requests.StudentOptionalsRankingDTO;
 import com.example.payload.requests.UploadContractRequest;
 import com.example.payload.responses.*;
 import com.example.services.*;
@@ -32,6 +30,8 @@ public class StudentController {
     private final IDocumentGenerator pdfGeneratorService;
     private final IDocumentUploadService contractUploadService;
     private final IContractService contractService;
+    private final ICourseService courseService;
+    private final IOptionalPreferenceService optionalPreferenceService;
 
 
     @GetMapping("/contracts")
@@ -131,62 +131,61 @@ public class StudentController {
     @GetMapping("/{specializationId}/courses/optionals")
     public List<OptionalPreferenceDTO> getOptionalCourses(@PathVariable("studentId") Long id, @PathVariable Long specializationId) {
         // TODO: for current semester?
-        Optional<Student> student = studentService.findStudentById(id);
-        if (student.isEmpty()) {
-            throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "Student not found.");
-        }
+        Student student = studentService.findStudentById(id).orElseThrow(
+                () -> new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "Student not found.")
+        );
 
-        Optional<Specialization> specialization = specializationService.findSpecializationById(specializationId);
-        if (specialization.isEmpty()) {
-            throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "Specialization not found.");
-        }
+        Specialization specialization = specializationService.findSpecializationById(specializationId).orElseThrow(
+                () -> new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "Specialization not found.")
+        );
 
-        return student.get().getOptionalPreferences()
-                .stream().filter(o -> o.getCourse().getSpecialization()
-                        .equals(specialization.get()))
+        return student.getOptionalPreferences().stream()
+                .filter(currentStudent -> currentStudent.getCourse().getSpecialization().equals(specialization))
                 .sorted(Comparator.comparing(OptionalPreference::getRank))
-                .map(item -> new OptionalPreferenceDTO(new CourseDTO(item.getCourse()), item.getRank()))
+                .map(currentStudent -> new OptionalPreferenceDTO(
+                        new CourseDTO(currentStudent.getCourse()), currentStudent.getRank())
+                )
                 .collect(Collectors.toList());
-
     }
 
 
     @GetMapping("/{specializationId}/grades")
-    public List<GradeResponseDTO> getGrades(@PathVariable Long specializationId, @PathVariable Long studentId) {
-        Optional<Student> student = studentService.findStudentById(studentId);
-        if (student.isEmpty()) {
-            throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "Student not found.");
-        }
+    public List<GradeResponseDTO> getGrades(
+            @PathVariable("studentId") Long studentId,
+            @PathVariable("specializationId") Long specializationId
+    ) {
+        Student student = studentService.findStudentById(studentId).orElseThrow(
+                () -> new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "Student not found.")
+        );
 
-        Optional<Specialization> specialization = specializationService.findSpecializationById(specializationId);
-        if (specialization.isEmpty()) {
-            throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "Specialization not found.");
-        }
+        Specialization specialization = specializationService.findSpecializationById(specializationId).orElseThrow(
+                () -> new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "Specialization not found.")
+        );
 
-        return student.get().getGrades().stream()
-                .filter(g -> g.getCourse().getSpecialization() == specialization.get())
-                .map(g -> new GradeResponseDTO(g, g.getCourse().getSemesterNumber()))
+        return student.getGrades().stream()
+                .filter(grade -> grade.getCourse().getSpecialization() == specialization)
+                .map(grade -> new GradeResponseDTO(grade, grade.getCourse().getSemesterNumber()))
                 .collect(Collectors.toList());
-
     }
 
-    @PostMapping(value = "contracts/upload", consumes = {MediaType.MULTIPART_FORM_DATA_VALUE})
+    @PostMapping(value = "/contracts/upload", consumes = {MediaType.MULTIPART_FORM_DATA_VALUE})
     public void uploadContract(@PathVariable Long studentId, @ModelAttribute UploadContractRequest uploadContractRequest) {
         MultipartFile file = uploadContractRequest.getFile();
 
-        Optional<Student> student = studentService.findStudentById(studentId);
-        if (student.isEmpty()) {
-            throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "Student not found.");
-        }
+        Student student = studentService.findStudentById(studentId).orElseThrow(
+                () -> new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "Student not found.")
+        );
 
-        Optional<Specialization> specialization = specializationService.findSpecializationById(uploadContractRequest.getSpecializationId());
-        if (specialization.isEmpty()) {
-            throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "Specialization not found.");
-        }
+        Specialization specialization = specializationService.findSpecializationById(
+                uploadContractRequest.getSpecializationId()
+        ).orElseThrow(
+                () -> new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "Specialization not found.")
+        );
 
-        String name = student.get().getAccount()
-                .getLastName() + "-" + student.get()
-                .getAccount().getFirstName() + "_" + specialization.get().getName().replace(' ', '-') + "_" + uploadContractRequest.getSemester() + ".pdf";
+        String name = student.getAccount().getLastName() +
+                "-" + student.getAccount().getFirstName() +
+                "_" + specialization.getName().replace(' ', '-') + "_"
+                + uploadContractRequest.getSemester() + ".pdf";
 
         try {
             contractUploadService.saveFile(name, file);
@@ -194,9 +193,59 @@ public class StudentController {
             throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, exception.getMessage());
         }
 
-        contractService.saveContract(new Contract(null, specialization.get(), student.get(), java.sql.Date.valueOf("2020-02-20"), java.sql.Date.valueOf("2021-02-20"), 1, "A17"));
-
+        contractService.saveContract(new Contract(
+                null,
+                specialization,
+                student,
+                java.sql.Date.valueOf("2020-02-20"),
+                java.sql.Date.valueOf("2021-02-20"),
+                1,
+                "A17")
+        );
     }
 
+    @PostMapping("/{specializationId}/courses/optionals/order")
+    public void orderOptionals(
+            @PathVariable("specializationId") Long specializationId,
+            @PathVariable("studentId") Long id,
+            @RequestBody List<StudentOptionalsRankingDTO> studentOptionalsRanking
+    ) {
+        Student student = studentService.findStudentById(id).orElseThrow(
+                () -> new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "Student not found.")
+        );
 
+        Specialization specialization = specializationService.findSpecializationById(specializationId).orElseThrow(
+                () -> new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "Specialization not found.")
+        );
+
+        // check if duplicate indexes exist
+        List<Integer> indexes = studentOptionalsRanking.stream()
+                .map(StudentOptionalsRankingDTO::getIndex)
+                .collect(Collectors.toList());
+        if (indexes.size() != new HashSet<>(indexes).size()) {
+            throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "Duplicate optional indexes found.");
+        }
+
+        studentOptionalsRanking.forEach(ranking -> {
+            Course course = courseService.findCourseById(ranking.getOptionalId()).orElseThrow(
+                    () -> new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "Course not found.")
+            );
+
+            if (!course.getIsOptional() || !Objects.equals(course.getSpecialization().getId(), specialization.getId())) {
+                throw new ResponseStatusException(
+                        HttpStatus.INTERNAL_SERVER_ERROR,
+                        "Invalid request body! Mandatory courses or courses from wrong specialization found."
+                );
+            }
+
+            OptionalPreference optionalPreference = new OptionalPreference(
+                    new OptionalPreferenceId(student.getId(), course.getId()),
+                    student,
+                    course,
+                    ranking.getIndex()
+            );
+
+            optionalPreferenceService.saveOptionalPreference(optionalPreference);
+        });
+    }
 }
