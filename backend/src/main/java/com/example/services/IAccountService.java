@@ -2,6 +2,7 @@ package com.example.services;
 
 import com.example.models.Account;
 
+import java.util.List;
 import java.util.Optional;
 
 public interface IAccountService {
@@ -16,5 +17,8 @@ public interface IAccountService {
 
     void deleteAccountById(Long id);
 
+    List<Account> getAllAccounts();
+
+    Optional<Account> findAccountById(Long id);
 
 }

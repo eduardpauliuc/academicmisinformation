@@ -137,7 +137,7 @@ public class AuthenticationController {
         account.setRole(role);
         account = this.accountService.saveAccount(account);
 
-        // create the persons associated with the new account
+        // create account associated owner
         switch (account.getRole().getName()) {
             case ROLE_STAFF:
                 StaffMember staffMember = new StaffMember(account);

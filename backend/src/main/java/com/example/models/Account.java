@@ -60,4 +60,11 @@ public class Account {
         this.lastName = lastName;
         this.birthDate = birthDate;
     }
+
+    public Account(String username, String email, String passwordDigest, Role role) {
+        this.username = username;
+        this.email = email;
+        this.passwordDigest = passwordDigest;
+        this.role = role;
+    }
 }
