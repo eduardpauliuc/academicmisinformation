@@ -9,6 +9,7 @@ import com.example.services.*;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.server.ResponseStatusException;
@@ -35,6 +36,7 @@ public class StudentController {
 
 
     @GetMapping("/contracts")
+    @PreAuthorize("hasRole('STUDENT')")
     public List<ContractDTO> getStudentsContracts(@PathVariable("studentId") Long id) {
         Student student = this.studentService.findStudentById(id).orElseThrow(
                 () -> new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "Student not found.")
@@ -47,6 +49,7 @@ public class StudentController {
     }
 
     @GetMapping("/specializations")
+    @PreAuthorize("hasRole('STUDENT')")
     public List<SpecializationDTO> getStudentsSpecializations(@PathVariable("studentId") Long id) {
         // TODO: use getActiveContracts from studentService
         Student student = this.studentService.findStudentById(id).orElseThrow(
@@ -61,6 +64,7 @@ public class StudentController {
     }
 
     @GetMapping("/{specializationId}/courses")
+    @PreAuthorize("hasRole('STUDENT')")
     public List<CourseDTO> getCoursesForSpecialization(@PathVariable("studentId") Long id,
                                                        @PathVariable("specializationId") Long specializationId) {
         Student student = this.studentService.findStudentById(id).orElseThrow(
@@ -88,6 +92,7 @@ public class StudentController {
     }
 
     @GetMapping("/contracts/generate")
+    @PreAuthorize("hasRole('STUDENT')")
     public void generateContract(@PathVariable("studentId") Long id, HttpServletResponse response,
                                  @RequestParam Long specializationId, @RequestParam Integer semester) {
 
@@ -129,6 +134,7 @@ public class StudentController {
 
 
     @GetMapping("/{specializationId}/courses/optionals")
+    @PreAuthorize("hasRole('STUDENT')")
     public List<OptionalPreferenceDTO> getOptionalCourses(@PathVariable("studentId") Long id, @PathVariable Long specializationId) {
         // TODO: for current semester?
         Student student = studentService.findStudentById(id).orElseThrow(
@@ -150,6 +156,7 @@ public class StudentController {
 
 
     @GetMapping("/{specializationId}/grades")
+    @PreAuthorize("hasRole('STUDENT')")
     public List<GradeResponseDTO> getGrades(
             @PathVariable("studentId") Long studentId,
             @PathVariable("specializationId") Long specializationId
@@ -169,6 +176,7 @@ public class StudentController {
     }
 
     @PostMapping(value = "/contracts/upload", consumes = {MediaType.MULTIPART_FORM_DATA_VALUE})
+    @PreAuthorize("hasRole('STUDENT')")
     public void uploadContract(@PathVariable Long studentId, @ModelAttribute UploadContractRequest uploadContractRequest) {
         MultipartFile file = uploadContractRequest.getFile();
 
@@ -205,6 +213,7 @@ public class StudentController {
     }
 
     @PostMapping("/{specializationId}/courses/optionals/order")
+    @PreAuthorize("hasRole('STUDENT')")
     public void orderOptionals(
             @PathVariable("specializationId") Long specializationId,
             @PathVariable("studentId") Long id,

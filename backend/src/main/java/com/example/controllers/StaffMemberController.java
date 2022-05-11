@@ -17,6 +17,7 @@ import java.util.stream.Collectors;
 @AllArgsConstructor
 @RequestMapping("/api/staff/{id}")
 public class StaffMemberController {
+
     private final IStudentService studentService;
     private final IStaffMemberService staffMemberService;
     private final ISpecializationService specializationService;

@@ -6,6 +6,7 @@ import com.example.repositories.IAccountRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -39,5 +40,14 @@ public class AccountService implements IAccountService {
         accountRepository.deleteById(id);
     }
 
+    @Override
+    public List<Account> getAllAccounts() {
+        return accountRepository.findAll();
+    }
+
+    @Override
+    public Optional<Account> findAccountById(Long id) {
+        return accountRepository.findById(id);
+    }
 
 }
