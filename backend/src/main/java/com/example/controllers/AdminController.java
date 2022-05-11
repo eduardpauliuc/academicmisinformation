@@ -7,6 +7,7 @@ import com.example.services.*;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
@@ -30,6 +31,7 @@ public class AdminController {
     private IStaffMemberService staffMemberService;
 
     @GetMapping("/accounts")
+    @PreAuthorize("hasRole('ADMIN')")
     public List<JwtResponse> getAllAccounts() {
         return accountService.getAllAccounts()
                 .stream()
@@ -47,6 +49,7 @@ public class AdminController {
     }
 
     @PostMapping("/accounts")
+    @PreAuthorize("hasRole('ADMIN')")
     public void createAccount(@RequestBody NewAccountDTO newAccountDTO) {
         if (accountService.existsByUsername(newAccountDTO.getUsername())) {
             throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "Duplicate username.");
@@ -96,6 +99,7 @@ public class AdminController {
     }
 
     @DeleteMapping("/accounts/{id}")
+    @PreAuthorize("hasRole('ADMIN')")
     public void deleteAccount(@PathVariable Long id) {
         Account account = accountService.findAccountById(id).orElseThrow(
                 () -> new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "Account not found.")
