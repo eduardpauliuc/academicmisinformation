@@ -5,9 +5,13 @@ import com.example.models.Specialization;
 public class SpecializationDTO {
 
     private final Long id;
+
     private final Long facultyId;
+
     private final String name;
+
     private final String degreeType;
+
     private final Integer numberOfSemesters;
 
     public SpecializationDTO(Specialization specialization) {
