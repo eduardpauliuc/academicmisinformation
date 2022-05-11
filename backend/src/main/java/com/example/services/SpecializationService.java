@@ -1,6 +1,7 @@
 package com.example.services;
 
 import com.example.models.Specialization;
+import com.example.payload.responses.SpecializationDTO;
 import com.example.repositories.ISpecializationRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -32,5 +33,10 @@ public class SpecializationService implements ISpecializationService {
     @Override
     public Optional<Specialization> findSpecializationById(Long id) {
         return specializationRepository.findById(id);
+    }
+
+    @Override
+    public SpecializationDTO convertToSpecializationDTO(Specialization specialization) {
+        return new SpecializationDTO(specialization);
     }
 }
