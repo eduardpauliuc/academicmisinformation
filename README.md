@@ -13,14 +13,14 @@ People: Nuti, Andreea, Iulia, Ed
 ## Backend:
 
 ### Technology: Java SpringBoot
-People: Andreea, Alex, Calin
+People: Andreea, Calin, Alex
 
 <hr>
 
 ## Database:
 
 ### Technology: PostgreSQL
-People: Alex, Calin, Andreea
+People: Andreea, Alex, Calin
 
 <hr>
 
