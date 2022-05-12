@@ -4,7 +4,6 @@ import com.example.models.*;
 import com.example.payload.requests.StudentGradeDTO;
 import com.example.services.*;
 import lombok.AllArgsConstructor;
-import org.springframework.http.HttpStatus;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
