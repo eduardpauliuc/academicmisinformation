@@ -7,6 +7,7 @@ import com.example.models.Teacher;
 import com.example.payload.responses.CourseDTO;
 
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 public interface IChiefService {
@@ -22,5 +23,7 @@ public interface IChiefService {
     List<Course> getAllCourses(Teacher teacher);
 
     List<OptionalProposal> getAllOptionalProposals(Teacher teacher);
+
+    Map<Teacher, Double> getAveragesForTeachers(Specialization specialization);
 
 }
