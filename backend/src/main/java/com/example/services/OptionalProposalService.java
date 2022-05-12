@@ -10,6 +10,8 @@ import com.example.repositories.ITeacherRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.Optional;
+
 @Service
 @AllArgsConstructor
 public class OptionalProposalService implements IOptionalProposalService {
@@ -39,5 +41,15 @@ public class OptionalProposalService implements IOptionalProposalService {
         );
 
         return this.optionalProposalRepository.save(optionalProposal);
+    }
+
+    @Override
+    public Optional<OptionalProposal> findOptionalProposalById(Long id) {
+        return optionalProposalRepository.findById(id);
+    }
+
+    @Override
+    public void deleteOptionalProposal(Long id) {
+        optionalProposalRepository.deleteById(id);
     }
 }

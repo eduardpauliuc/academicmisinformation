@@ -62,4 +62,14 @@ public class Course {
         return new CourseDTO(this);
     }
 
+    public Course(OptionalProposal optionalProposal) {
+        this.semesterNumber = optionalProposal.getSemesterNumber();
+        this.credits = optionalProposal.getCredits();
+        this.specialization = optionalProposal.getSpecialization();
+        this.description = optionalProposal.getDescription();
+        this.name = optionalProposal.getName();
+        this.maximumStudentsNumber = optionalProposal.getMaximumStudentsNumber();
+        this.isOptional = true;
+    }
+
 }
