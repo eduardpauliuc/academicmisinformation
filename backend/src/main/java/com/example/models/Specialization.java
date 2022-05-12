@@ -53,6 +53,4 @@ public class Specialization {
 
     @Column(name = "semesters")
     private Integer semesters;
-
-
 }

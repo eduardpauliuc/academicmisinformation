@@ -1,14 +1,12 @@
 package com.example.controllers;
 
-import com.example.models.Course;
-import com.example.models.Grade;
-import com.example.models.OptionalPreference;
-import com.example.models.Student;
+import com.example.models.*;
 import com.example.payload.requests.StudentGradeDTO;
 import com.example.services.*;
 import lombok.AllArgsConstructor;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.server.ResponseStatusException;
 
 import java.util.*;
 import java.util.concurrent.atomic.AtomicInteger;
@@ -32,30 +30,12 @@ public class StaffMemberController {
     public List<StudentGradeDTO> getStudents(@PathVariable("id") Long staffMemberId,
                                              @PathVariable("specializationId") Long specializationId,
                                              @PathVariable("semester") Integer semester) {
-        var specializationOptional = specializationService.findSpecializationById(specializationId);
 
-        // if the current staff member does not exist, exit the function here
-        var staffMemberOptional = staffMemberService.findStaffMemberById(staffMemberId);
-        if (staffMemberOptional.isEmpty())
-            return new LinkedList<>();
-
-        // if the current specialization does not exist, exit the function here
-        var staffMember = staffMemberOptional.get();
-        if (specializationOptional.isEmpty())
-            return new LinkedList<>();
-
-        // if the current staff member isn't a staff member at the faculty of the given optional, exit the function here
-        var specialization = specializationOptional.get();
-        if (!specialization.getFaculty().equals(staffMember.getFaculty()))
-            return new LinkedList<>();
-
-        // this is an invalid semester and may cause tricky issues if not checked for
-        if (semester <= 0)
-            return new LinkedList<>();
+        Specialization specialization = validateData(specializationId, staffMemberId, semester);
 
         // for each student, add to the current student id and its average, considering
         // it is different from -1
-        var students = studentService.sortStudentsByAverage(specialization, semester);
+        var students = studentService.sortStudentsByAverage(specialization, semester, semester);
         var studentGradeDTOs = new LinkedList<StudentGradeDTO>();
         students.forEach(
                 student ->
@@ -70,23 +50,7 @@ public class StaffMemberController {
     public void assignStudentsToGroups(@PathVariable("id") Long staffMemberId,
                                        @PathVariable("specializationId") Long specializationId,
                                        @PathVariable("semester") Integer semester) {
-        // same checks as in the first function
-        var specializationOptional = specializationService.findSpecializationById(specializationId);
-
-        var staffMemberOptional = staffMemberService.findStaffMemberById(staffMemberId);
-        if (staffMemberOptional.isEmpty())
-            return;
-
-        var staffMember = staffMemberOptional.get();
-        if (specializationOptional.isEmpty())
-            return;
-
-        var specialization = specializationOptional.get();
-        if (!specialization.getFaculty().equals(staffMember.getFaculty()))
-            return;
-
-        if (semester <= 0)
-            return;
+        Specialization specialization = validateData(specializationId, staffMemberId, semester);
 
         var students = studentService.sortStudentsByName(specialization, semester);
         students = students.stream().
@@ -122,25 +86,7 @@ public class StaffMemberController {
     public void assignStudentsToOptionals(@PathVariable("id") Long staffMemberId,
                                           @PathVariable("specializationId") Long specializationId,
                                           @PathVariable("semester") Integer semester) {
-        // same checks as before
-        // we could make it a function,
-        // but we want it to return it something in case it crashes for the frontend so IDK
-        var specializationOptional = specializationService.findSpecializationById(specializationId);
-
-        var staffMemberOptional = staffMemberService.findStaffMemberById(staffMemberId);
-        if (staffMemberOptional.isEmpty())
-            return;
-
-        var staffMember = staffMemberOptional.get();
-        if (specializationOptional.isEmpty())
-            return;
-
-        var specialization = specializationOptional.get();
-        if (!specialization.getFaculty().equals(staffMember.getFaculty()))
-            return;
-
-        if (semester <= 0)
-            return;
+        Specialization specialization = validateData(specializationId, staffMemberId, semester);
 
         List<Student> students;
         // if we're in our first semester, there's no average to look into, so we
@@ -152,7 +98,7 @@ public class StaffMemberController {
             // if we're not in our first semester, we'll look through the average of the previous semester
             // and let it decide
             // we'll assume each of our students has got an average for each of its courses
-            students = studentService.sortStudentsByAverage(specialization, semester - 1);
+            students = studentService.sortStudentsByAverage(specialization, semester, semester - 1);
 
 
         // each optional is mapped to how many empty places they have left
@@ -161,7 +107,7 @@ public class StaffMemberController {
         // also, collectors to map should work
         Map<Course, Integer> optionalsMap = new HashMap<>();
         courseService.getAllCourses()
-                .stream().filter(course -> course.getIsOptional() && semester.equals(course.getSemesterNumber()))
+                .stream().filter(course -> course.getIsOptional() && semester.equals(course.getSemesterNumber()) && course.getSpecialization().equals(specialization))
                 .forEach(course -> optionalsMap.put(course, course.getMaximumStudentsNumber()));
 
         for (Student student : students) {
@@ -169,6 +115,7 @@ public class StaffMemberController {
             int optionalsConfirmed = 0;
             // sort the preferences by their rank
             var preferences = student.getOptionalPreferences().stream()
+                    .filter(optionalPreference -> optionalPreference.getCourse().getSpecialization().equals(specialization))
                     .sorted(Comparator.comparingInt(OptionalPreference::getRank))
                     .collect(Collectors.toList());
             int currentIndex = 0;
@@ -188,7 +135,28 @@ public class StaffMemberController {
             }
             optionalPreferenceService.removePreferencesForStudent(student, specialization);
         }
-        // TODO: delete all preferences after for our specialization and semester
+    }
 
+    private Specialization validateData(Long specializationId, Long staffMemberId, Integer semester){
+
+        // if the current specialization does not exist, exit the function here
+        var specialization = specializationService.findSpecializationById(specializationId).orElseThrow(
+                () -> new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "Specialization not found.")
+        );
+
+        // if the current staff member does not exist, exit the function here
+        var staffMember = staffMemberService.findStaffMemberById(staffMemberId).orElseThrow(
+                () -> new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "Staff Member not found.")
+        );
+
+        // if the current staff member isn't a staff member at the faculty of the given optional, exit the function here
+        if (!specialization.getFaculty().equals(staffMember.getFaculty()))
+            throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "Specialization isn't at the current faculty.");
+
+        // this is an invalid semester and may cause tricky issues if not checked for
+        if (semester <= 0)
+            throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "Invalid semester");
+
+        return specialization;
     }
 }
