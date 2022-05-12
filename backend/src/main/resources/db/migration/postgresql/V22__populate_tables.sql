@@ -40,11 +40,11 @@ VALUES (1, 2, 1, 'Computer Science', 'English', 'A', 6), -- teacher with id 2 is
 
 INSERT INTO migrations.courses (specialization_id, name, credits, description, semester_number, is_optional,
                                 maximum_students_number)
-VALUES (4, 'Human Rights', 4, 'You will study human rights', 2, b'0', NULL),
-       (1, 'Software Engineering', 6, 'You will study software engineering', 4, b'0', NULL),
-       (3, 'Databases I', 6, 'You will study databases I', 3, b'0', NULL),
-       (1, 'Advanced Problem Solving', 3, 'You will talk philosophy', 2, b'1', 200),
-       (1, 'Cryptography', 3, 'You will encrypt stuff', 5, b'1', 120);
+VALUES (4, 'Human Rights', 4, 'You will study human rights', 2, false, NULL),
+       (1, 'Software Engineering', 6, 'You will study software engineering', 4, false, NULL),
+       (3, 'Databases I', 6, 'You will study databases I', 3, false, NULL),
+       (1, 'Advanced Problem Solving', 3, 'You will talk philosophy', 2, true, 200),
+       (1, 'Cryptography', 3, 'You will encrypt stuff', 5, true, 120);
 
 
 INSERT INTO migrations.contracts(student_id, specialization_id, start_date, end_date, semester_number, group_code)
