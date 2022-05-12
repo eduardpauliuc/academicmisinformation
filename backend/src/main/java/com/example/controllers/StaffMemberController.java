@@ -5,6 +5,7 @@ import com.example.payload.requests.StudentGradeDTO;
 import com.example.services.*;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
@@ -25,6 +26,7 @@ public class StaffMemberController {
     private final IOptionalPreferenceService optionalPreferenceService;
 
     @GetMapping("/{specializationId}/{semester}/students")
+    @PreAuthorize("hasRole('STAFF')")
     public List<StudentGradeDTO> getStudents(@PathVariable("id") Long staffMemberId,
                                              @PathVariable("specializationId") Long specializationId,
                                              @PathVariable("semester") Integer semester) {
@@ -44,6 +46,7 @@ public class StaffMemberController {
 
     // we should return something when something goes wrong, but I am not sure what yet
     @PutMapping("/{specializationId}/{semester}/assignment/groups")
+    @PreAuthorize("hasRole('STAFF')")
     public void assignStudentsToGroups(@PathVariable("id") Long staffMemberId,
                                        @PathVariable("specializationId") Long specializationId,
                                        @PathVariable("semester") Integer semester) {
@@ -79,6 +82,7 @@ public class StaffMemberController {
     }
 
     @PutMapping("/{specializationId}/{semester}/assignment/optionals")
+    @PreAuthorize("hasRole('STAFF')")
     public void assignStudentsToOptionals(@PathVariable("id") Long staffMemberId,
                                           @PathVariable("specializationId") Long specializationId,
                                           @PathVariable("semester") Integer semester) {
