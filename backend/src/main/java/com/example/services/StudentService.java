@@ -56,22 +56,22 @@ public class StudentService implements IStudentService {
     }
 
     @Override
-    public List<Student> sortStudentsByAverage(Specialization specialization, Integer semester) {
+    public List<Student> sortStudentsByAverage(Specialization specialization, Integer studentSemester, Integer requestedSemester){
         var students = studentRepository.findAll()
                 .stream()
                 // filter out students which aren't in our required semester for our specialization
-                .filter(student -> student.getSemester(specialization).equals(semester))
+                .filter(student -> student.getSemester(specialization).equals(studentSemester))
                 // sort the students by their averages
-                .sorted((student1, student2) -> Double.compare(student2.findAverageForSemester(specialization, semester),
-                        student1.findAverageForSemester(specialization, semester)))
+                .sorted((student1, student2) -> Double.compare(student2.findAverageForSemester(specialization, requestedSemester),
+                        student1.findAverageForSemester(specialization, requestedSemester)))
                 .collect(Collectors.toList());
         // finish up by removing those with the average -1, that would be
         // students with no grades in that semester, but with signed contracts or
         // with non-graded courses
-        return students.stream().filter(student -> student.findAverageForSemester(specialization, semester) != -1)
+        return students.stream().filter(student -> student.findAverageForSemester(specialization, requestedSemester) != -1)
                 .collect(Collectors.toList());
     }
-
+    
     @Override
     public List<Student> sortStudentsByName(Specialization specialization, Integer semester) {
         return studentRepository.findAll()

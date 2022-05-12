@@ -6,6 +6,8 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.sql.Date;
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 import java.util.concurrent.atomic.AtomicBoolean;
@@ -49,7 +51,8 @@ public class Student {
     // returns -1 if the student has no contracts for the given specialization
     public Integer getSemester(Specialization specialization) {
         return contracts.stream()
-                .filter(contract -> contract.getSpecialization() == specialization)
+//                .filter(contract -> contract.getSpecialization() == specialization && contract.getEndDate().after(Date.valueOf(LocalDate.now())))
+                .filter(contract -> contract.getSpecialization() == specialization && contract.getEndDate().after(Date.valueOf(LocalDate.now())))
                 .map(Contract::getSemesterNumber)
                 .max(Integer::compareTo)
                 .orElse(-1);
@@ -59,12 +62,11 @@ public class Student {
     // representing the contract signed for the highest semester for a specialization
     // or an empty Optional if there are none
     public Optional<Contract> getLatestContract(Specialization specialization) {
-        //TODO: check dates
         Integer semester = getSemester(specialization);
         if (semester == -1)
             return Optional.empty();
-        return contracts.stream().findAny().filter(contract -> contract.getSpecialization().equals(specialization)
-                && contract.getSemesterNumber().equals(semester));
+        return contracts.stream().filter(contract -> contract.getSpecialization().equals(specialization)
+                && contract.getSemesterNumber().equals(semester)).findAny();
     }
 
     // computes the average of the student for a specialization and a semester
