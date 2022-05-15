@@ -22,6 +22,16 @@ const Input = styled.input`
   padding: 0.5rem;
 `;
 
+const TextArea = styled.textarea`
+  width: 100%;
+  box-sizing: border-box;
+  border: solid lightgray 1px;
+  border-radius: 3px;
+  height: 8rem;
+  font-size: medium;
+  padding: 0.5rem;
+`;
+
 const StyledSelect = styled(Select)`
   height: 2rem;
   box-sizing: border-box;
@@ -34,6 +44,18 @@ export const MyTextInput = ({ label, ...props }) => {
   return (
     <div>
       <Input {...field} {...props} />
+      {meta.touched && meta.error ? (
+        <StyledErrorMessage>{meta.error}</StyledErrorMessage>
+      ) : null}
+    </div>
+  );
+};
+
+export const MyTextArea = ({ label, ...props }) => {
+  const [field, meta] = useField(props);
+  return (
+    <div>
+      <TextArea {...field} {...props} />
       {meta.touched && meta.error ? (
         <StyledErrorMessage>{meta.error}</StyledErrorMessage>
       ) : null}

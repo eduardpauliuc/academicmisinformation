@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import PropTypes from "prop-types";
+// import PropTypes from "prop-types";
 
 import ActionsCategory from "../common-components/home/ActionsCategory";
 import Action from "../common-components/Action";
@@ -8,14 +8,17 @@ import TeacherService from "../../services/teacher.service";
 import { toast } from "react-toastify";
 import CoursesTable from "./CoursesTable";
 
-const Courses = () => {
-  const [courses, setCourses] = useState([]);
+const Courses = ({
+  setProposePopupVisible,
+  setGradePopupVisible,
+  courses,
+  setCourses,
+}) => {
   const [coursesLoading, setCoursesLoading] = useState(true);
 
   useEffect(() => {
     TeacherService.getTeacherCourses()
       .then((response) => {
-        console.log("Got courses", response.data);
         setCourses(response.data);
       })
       .catch((e) => {
@@ -25,11 +28,11 @@ const Courses = () => {
   }, []);
 
   const optionalCreateClicked = () => {
-    console.log("Optional");
+    setProposePopupVisible(true);
   };
 
   const gradeClicked = () => {
-    console.log("Grade");
+    setGradePopupVisible(true);
   };
 
   const optionalCreateAction = (

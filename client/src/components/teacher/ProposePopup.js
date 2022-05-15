@@ -1,32 +1,90 @@
 import { Form, Formik } from "formik";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Popup from "../helpers/Popup";
 import * as Yup from "yup";
 import { FormContainer, Label } from "../helpers/PopupForm.styles";
 import { ButtonsWrapper } from "../helpers/Popup.styles";
 import { StyledButton } from "../helpers/Button.style";
-import { MyTextInput } from "../helpers/FormComponents";
+import { MySelect, MyTextArea, MyTextInput } from "../helpers/FormComponents";
+import { getFaculties } from "../../services/faculties.service";
+import { toast } from "react-toastify";
 
-const ProposePopup = ({ close }) => {
-  const initialValues = {};
-  const validationSchema = Yup.object().shape({
-    username: Yup.string().required(),
-    password: Yup.string().required(),
-    email: Yup.string().email().required(),
+const ProposePopup = ({ closePopup }) => {
+  const [faculties, setFaculties] = useState([]);
+  const [specializations, setSpecializations] = useState([]);
+
+  useEffect(() => {
+    getFaculties()
+      .then((response) => {
+        setFaculties(response.data);
+      })
+      .catch((error) => {
+        toast.error(error.message);
+      });
+  }, []);
+
+  const facultyOptions = faculties.map((faculty) => {
+    return {
+      value: faculty.facultyID,
+      label: faculty.name,
+    };
   });
 
-  const handleFormSubmitted = (formValue, action) => {
+  const specializationOptions = specializations.map((spec) => {
+    return {
+      value: spec.specializationID,
+      label: `${spec.name} - ${spec.degree_type}`,
+    };
+  });
 
-  }
+  const initialValues = {
+    facultyID: "",
+    specializationID: "",
+    name: "",
+    credits: 6,
+    description: "no description",
+    semesterNumber: 1,
+    maximumStudentsNumber: 100,
+  };
+  const validationSchema = Yup.object().shape({
+    facultyID: Yup.number().required(),
+    specializationID: Yup.number().required(),
+    name: Yup.string().required(),
+    credits: Yup.number().positive().required().max(6),
+    description: Yup.string(),
+    semesterNumber: Yup.number().positive().required(),
+    maximumStudentsNumber: Yup.number(),
+  });
+
+  const facultyChanged = (facultyID) => {
+    setSpecializations(
+      faculties.find((faculty) => faculty.facultyID === facultyID)
+        .specializations
+    );
+  };
+
+  const handleFormSubmitted = (formValue, actions) => {
+    console.log(formValue);
+    actions.setSubmitting(false);
+
+    // TODO CALL SERVICE!
+  };
 
   return (
-    <Popup title="Propose optional" onCancel={close}>
+    <Popup title="Propose optional" onCancel={closePopup}>
       <Formik
         initialValues={initialValues}
         validationSchema={validationSchema}
         onSubmit={handleFormSubmitted}
       >
-        {/* {({ errors, touched, handleSubmit, isSubmitting, isValid }) => (
+        {({
+          errors,
+          touched,
+          handleSubmit,
+          isSubmitting,
+          isValid,
+          setFieldValue,
+        }) => (
           <Form
             style={{
               flexGrow: "1",
@@ -35,25 +93,34 @@ const ProposePopup = ({ close }) => {
             }}
           >
             <FormContainer>
-              teacherId - current user
-                specializationId
-                name
-                credits
-                description
-                semesterNumber
-                maximumStudentsNumber
-
-              <Label htmlFor="username">Username:</Label>
-              <MyTextInput name="username" />
-
-              <Label htmlFor="email">Email:</Label>
-              <MyTextInput name="email" />
-
-              <Label htmlFor="role">Role:</Label>
-              <MySelect name="role" options={roleOptions} />
-
-              <Label htmlFor="password">Password:</Label>
-              <MyTextInput name="password" type="password" />
+              <Label htmlFor="facultyID">Faculty:</Label>
+              <MySelect
+                name="facultyID"
+                options={facultyOptions}
+                valueChanged={facultyChanged}
+                fieldToReset="specializationID"
+                setFieldValue={setFieldValue}
+              />
+              <Label htmlFor="specializationID">Specialization:</Label>
+              <MySelect
+                name="specializationID"
+                options={specializationOptions}
+              />
+              <Label htmlFor="name">Name:</Label>
+              <MyTextInput name="name" />
+              <Label htmlFor="credits">Credits:</Label>
+              <MyTextInput name="credits" />
+              <Label
+                htmlFor="description"
+                style={{ alignSelf: "start", marginTop: 5 }}
+              >
+                Description:
+              </Label>
+              <MyTextArea name="description" />
+              <Label htmlFor="semesterNumber">Semester:</Label>
+              <MyTextInput name="semesterNumber" />
+              <Label htmlFor="maximumStudentsNumber">Maximum Students:</Label>
+              <MyTextInput name="maximumStudentsNumber" />
             </FormContainer>
             <ButtonsWrapper>
               <StyledButton type="submit" primary disabled={isSubmitting}>
@@ -61,7 +128,7 @@ const ProposePopup = ({ close }) => {
               </StyledButton>
             </ButtonsWrapper>
           </Form>
-        )} */}
+        )}
       </Formik>
     </Popup>
   );
