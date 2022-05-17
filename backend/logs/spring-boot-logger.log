@@ -377,3 +377,36 @@ java.lang.NullPointerException: Cannot invoke "org.slf4j.Logger.info(String)" be
 2022-05-17 15:34:01,073 INFO org.springframework.orm.jpa.AbstractEntityManagerFactoryBean [SpringApplicationShutdownHook] Closing JPA EntityManagerFactory for persistence unit 'default'
 2022-05-17 15:34:01,076 INFO com.zaxxer.hikari.HikariDataSource [SpringApplicationShutdownHook] HikariPool-1 - Shutdown initiated...
 2022-05-17 15:34:01,087 INFO com.zaxxer.hikari.HikariDataSource [SpringApplicationShutdownHook] HikariPool-1 - Shutdown completed.
+2022-05-17 16:17:48,237 INFO org.hibernate.validator.internal.util.Version [background-preinit] HV000001: Hibernate Validator 6.2.2.Final
+2022-05-17 16:17:48,242 INFO org.springframework.boot.StartupInfoLogger [main] Starting IssProjectApplication using Java 17 on DESKTOP-76B6EVU with PID 25340 (C:\Users\popca\OneDrive\Documents\GitHub\academicmisinformation\backend\target\classes started by popca in C:\Users\popca\OneDrive\Documents\GitHub\academicmisinformation\backend)
+2022-05-17 16:17:48,243 DEBUG org.springframework.boot.StartupInfoLogger [main] Running with Spring Boot v2.6.4, Spring v5.3.16
+2022-05-17 16:17:48,244 INFO org.springframework.boot.SpringApplication [main] No active profile set, falling back to 1 default profile: "default"
+2022-05-17 16:17:49,580 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2022-05-17 16:17:49,718 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Finished Spring Data repository scanning in 124 ms. Found 13 JPA repository interfaces.
+2022-05-17 16:17:50,386 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [main] Tomcat initialized with port(s): 8080 (http)
+2022-05-17 16:17:50,396 INFO org.apache.juli.logging.DirectJDKLog [main] Initializing ProtocolHandler ["http-nio-8080"]
+2022-05-17 16:17:50,397 INFO org.apache.juli.logging.DirectJDKLog [main] Starting service [Tomcat]
+2022-05-17 16:17:50,397 INFO org.apache.juli.logging.DirectJDKLog [main] Starting Servlet engine: [Apache Tomcat/9.0.58]
+2022-05-17 16:17:50,515 INFO org.apache.juli.logging.DirectJDKLog [main] Initializing Spring embedded WebApplicationContext
+2022-05-17 16:17:50,516 INFO org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext [main] Root WebApplicationContext: initialization completed in 2187 ms
+2022-05-17 16:17:50,601 WARN org.springframework.boot.autoconfigure.orm.jpa.JpaBaseConfiguration$JpaWebConfiguration [main] spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2022-05-17 16:17:50,744 INFO com.zaxxer.hikari.HikariDataSource [main] HikariPool-1 - Starting...
+2022-05-17 16:17:50,951 INFO com.zaxxer.hikari.HikariDataSource [main] HikariPool-1 - Start completed.
+2022-05-17 16:17:50,975 INFO org.flywaydb.core.internal.logging.slf4j.Slf4jLog [main] Flyway Community Edition 8.5.4 by Redgate
+2022-05-17 16:17:50,976 INFO org.flywaydb.core.internal.logging.slf4j.Slf4jLog [main] See what's new here: https://flywaydb.org/documentation/learnmore/releaseNotes#8.5.4
+2022-05-17 16:17:50,976 INFO org.flywaydb.core.internal.logging.slf4j.Slf4jLog [main] 
+2022-05-17 16:17:50,976 INFO org.flywaydb.core.internal.logging.slf4j.Slf4jLog [main] Database: jdbc:postgresql://localhost:5432/AcademicMisinformation (PostgreSQL 14.2)
+2022-05-17 16:17:51,039 INFO org.flywaydb.core.internal.logging.slf4j.Slf4jLog [main] Successfully validated 23 migrations (execution time 00:00.044s)
+2022-05-17 16:17:51,048 INFO org.flywaydb.core.internal.logging.slf4j.Slf4jLog [main] Current version of schema "migrations": 22
+2022-05-17 16:17:51,049 INFO org.flywaydb.core.internal.logging.slf4j.Slf4jLog [main] Schema "migrations" is up to date. No migration necessary.
+2022-05-17 16:17:51,141 INFO org.hibernate.jpa.internal.util.LogHelper [main] HHH000204: Processing PersistenceUnitInfo [name: default]
+2022-05-17 16:17:51,208 INFO org.hibernate.Version [main] HHH000412: Hibernate ORM core version 5.6.5.Final
+2022-05-17 16:17:51,404 INFO org.hibernate.annotations.common.reflection.java.JavaReflectionManager [main] HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+2022-05-17 16:17:51,589 INFO org.hibernate.dialect.Dialect [main] HHH000400: Using dialect: org.hibernate.dialect.PostgreSQLDialect
+2022-05-17 16:17:52,691 INFO org.hibernate.engine.transaction.jta.platform.internal.JtaPlatformInitiator [main] HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2022-05-17 16:17:52,703 INFO org.springframework.orm.jpa.AbstractEntityManagerFactoryBean [main] Initialized JPA EntityManagerFactory for persistence unit 'default'
+2022-05-17 16:17:53,258 DEBUG org.springframework.web.filter.GenericFilterBean [main] Filter 'authenticationJwtTokenFilter' configured for use
+2022-05-17 16:17:53,899 INFO org.springframework.security.web.DefaultSecurityFilterChain [main] Will not secure any request
+2022-05-17 16:17:54,495 INFO org.apache.juli.logging.DirectJDKLog [main] Starting ProtocolHandler ["http-nio-8080"]
+2022-05-17 16:17:54,528 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [main] Tomcat started on port(s): 8080 (http) with context path ''
+2022-05-17 16:17:54,547 INFO org.springframework.boot.StartupInfoLogger [main] Started IssProjectApplication in 7.35 seconds (JVM running for 8.794)

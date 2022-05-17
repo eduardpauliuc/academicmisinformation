@@ -46,7 +46,8 @@ public class ChiefController {
                     return new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "Chief not found.");
                 });
         logger.info("Optionals successfully retrieved!");
-        return chiefService.getAllOptionalsBySpecialization(chief.getSpecialization());
+        Specialization specialization = getSpecializationOfChief(id);
+        return chiefService.getAllOptionalsBySpecialization(specialization);
     }
 
     @PostMapping("/optionals/{optionalId}")
@@ -90,7 +91,8 @@ public class ChiefController {
                     return new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "Teacher not found");
                 }
         );
-        if (!teacher.getSpecialization().getChiefOfDepartment().getId().equals(id)) {
+        Specialization specialization = getSpecializationOfChief(id);
+        if (!specialization.getChiefOfDepartment().getId().equals(id)) {
             logger.warn("Invalid chief of department provided!");
             throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "Invalid chief");
         }
@@ -112,12 +114,7 @@ public class ChiefController {
     @PreAuthorize("hasRole('CHIEF')")
     public List<RankingDTO> getTeacherRankings(@PathVariable("id") Long id){
         logger.info("Getting the teacher rankings for chief with id " + id);
-        Specialization specialization = chiefService.findTeacherById(id).orElseThrow(
-                () -> {
-                    logger.warn("Teacher not found!");
-                    return new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "Teacher not found");
-                }
-        ).getSpecialization();
+        Specialization specialization = getSpecializationOfChief(id);
         Map<Teacher, Double> averages = chiefService.getAveragesForTeachers(specialization);
         logger.info("Ordering the averages of the teachers descendingly");
         List<Teacher> orderedTeachers = averages.keySet().stream()
@@ -140,8 +137,10 @@ public class ChiefController {
                         .filter(specialization -> specialization.getChiefOfDepartment() != null &&
                                 id.equals(specialization.getChiefOfDepartment().getId()))
                         .collect(Collectors.toList());
-        if (specializations.isEmpty())
+        if (specializations.isEmpty()) {
+            logger.warn("There is no specialization that the teacher is the chief of!");
             throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "There is no specialization that the teacher is the chief of");
+        }
         return specializations.get(0);
     }
 
