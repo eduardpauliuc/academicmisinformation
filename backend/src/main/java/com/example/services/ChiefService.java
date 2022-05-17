@@ -73,16 +73,15 @@ public class ChiefService implements IChiefService {
 
     @Override
     public Map<Teacher, Double> getAveragesForTeachers(Specialization specialization) {
-        List<Teacher> teachers = teacherService.getAllTeachers()
-                .stream().filter(teacher -> teacher.getSpecialization().equals(specialization))
-                .collect(Collectors.toList());
+        List<Teacher> teachers = teacherService.getAllTeachers();
         Map<Teacher, Double> averages = new ConcurrentHashMap<>();
         teachers.forEach(
                 teacher -> {
 
                     AtomicInteger gradeSum = new AtomicInteger(0);
                     AtomicInteger gradeCount = new AtomicInteger(0);
-                    teacher.getCourses().forEach(
+                    teacher.getCourses().stream()
+                            .filter(course -> course.getSpecialization().equals(specialization)).forEach(
                             course -> {
                                 List<Grade> grades = course.getGrades();
                                 gradeSum.addAndGet(

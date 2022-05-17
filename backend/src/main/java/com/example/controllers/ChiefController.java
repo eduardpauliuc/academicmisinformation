@@ -7,10 +7,7 @@ import com.example.models.Teacher;
 import com.example.payload.requests.OptionalReviewDTO;
 import com.example.payload.responses.CourseDTO;
 import com.example.payload.responses.RankingDTO;
-import com.example.services.IChiefService;
-import com.example.services.ICourseService;
-import com.example.services.IOptionalProposalService;
-import com.example.services.IStatusService;
+import com.example.services.*;
 import lombok.AllArgsConstructor;
 import org.slf4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,6 +31,7 @@ public class ChiefController {
     private final IOptionalProposalService optionalProposalService;
     private final ICourseService courseService;
     private final IStatusService statusService;
+    private final ISpecializationService specializationService;
 
     @Autowired
     private Logger logger;
@@ -97,6 +95,7 @@ public class ChiefController {
             throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "Invalid chief");
         }
         List<CourseDTO> acceptedCourses = teacher.getCourses().stream()
+                .filter(course -> course.getSpecialization().equals(specialization))
                 .map(CourseDTO::new)
                 .collect(Collectors.toList());
 
@@ -112,7 +111,6 @@ public class ChiefController {
     @GetMapping("/teachers/rankings")
     @PreAuthorize("hasRole('CHIEF')")
     public List<RankingDTO> getTeacherRankings(@PathVariable("id") Long id){
-
         logger.info("Getting the teacher rankings for chief with id " + id);
         Specialization specialization = chiefService.findTeacherById(id).orElseThrow(
                 () -> {
@@ -120,7 +118,6 @@ public class ChiefController {
                     return new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "Teacher not found");
                 }
         ).getSpecialization();
-
         Map<Teacher, Double> averages = chiefService.getAveragesForTeachers(specialization);
         logger.info("Ordering the averages of the teachers descendingly");
         List<Teacher> orderedTeachers = averages.keySet().stream()
@@ -135,6 +132,17 @@ public class ChiefController {
             dtos.add(new RankingDTO(fullName, i));
         }
         return dtos;
+    }
+
+    private Specialization getSpecializationOfChief(Long id){
+        List<Specialization> specializations =
+                specializationService.getAllSpecializations().stream()
+                        .filter(specialization -> specialization.getChiefOfDepartment() != null &&
+                                id.equals(specialization.getChiefOfDepartment().getId()))
+                        .collect(Collectors.toList());
+        if (specializations.isEmpty())
+            throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "There is no specialization that the teacher is the chief of");
+        return specializations.get(0);
     }
 
 }
