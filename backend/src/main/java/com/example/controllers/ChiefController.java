@@ -7,10 +7,7 @@ import com.example.models.Teacher;
 import com.example.payload.requests.OptionalReviewDTO;
 import com.example.payload.responses.CourseDTO;
 import com.example.payload.responses.RankingDTO;
-import com.example.services.IChiefService;
-import com.example.services.ICourseService;
-import com.example.services.IOptionalProposalService;
-import com.example.services.IStatusService;
+import com.example.services.*;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -32,15 +29,13 @@ public class ChiefController {
     private final IOptionalProposalService optionalProposalService;
     private final ICourseService courseService;
     private final IStatusService statusService;
+    private final ISpecializationService specializationService;
 
     @GetMapping("/optionals")
     @PreAuthorize("hasRole('CHIEF')")
     public List<CourseDTO> getAllOptionals(@PathVariable("id") Long id) {
-        Teacher chief = chiefService.findTeacherById(id).orElseThrow(
-                () -> new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "Chief not found.")
-        );
-
-        return chiefService.getAllOptionalsBySpecialization(chief.getSpecialization());
+           Specialization specialization = getSpecializationOfChief(id);
+           return chiefService.getAllOptionalsBySpecialization(specialization);
     }
 
     @PostMapping("/optionals/{optionalId}")
@@ -72,9 +67,13 @@ public class ChiefController {
         Teacher teacher = chiefService.findTeacherById(teacherId).orElseThrow(
                 () -> new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "Teacher not found")
         );
-        if (!teacher.getSpecialization().getChiefOfDepartment().getId().equals(id))
+
+        Specialization specialization = getSpecializationOfChief(id);
+
+        if (!specialization.getChiefOfDepartment().getId().equals(id))
             throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "Invalid chief");
         List<CourseDTO> acceptedCourses = teacher.getCourses().stream()
+                .filter(course -> course.getSpecialization().equals(specialization))
                 .map(CourseDTO::new)
                 .collect(Collectors.toList());
 
@@ -89,9 +88,8 @@ public class ChiefController {
     @GetMapping("/teachers/rankings")
     @PreAuthorize("hasRole('CHIEF')")
     public List<RankingDTO> getTeacherRankings(@PathVariable("id") Long id){
-        Specialization specialization = chiefService.findTeacherById(id).orElseThrow(
-                () -> new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "Teacher not found")
-        ).getSpecialization();
+        // we should change this to courses I suppose
+        Specialization specialization = getSpecializationOfChief(id);
         Map<Teacher, Double> averages = chiefService.getAveragesForTeachers(specialization);
         List<Teacher> orderedTeachers = averages.keySet().stream()
                 .sorted(Comparator.comparingDouble(t -> -averages.get(t)))
@@ -103,6 +101,17 @@ public class ChiefController {
             dtos.add(new RankingDTO(fullName, i));
         }
         return dtos;
+    }
+
+    private Specialization getSpecializationOfChief(Long id){
+        List<Specialization> specializations =
+                specializationService.getAllSpecializations().stream()
+                        .filter(specialization -> specialization.getChiefOfDepartment() != null &&
+                                id.equals(specialization.getChiefOfDepartment().getId()))
+                        .collect(Collectors.toList());
+        if (specializations.isEmpty())
+            throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "There is no specialization that the teacher is the chief of");
+        return specializations.get(0);
     }
 
 }
