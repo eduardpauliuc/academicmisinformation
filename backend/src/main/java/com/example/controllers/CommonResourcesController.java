@@ -9,6 +9,7 @@ import com.example.services.IAccountService;
 import com.example.services.IFacultyService;
 import com.example.services.ISpecializationService;
 import lombok.AllArgsConstructor;
+import org.slf4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -29,11 +30,15 @@ public class CommonResourcesController {
     private final IAccountService accountService;
 
     @Autowired
+    private Logger logger;
+
+    @Autowired
     PasswordEncoder encoder;
 
 
     @GetMapping("/faculties")
     public List<FacultyDTO> getAllFaculties() {
+        logger.info("Getting all faculties");
         return facultyService.getAllFaculties()
                 .stream()
                 .map(faculty -> {
@@ -53,6 +58,7 @@ public class CommonResourcesController {
 
     @PostMapping("/profile")
     public void updateProfile(@RequestBody ProfileInformationDTO profileInformationDTO) {
+        logger.info("Updating profile with ID " + profileInformationDTO.getId());
         Account account = accountService.findAccountById(profileInformationDTO.getId()).orElseThrow(
                 () -> new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "Account not found.")
         );
@@ -61,14 +67,18 @@ public class CommonResourcesController {
         account.setLastName(profileInformationDTO.getLastName());
         account.setBirthDate(Date.valueOf(profileInformationDTO.getBirthDate()));
         account.setPasswordDigest(encoder.encode(profileInformationDTO.getNewPassword()));
-
+        logger.info("Saving account with the new data");
         accountService.saveAccount(account);
     }
 
     @GetMapping("/{facultyId}/specializations")
     public List<SpecializationDTO> getFacultySpecializations(@PathVariable("facultyId") Long facultyId) {
+        logger.info("Getting all specializations for the faculty with id " + facultyId);
         Faculty faculty = facultyService.findFacultyById(facultyId).orElseThrow(
-                () -> new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "Faculty not found.")
+                () -> {
+                    logger.warn("Faculty not found");
+                    return new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "Faculty not found.");
+                }
         );
 
         return faculty.getSpecializations()
