@@ -2,8 +2,6 @@ import http from "./http-common";
 import { USE_MOCK_SERVICE } from "../helpers/constants";
 import authService from "./auth.service";
 
-// const USE_MOCK_SERVICE = true;
-
 const API_URL = "student";
 const currentUser = authService.getCurrentUser();
 

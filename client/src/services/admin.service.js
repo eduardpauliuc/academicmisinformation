@@ -1,10 +1,10 @@
 import { USE_MOCK_SERVICE } from "../helpers/constants";
 import http from "./http-common";
 
-const API_URL = "admin/";
+const API_URL = "admin";
 
 const getAllUsers = () => {
-  if(USE_MOCK_SERVICE){
+  if (USE_MOCK_SERVICE) {
     const response = {
       data: [
         {
@@ -15,7 +15,7 @@ const getAllUsers = () => {
           firstName: "Eduard",
           lastName: "Pauliuc",
           birthDate: "2001-04-20",
-        },{
+        }, {
           id: 2,
           username: "teacheruser",
           email: "teacher@yahoo.com",
@@ -23,7 +23,7 @@ const getAllUsers = () => {
           firstName: "Alina",
           lastName: "Popescu",
           birthDate: "1990-02-12",
-        },{
+        }, {
           id: 3,
           username: "chiefuser",
           email: "chief@outlook.com",
@@ -31,7 +31,7 @@ const getAllUsers = () => {
           firstName: "Tudor",
           lastName: "Ilea",
           birthDate: "1980-01-25",
-        },{
+        }, {
           id: 4,
           username: "mihaib",
           email: "mihai@mymail.ro",
@@ -50,11 +50,11 @@ const getAllUsers = () => {
     });
   }
 
-  return http.get(API_URL);
+  return http.get(`/${API_URL}/accounts`);
 };
 
 const createUser = (username, password, email, role) => {
-  if(USE_MOCK_SERVICE){
+  if (USE_MOCK_SERVICE) {
     return new Promise((resolve, reject) => {
       setTimeout(() => {
         resolve();
@@ -62,11 +62,17 @@ const createUser = (username, password, email, role) => {
     });
   }
 
-  return http.post(API_URL + "add/", { username, password, email, role });
+  return http.post(`/${API_URL}/accounts`, {
+      username,
+      password,
+      email,
+      role
+    }
+  );
 };
 
-const deleteUser = (userID) => {
-  return http.delete(API_URL + "delete/" + userID);
+const deleteUser = (userId) => {
+  return http.delete(`/${API_URL}/accounts/${userId}`);
 };
 
 const AdminService = {
