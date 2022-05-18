@@ -1,9 +1,12 @@
 import http from "./http-common";
 import { USE_MOCK_SERVICE } from "../helpers/constants";
+import authService from "./auth.service";
 
 // const USE_MOCK_SERVICE = true;
 
-const API_URL = "student/";
+const API_URL = "student";
+const currentUser = authService.getCurrentUser();
+
 
 const getStudentSpecializations = () => {
   if (USE_MOCK_SERVICE) {
@@ -33,7 +36,7 @@ const getStudentSpecializations = () => {
     });
   }
 
-  return http.get(API_URL + `specializations`);
+  return http.get(`${API_URL}/${currentUser.id}/specializations`);
 };
 
 const getStudentContracts = () => {
@@ -89,26 +92,30 @@ const getStudentContracts = () => {
     });
   }
 
-  return http.get(API_URL + `contracts`);
+  return http.get(`${API_URL}/${currentUser.id}/contracts`);
 };
 
-const generateContract = (studentID, specializationID, semester) => {
+const generateContract = (specializationId, semester) => {
   return http.get(
-    API_URL + `${studentID}/contracts`,
-    specializationID,
-    semester
+    `${API_URL}/${currentUser.id}/contracts/generate`, {
+      params: {
+        specializationId,
+        semester
+      }
+    }
   );
 };
 
-const uploadContract = (studentID, specializationID, semester, contract) => {
-  return http.post(API_URL + `/contracts`, {
-    specializationID,
-    semester,
-    contract,
-  });
+const uploadContract = (specializationId, semester, contract) => {
+  return http.post(`${API_URL}/${currentUser.id}/contracts/upload`, {
+      specializationId,
+      semester,
+      file: contract,
+    }
+  );
 };
 
-const getCurriculum = (specializationID) => {
+const getCurriculum = (specializationId) => {
   if (USE_MOCK_SERVICE) {
     const response = {
       data: [
@@ -158,53 +165,53 @@ const getCurriculum = (specializationID) => {
     });
   }
 
-  return http.get(API_URL + specializationID + "/courses");
+  return http.get(`${API_URL}/${currentUser.id}/${specializationId}/courses`);
 };
 
-const getOptionalsOrder = (specializationID) => {
+const getOptionalsOrder = (specializationId) => {
   if (USE_MOCK_SERVICE) {
     const response =
-      specializationID === 1
+      specializationId === 1
         ? {
-            data: [
-              {
-                id: 1,
-                name: "Fundamentals of Programming",
-                credits: 6,
-                index: 1,
-              },
-              {
-                id: 2,
-                name: "Algebra",
-                credits: 6,
-                index: 2,
-              },
-              {
-                id: 3,
-                name: "Computer Systems Architecture",
-                credits: 6,
-                index: 3,
-              },
-              {
-                id: 4,
-                name: "Dynamic Systems",
-                credits: 6,
-                index: 6,
-              },
-              {
-                id: 5,
-                name: "English",
-                credits: 3,
-                index: 5,
-              },
-              {
-                id: 6,
-                name: "Sports",
-                credits: 3,
-                index: 4,
-              },
-            ],
-          }
+          data: [
+            {
+              id: 1,
+              name: "Fundamentals of Programming",
+              credits: 6,
+              index: 1,
+            },
+            {
+              id: 2,
+              name: "Algebra",
+              credits: 6,
+              index: 2,
+            },
+            {
+              id: 3,
+              name: "Computer Systems Architecture",
+              credits: 6,
+              index: 3,
+            },
+            {
+              id: 4,
+              name: "Dynamic Systems",
+              credits: 6,
+              index: 6,
+            },
+            {
+              id: 5,
+              name: "English",
+              credits: 3,
+              index: 5,
+            },
+            {
+              id: 6,
+              name: "Sports",
+              credits: 3,
+              index: 4,
+            },
+          ],
+        }
         : [];
 
     return new Promise((resolve, reject) => {
@@ -214,12 +221,12 @@ const getOptionalsOrder = (specializationID) => {
     });
   }
 
-  return http.get(API_URL + specializationID + "/optionals");
+  return http.get(`${API_URL}/${currentUser.id}/${specializationId}/courses/optionals`);
 };
 
-const setOpionalsOrder = (specializationID, idslist) => {
+const setOptionalsOrder = (specializationId, optionalIdIndexPairs) => {
   if (USE_MOCK_SERVICE) {
-    console.log(idslist);
+    console.log(optionalIdIndexPairs);
 
     return new Promise((resolve, reject) => {
       setTimeout(() => {
@@ -228,12 +235,10 @@ const setOpionalsOrder = (specializationID, idslist) => {
     });
   }
 
-  return http.post(API_URL + specializationID + "/optionals/order", {
-    idslist,
-  });
+  return http.post(`${API_URL}/${currentUser.id}/${specializationId}/courses/optionals/order`, { optionalIdIndexPairs });
 };
 
-const getGrades = (specializationID) => {
+const getGrades = (specializationId) => {
   if (USE_MOCK_SERVICE) {
     const response = {
       data: [
@@ -250,7 +255,7 @@ const getGrades = (specializationID) => {
     });
   }
 
-  return http.get(API_URL + specializationID + "/grades");
+  return http.get(`${API_URL}/${currentUser.id}/${specializationId}/grades`);
 };
 
 const StudentService = {
@@ -260,7 +265,7 @@ const StudentService = {
   uploadContract,
   getCurriculum,
   getOptionalsOrder,
-  setOpionalsOrder,
+  setOptionalsOrder,
   getGrades,
 };
 

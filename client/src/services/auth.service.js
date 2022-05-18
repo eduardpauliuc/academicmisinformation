@@ -34,7 +34,7 @@ const login = async (username, password) => {
   if (response.data.accessToken) {
     localStorage.setItem("user", JSON.stringify(response.data));
   }
-  console.log("Logged in: ", response.data.username);
+  console.log("Logged in: ", response.data);
   return response.data;
 };
 

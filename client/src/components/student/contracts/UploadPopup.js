@@ -47,7 +47,7 @@ const UploadPopup = ({ closePopup, user }) => {
     console.log(formValue);
     const semester = (formValue.year - 1) * 2 + formValue.semester;
 
-    StudentService.uploadContract(user.id, formValue.specializationID, semester)
+    StudentService.uploadContract(formValue.specializationID, semester, formValue.contract)
       .then((response) => {
         console.log(response);
         closePopup();
