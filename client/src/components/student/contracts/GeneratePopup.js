@@ -46,7 +46,6 @@ const GeneratePopup = ({ closePopup, user }) => {
     const semester = (formValue.year - 1) * 2 + formValue.semester;
 
     StudentService.generateContract(
-      user.id,
       formValue.specializationID,
       semester
     )

@@ -40,7 +40,7 @@ const StudentHome = () => {
   const [uploadPopupVisible, setUploadPopupVisible] = useState(false);
 
   useEffect(() => {
-    StudentService.getStudentSpecializations(user.id).then((response) => {
+    StudentService.getStudentSpecializations().then((response) => {
       setSpecializations(response.data);
 
       if (response.data.length) setSelectedSpec(response.data[0]);

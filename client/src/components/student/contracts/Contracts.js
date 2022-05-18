@@ -47,7 +47,7 @@ const Contracts = ({ user, setGenerateVisible, setUploadVisible }) => {
   useEffect(() => {
     if (!user) return;
 
-    StudentService.getStudentContracts(user.id).then((response) => {
+    StudentService.getStudentContracts().then((response) => {
       setContracts(response.data);
       setIsLoading(false);
     });

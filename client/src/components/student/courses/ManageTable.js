@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import PropTypes from "prop-types";
 import DataTable from "react-data-table-component";
 import StudentService from "../../../services/student.service";
 import { toast } from "react-toastify";
@@ -40,12 +39,15 @@ const ManageTable = ({ specializationID }) => {
 
   const saveOptionals = (optionals_list) => {
     setOptionals(optionals_list);
+    console.log(optionals_list);
     const request = optionals_list
-      .sort((a, b) => a.index - b.index)
-      .map((o) => o.id);
+      .sort((a, b) => a.rank - b.rank)
+      .map((o) => ({ optionalId: o.course.id, index: o.rank }));
+    console.log(request);
 
-    StudentService.setOpionalsOrder(specializationID, request)
-      .then(() => {})
+    StudentService.setOptionalsOrder(specializationID, request)
+      .then(() => {
+      })
       .catch((e) => {
         toast.error(e.message);
         setErrorProduced(true);
@@ -56,8 +58,8 @@ const ManageTable = ({ specializationID }) => {
     if (index === optionals.length) return;
 
     let optionals_list = [...optionals];
-    optionals_list.find((o) => o.index === index + 1).index -= 1;
-    optionals_list.find((o) => o.id === id).index += 1;
+    optionals_list.find((o) => o.rank === index + 1).rank -= 1;
+    optionals_list.find((o) => o.course.id === id).rank += 1;
 
     saveOptionals(optionals_list);
   };
@@ -65,8 +67,8 @@ const ManageTable = ({ specializationID }) => {
     if (index === 1) return;
 
     let optionals_list = [...optionals];
-    optionals_list.find((o) => o.index === index - 1).index += 1;
-    optionals_list.find((o) => o.id === id).index -= 1;
+    optionals_list.find((o) => o.rank === index - 1).rank += 1;
+    optionals_list.find((o) => o.course.id === id).rank -= 1;
 
     saveOptionals(optionals_list);
   };
@@ -89,20 +91,20 @@ const ManageTable = ({ specializationID }) => {
   const columns = [
     {
       name: "Index",
-      selector: (row) => row.index,
+      selector: (row) => row.rank,
     },
     {
       name: "Name",
-      selector: (row) => row.name,
+      selector: (row) => row.course.name,
       grow: 4,
     },
     {
       name: "Credits",
-      selector: (row) => row.credits,
+      selector: (row) => row.course.credits,
     },
     {
       name: "Reorder",
-      cell: (row) => buttons(row.id, row.index),
+      cell: (row) => buttons(row.course.id, row.rank),
       button: true,
     },
   ];
