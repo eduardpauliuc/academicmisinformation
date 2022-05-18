@@ -34,15 +34,22 @@ const AdminHome = () => {
       console.log(response.data);
       setIsLoading(false);
       setAccounts(response.data);
-    }).catch((e)=>{
+    }).catch((e) => {
       toast.error(e.message);
       setIsLoading(false);
     });
   }, []);
 
   const deleteAccount = (accToDelete) => {
-    toast.success("Account deleted!");
-    setAccounts(accounts.filter((acc) => acc !== accToDelete));
+    AdminService.deleteUser(accToDelete.id).then(
+      response => {
+        toast.success("Account deleted!");
+        setAccounts(accounts.filter((acc) => acc !== accToDelete));
+      },
+      error => {
+        console.log("Something went wrong");
+      }
+    );
   };
 
   const addAccount = (newAccount) => {
@@ -51,7 +58,7 @@ const AdminHome = () => {
 
   return (
     <>
-      <NavBar user={user} />
+      <NavBar user={user}/>
       <HomeContainer>
         <ActionsCategory
           title="Accounts"

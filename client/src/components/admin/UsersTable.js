@@ -55,7 +55,7 @@ const UsersTable = ({ accounts, isLoading, deleteAccount }) => {
     );
 
     if (confirmation) {
-      console.log("deleting");
+      console.log("Deleting account with id " + account.id);
 
       deleteAccount(account);
     }
