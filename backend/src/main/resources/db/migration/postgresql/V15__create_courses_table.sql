@@ -6,7 +6,7 @@ CREATE TABLE IF NOT EXISTS migrations.courses
     credits                 INTEGER NOT NULL,
     description             TEXT,
     semester_number         INTEGER NOT NULL,
-    is_optional             BIT     NOT NULL,
+    is_optional             BOOLEAN     NOT NULL,
     maximum_students_number INTEGER,
 
     PRIMARY KEY (id),

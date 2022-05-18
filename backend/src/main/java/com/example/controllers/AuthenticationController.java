@@ -8,6 +8,7 @@ import com.example.payload.responses.MessageResponse;
 import com.example.security.jwt.JwtUtils;
 import com.example.security.security_utils.AccountDetails;
 import com.example.services.*;
+import org.slf4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -38,6 +39,9 @@ public class AuthenticationController {
     PasswordEncoder encoder;
 
     @Autowired
+    private Logger logger;
+
+    @Autowired
     JwtUtils jwtUtils;
 
     @Autowired
@@ -58,6 +62,7 @@ public class AuthenticationController {
 
     @PostMapping("/signin")
     public ResponseEntity<?> authenticateUser(@Valid @RequestBody LoginRequest loginRequest) {
+        logger.info("Signing in with username " + loginRequest.getUsername());
         Authentication authentication = this.authenticationManager.authenticate(
                 new UsernamePasswordAuthenticationToken(loginRequest.getUsername(), loginRequest.getPassword())
         );
@@ -72,7 +77,7 @@ public class AuthenticationController {
                 .collect(Collectors.toList());
         Optional<String> roleWrapper = roles.stream().findFirst(); // each user has exactly one role
         String role = roleWrapper.orElse("");
-
+        logger.info("Sign in successful with username " + loginRequest.getUsername());
         return ResponseEntity.ok(new JwtResponse(
                 jwt,
                 accountDetails.getId(),
@@ -87,13 +92,17 @@ public class AuthenticationController {
 
     @PostMapping("/signup")
     public ResponseEntity<?> registerUser(@Valid @RequestBody SignupRequest signupRequest) {
+        logger.info("Signing up user with username " + signupRequest.getUsername());
+
         if (this.accountService.existsByUsername(signupRequest.getUsername())) {
+            logger.info("User with username " + signupRequest.getUsername() + " already exists!");
             return ResponseEntity
                     .badRequest()
                     .body(new MessageResponse("Error: Username already exists!"));
         }
 
         if (this.accountService.existsByEmail(signupRequest.getEmail())) {
+            logger.info("User with e-mail " + signupRequest.getEmail() + " already exists!");
             return ResponseEntity
                     .badRequest()
                     .body(new MessageResponse("Error: Email already exists!"));
@@ -113,47 +122,55 @@ public class AuthenticationController {
 
         switch (requestRole) {
             case "administrator":
+                logger.info("Creating administrator account of account with username " + signupRequest.getUsername());
                 role = this.roleService.findByName(ERole.ROLE_ADMINISTRATOR)
                         .orElseThrow(() -> new RuntimeException("Error: Role not found!"));
                 break;
 
             case "staff":
+                logger.info("Creating staff member account of account with username " + signupRequest.getUsername());
                 role = this.roleService.findByName(ERole.ROLE_STAFF)
                         .orElseThrow(() -> new RuntimeException("Error: Role not found!"));
                 break;
 
             case "chief":
             case "teacher":
+                logger.info("Creating teacher account of account with username " + signupRequest.getUsername());
                 role = this.roleService.findByName(ERole.ROLE_TEACHER)
                         .orElseThrow(() -> new RuntimeException("Error: Role not found!"));
                 break;
 
             case "student":
             default:
+                logger.info("Creating student account of account with username " + signupRequest.getUsername());
                 role = this.roleService.findByName(ERole.ROLE_STUDENT)
                         .orElseThrow(() -> new RuntimeException("Error: Role not found!"));
         }
 
         account.setRole(role);
         account = this.accountService.saveAccount(account);
+        logger.info("Account has been created successfully!");
 
         // create account associated owner
         switch (account.getRole().getName()) {
             case ROLE_STAFF:
                 StaffMember staffMember = new StaffMember(account);
                 this.staffMemberService.saveStaffMember(staffMember);
+                logger.info("Account added to staff members!");
                 break;
 
             case ROLE_STUDENT:
                 String registrationNumber = this.studentService.generateUniqueRegistrationNumber();
                 Student student = new Student(account, registrationNumber);
                 this.studentService.saveStudent(student);
+                logger.info("Account added to students!");
                 break;
 
             case ROLE_TEACHER:
             case ROLE_CHIEF:
                 Teacher teacher = new Teacher(account);
                 this.teacherService.saveTeacher(teacher);
+                logger.info("Account added to teachers!");
                 break;
         }
 

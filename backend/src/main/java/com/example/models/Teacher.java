@@ -34,9 +34,6 @@ public class Teacher {
     @OneToMany(mappedBy = "teacher")
     private List<OptionalProposal> optionalProposals;
 
-    @OneToOne(mappedBy = "chiefOfDepartment")
-    private Specialization specialization;
-
     public Teacher(Account account) {
         this.account = account;
     }
