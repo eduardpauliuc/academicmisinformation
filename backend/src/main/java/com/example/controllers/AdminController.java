@@ -38,7 +38,7 @@ public class AdminController {
     private IStaffMemberService staffMemberService;
 
     @GetMapping("/accounts")
-    @PreAuthorize("hasRole('ADMIN')")
+    @PreAuthorize("hasRole('ADMINISTRATOR')")
     public List<JwtResponse> getAllAccounts() {
         logger.info("Getting all accounts as Admin");
         return accountService.getAllAccounts()
@@ -57,7 +57,7 @@ public class AdminController {
     }
 
     @PostMapping("/accounts")
-    @PreAuthorize("hasRole('ADMIN')")
+    @PreAuthorize("hasRole('ADMINISTRATOR')")
     public void createAccount(@RequestBody NewAccountDTO newAccountDTO) {
         logger.info("Creating a new account with username " + newAccountDTO.getUsername()
             +", e-mail " + newAccountDTO.getEmail() + " and role " + newAccountDTO.getRole());
@@ -71,7 +71,7 @@ public class AdminController {
             throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "Duplicate email.");
         }
 
-        ERole eRole = ERole.valueOf("ROLE_" + newAccountDTO.getRole().trim().toUpperCase(Locale.ROOT));
+        ERole eRole = ERole.valueOf(newAccountDTO.getRole().trim().toUpperCase(Locale.ROOT));
         Role role = roleService.findByName(eRole).orElseThrow(
                 () -> {
                     logger.warn("Role not found!");
@@ -119,7 +119,7 @@ public class AdminController {
     }
 
     @DeleteMapping("/accounts/{id}")
-    @PreAuthorize("hasRole('ADMIN')")
+    @PreAuthorize("hasRole('ADMINISTRATOR')")
     public void deleteAccount(@PathVariable Long id) {
         logger.info("Deleting account with id " + id);
         Account account = accountService.findAccountById(id).orElseThrow(
