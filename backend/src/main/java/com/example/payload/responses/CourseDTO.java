@@ -6,6 +6,8 @@ import com.example.models.OptionalProposal;
 
 public class CourseDTO {
 
+    private final Long id;
+
     private final String name;
 
     private final String specializationName;
@@ -22,7 +24,9 @@ public class CourseDTO {
 
     private final EStatus status; // null for CourseDTOs converted from Course
 
+
     public CourseDTO(Course course) {
+        this.id = course.getId();
         this.name = course.getName();
         this.specializationName = course.getSpecialization().getName();
         this.credits = course.getCredits();
@@ -34,6 +38,7 @@ public class CourseDTO {
     }
 
     public CourseDTO(OptionalProposal optionalProposal) {
+        this.id = optionalProposal.getId();
         this.name = optionalProposal.getName();
         this.specializationName = optionalProposal.getSpecialization().getName();
         this.credits = optionalProposal.getCredits();
@@ -42,6 +47,10 @@ public class CourseDTO {
         this.isOptional = null;
         this.maximumStudentsNumber = optionalProposal.getMaximumStudentsNumber();
         this.status = optionalProposal.getStatus().getName();
+    }
+
+    public Long getId() {
+        return id;
     }
 
     public String getName() {

@@ -3,6 +3,7 @@ package com.example.controllers;
 import com.example.models.*;
 import com.example.payload.requests.PdfDTO;
 import com.example.payload.requests.StudentOptionalsRankingDTO;
+import com.example.payload.requests.StudentOptionalsRankingsDTO;
 import com.example.payload.requests.UploadContractRequest;
 import com.example.payload.responses.*;
 import com.example.services.*;
@@ -71,10 +72,10 @@ public class StudentController {
         logger.info("Specializations successfully obtained!");
         return student.getContracts()
                 .stream()
-//
                 .map(Contract::getSpecialization)
+                .distinct()
                 .map(SpecializationDTO::new)
-                .collect(Collectors.toList());
+                .toList();
     }
 
     @GetMapping("/{specializationId}/courses")
@@ -273,7 +274,7 @@ public class StudentController {
     public void orderOptionals(
             @PathVariable("specializationId") Long specializationId,
             @PathVariable("studentId") Long id,
-            @RequestBody List<StudentOptionalsRankingDTO> studentOptionalsRanking
+            @RequestBody StudentOptionalsRankingsDTO studentOptionalsRankings
     ) {
         logger.info("Getting the optionals in their preference order for student with id " + id + " and specialization "
                 + specializationId);
@@ -291,16 +292,18 @@ public class StudentController {
                 }
         );
 
+        List<StudentOptionalsRankingDTO> innerList = studentOptionalsRankings.getOptionalIdIndexPairs();
+
         // check if duplicate indexes exist
-        List<Integer> indexes = studentOptionalsRanking.stream()
+        List<Integer> indexes = innerList.stream()
                 .map(StudentOptionalsRankingDTO::getIndex)
-                .collect(Collectors.toList());
+                .toList();
         if (indexes.size() != new HashSet<>(indexes).size()) {
             logger.info("Duplicate optional indexes found!");
             throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "Duplicate optional indexes found.");
         }
 
-        studentOptionalsRanking.forEach(ranking -> {
+        innerList.forEach(ranking -> {
             Course course = courseService.findCourseById(ranking.getOptionalId()).orElseThrow(
                     () -> {
                         logger.warn("Course not found!");
