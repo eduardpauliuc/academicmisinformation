@@ -12,7 +12,7 @@ export const Container = styled.div`
 `;
 
 export const PopupContainer = styled.div`
-  min-width: 500px;
+  width: 600px;
   min-height: 200px;
   background-color: white;
   border-radius: 34px;
