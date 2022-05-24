@@ -134,6 +134,11 @@ public class AuthenticationController {
                 break;
 
             case "chief":
+                logger.info("Creating chief account of account with username " + signupRequest.getUsername());
+                role = this.roleService.findByName(ERole.ROLE_CHIEF)
+                        .orElseThrow(() -> new RuntimeException("Error: Role not found!"));
+                break;
+
             case "teacher":
                 logger.info("Creating teacher account of account with username " + signupRequest.getUsername());
                 role = this.roleService.findByName(ERole.ROLE_TEACHER)
