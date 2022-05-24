@@ -33,9 +33,9 @@ const TextArea = styled.textarea`
 `;
 
 const StyledSelect = styled(Select)`
-  height: 2rem;
+  height: auto;
   box-sizing: border-box;
-
+  
   font-size: medium;
 `;
 

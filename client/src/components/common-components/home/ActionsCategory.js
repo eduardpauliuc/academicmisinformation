@@ -88,7 +88,7 @@ const oneActionPath = (
   </svg>
 );
 
-const ActionsCategory = ({ title, actions, children, otherHeaderContent }) => {
+const ActionsCategory = ({ title, actions, children, otherHeaderContent, onlyHeader }) => {
   const numberOfActions = actions?.length;
   return (
     <Container>
@@ -100,7 +100,9 @@ const ActionsCategory = ({ title, actions, children, otherHeaderContent }) => {
         : undefined}
 
       <ContainerHeader>
-        <CategoryName>{title}</CategoryName>
+        <CategoryName
+          style={onlyHeader && {width: "100%"}}
+        >{title}</CategoryName>
         {actions}
         {otherHeaderContent}
       </ContainerHeader>

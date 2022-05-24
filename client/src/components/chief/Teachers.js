@@ -1,11 +1,22 @@
 import { Icon } from "@iconify/react";
-import React from "react";
+import React, { useState } from "react";
 import Action from "../common-components/Action";
 import ActionsCategory from "../common-components/home/ActionsCategory";
+import Disciplines from "./Disciplines";
+import Rankings from "./Rankings";
 
 const Teachers = () => {
+  const [disciplinesVisible, setDisciplinesVisible] = useState(true);
+  const [rankingsVisible, setRankingsVisible] = useState(false);
+
   const disciplinesClicked = () => {
-    console.log("Show disciplines");
+    setDisciplinesVisible(!disciplinesVisible);
+    setRankingsVisible(false);
+  };
+
+  const rankingsClicked = () => {
+    setRankingsVisible(!disciplinesVisible);
+    setDisciplinesVisible(false);
   };
 
   const disciplinesAction = (
@@ -17,10 +28,6 @@ const Teachers = () => {
       key={1}
     />
   );
-
-  const rankingsClicked = () => {
-    console.log("Show rankings");
-  };
 
   const rankingsAction = (
     <Action
@@ -35,7 +42,10 @@ const Teachers = () => {
     <ActionsCategory
       title="Teachers"
       actions={[disciplinesAction, rankingsAction]}
-    ></ActionsCategory>
+    >
+      {disciplinesVisible && <Disciplines />}
+      {rankingsVisible && <Rankings />}
+    </ActionsCategory>
   );
 };
 
