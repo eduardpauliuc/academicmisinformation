@@ -60,15 +60,15 @@ const UploadPopup = ({ closePopup, user }) => {
 
   const facultyOptions = faculties.map((faculty) => {
     return {
-      value: faculty.facultyID,
+      value: faculty.facultyId,
       label: faculty.name,
     };
   });
 
   const specializationOptions = specializations.map((spec) => {
     return {
-      value: spec.specializationID,
-      label: `${spec.name} - ${spec.degree_type}`,
+      value: spec.id,
+      label: `${spec.name} - ${spec.degreeType}`,
     };
   });
 
@@ -76,7 +76,7 @@ const UploadPopup = ({ closePopup, user }) => {
     if (!selectedSpecID) return [];
 
     let spec = specializations.find(
-      (spec) => spec.specializationID === selectedSpecID
+      (spec) => spec.id === selectedSpecID
     );
 
     if (!spec) return [];
@@ -95,9 +95,9 @@ const UploadPopup = ({ closePopup, user }) => {
   };
 
   const facultyChanged = (facultyID) => {
+    console.log(facultyID);
     setSpecializations(
-      faculties.find((faculty) => faculty.facultyID === facultyID)
-        .specializations
+      faculties.find((faculty) => faculty.facultyId === facultyID).specializations
     );
   };
 
