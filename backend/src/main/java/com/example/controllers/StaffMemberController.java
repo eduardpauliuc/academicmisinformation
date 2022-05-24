@@ -43,9 +43,22 @@ public class StaffMemberController {
         // it is different from -1
         var students = studentService.sortStudentsByAverage(specialization, semester, semester);
         var studentGradeDTOs = new LinkedList<StudentGradeDTO>();
-        students.forEach(
-                student ->
-                        studentGradeDTOs.add(new StudentGradeDTO(student.getId(), student.findAverageForSemester(specialization, semester)))
+        students.forEach(student -> studentGradeDTOs.add(
+                                StudentGradeDTO.builder()
+                                        .studentId(student.getId())
+                                        .average(student.findAverageForSemester(specialization, semester))
+                                        .name(student.getAccount().getFirstName() + " " + student.getAccount().getLastName())
+                                        .group(student.getContracts()
+                                                .stream()
+                                                .filter(contract -> Objects.equals(contract.getSpecialization().getId(), specializationId) && Objects.equals(contract.getSemesterNumber(), semester))
+                                                .findFirst()
+                                                .orElseThrow(
+                                                        () -> new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "Contract not found")
+                                                )
+                                                .getGroupCode()
+                                        )
+                                        .build()
+                        )
         );
         logger.info("Student averages successfully retrieved!");
         return studentGradeDTOs;
@@ -154,7 +167,7 @@ public class StaffMemberController {
         logger.info("Optional assignment successfully done!");
     }
 
-    private Specialization validateData(Long specializationId, Long staffMemberId, Integer semester){
+    private Specialization validateData(Long specializationId, Long staffMemberId, Integer semester) {
 
         // if the current specialization does not exist, exit the function here
         var specialization = specializationService.findSpecializationById(specializationId).orElseThrow(

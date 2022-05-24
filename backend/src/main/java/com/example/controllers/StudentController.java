@@ -61,7 +61,6 @@ public class StudentController {
     @GetMapping("/specializations")
     @PreAuthorize("hasRole('STUDENT')")
     public List<SpecializationDTO> getStudentsSpecializations(@PathVariable("studentId") Long id) {
-        // TODO: use getActiveContracts from studentService
         logger.info("Getting specializations for the student with the id " + id);
         Student student = this.studentService.findStudentById(id).orElseThrow(
                 () -> {
@@ -169,7 +168,6 @@ public class StudentController {
     @GetMapping("/{specializationId}/courses/optionals")
     @PreAuthorize("hasRole('STUDENT')")
     public List<OptionalPreferenceDTO> getOptionalCourses(@PathVariable("studentId") Long id, @PathVariable Long specializationId) {
-        // TODO: for current semester?
         logger.info("Getting optional courses for the student with id " + id + " at the specialization " + specializationId);
         Student student = studentService.findStudentById(id).orElseThrow(
                 () -> {

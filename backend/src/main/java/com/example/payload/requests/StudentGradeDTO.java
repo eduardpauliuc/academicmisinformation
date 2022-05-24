@@ -1,19 +1,20 @@
 package com.example.payload.requests;
 
+import lombok.*;
+
+@Getter
+@Setter
+@AllArgsConstructor
+@NoArgsConstructor
+@Builder
 public class StudentGradeDTO {
-    private final Long studentId;
-    private final Double average;
 
-    public StudentGradeDTO(Long studentId, Double average) {
-        this.studentId = studentId;
-        this.average = average;
-    }
+    private Long studentId;
 
-    public Long getStudentId() {
-        return studentId;
-    }
+    private Double average;
 
-    public Double getAverage() {
-        return average;
-    }
+    private String name;
+
+    private String group;
+
 }

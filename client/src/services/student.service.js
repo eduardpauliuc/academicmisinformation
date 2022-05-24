@@ -1,6 +1,7 @@
 import http from "./http-common";
 import { USE_MOCK_SERVICE } from "../helpers/constants";
 import authService from "./auth.service";
+import authHeader from "./auth-header";
 
 const API_URL = "student";
 const currentUser = authService.getCurrentUser();
@@ -105,11 +106,16 @@ const generateContract = (specializationId, semester) => {
 };
 
 const uploadContract = (specializationId, semester, contract) => {
-  return http.post(`${API_URL}/${currentUser.id}/contracts/upload`, {
-      specializationId,
-      semester,
-      file: contract,
-    }
+  let formData = new FormData();
+  formData.append("file", contract);
+  formData.append("semester", semester);
+  formData.append("specializationId", specializationId);
+
+  return http.post(`${API_URL}/${currentUser.id}/contracts/upload`, formData, {
+      headers: {
+        ...authHeader(), "Content-type": "multipart/form-data",
+      }
+    },
   );
 };
 

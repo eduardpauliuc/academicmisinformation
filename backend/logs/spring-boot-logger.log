@@ -1218,3 +1218,684 @@ Need more flexibility with validation rules? Learn more: https://rd.gt/3AbJUZE
 2022-05-24 14:57:44,955 INFO org.springframework.orm.jpa.AbstractEntityManagerFactoryBean [SpringApplicationShutdownHook] Closing JPA EntityManagerFactory for persistence unit 'default'
 2022-05-24 14:57:44,959 INFO com.zaxxer.hikari.HikariDataSource [SpringApplicationShutdownHook] HikariPool-1 - Shutdown initiated...
 2022-05-24 14:57:44,962 INFO com.zaxxer.hikari.HikariDataSource [SpringApplicationShutdownHook] HikariPool-1 - Shutdown completed.
+2022-05-24 15:29:32,964 INFO org.springframework.boot.StartupInfoLogger [main] Starting IssProjectApplication using Java 17.0.2 on Alexs-personal-MacBook-Pro.local with PID 6725 (/Users/alexnedelcu/Desktop/Uni/ISS/academicmisinformation/backend/target/classes started by alexnedelcu in /Users/alexnedelcu/Desktop/Uni/ISS/academicmisinformation/backend)
+2022-05-24 15:29:32,964 INFO org.hibernate.validator.internal.util.Version [background-preinit] HV000001: Hibernate Validator 6.2.2.Final
+2022-05-24 15:29:32,966 DEBUG org.springframework.boot.StartupInfoLogger [main] Running with Spring Boot v2.6.4, Spring v5.3.16
+2022-05-24 15:29:32,967 INFO org.springframework.boot.SpringApplication [main] No active profile set, falling back to 1 default profile: "default"
+2022-05-24 15:29:33,912 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2022-05-24 15:29:33,980 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Finished Spring Data repository scanning in 59 ms. Found 13 JPA repository interfaces.
+2022-05-24 15:29:34,417 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [main] Tomcat initialized with port(s): 8080 (http)
+2022-05-24 15:29:34,430 INFO org.apache.juli.logging.DirectJDKLog [main] Initializing ProtocolHandler ["http-nio-8080"]
+2022-05-24 15:29:34,431 INFO org.apache.juli.logging.DirectJDKLog [main] Starting service [Tomcat]
+2022-05-24 15:29:34,431 INFO org.apache.juli.logging.DirectJDKLog [main] Starting Servlet engine: [Apache Tomcat/9.0.58]
+2022-05-24 15:29:34,485 INFO org.apache.juli.logging.DirectJDKLog [main] Initializing Spring embedded WebApplicationContext
+2022-05-24 15:29:34,485 INFO org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext [main] Root WebApplicationContext: initialization completed in 1471 ms
+2022-05-24 15:29:34,587 WARN org.springframework.boot.autoconfigure.orm.jpa.JpaBaseConfiguration$JpaWebConfiguration [main] spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2022-05-24 15:29:34,674 INFO com.zaxxer.hikari.HikariDataSource [main] HikariPool-1 - Starting...
+2022-05-24 15:29:34,742 INFO com.zaxxer.hikari.HikariDataSource [main] HikariPool-1 - Start completed.
+2022-05-24 15:29:34,759 INFO org.flywaydb.core.internal.logging.slf4j.Slf4jLog [main] Flyway Community Edition 8.5.4 by Redgate
+2022-05-24 15:29:34,759 INFO org.flywaydb.core.internal.logging.slf4j.Slf4jLog [main] See what's new here: https://flywaydb.org/documentation/learnmore/releaseNotes#8.5.4
+2022-05-24 15:29:34,759 INFO org.flywaydb.core.internal.logging.slf4j.Slf4jLog [main] 
+2022-05-24 15:29:34,760 INFO org.flywaydb.core.internal.logging.slf4j.Slf4jLog [main] Database: jdbc:postgresql://localhost:5432/AcademicMisinformation (PostgreSQL 14.2)
+2022-05-24 15:29:34,794 INFO org.flywaydb.core.internal.logging.slf4j.Slf4jLog [main] Creating schema "migrations" ...
+2022-05-24 15:29:34,797 INFO org.flywaydb.core.internal.logging.slf4j.Slf4jLog [main] Creating Schema History table "migrations"."flyway_schema_history" ...
+2022-05-24 15:29:34,826 INFO org.flywaydb.core.internal.logging.slf4j.Slf4jLog [main] Current version of schema "migrations": null
+2022-05-24 15:29:34,829 INFO org.flywaydb.core.internal.logging.slf4j.Slf4jLog [main] Migrating schema "migrations" to version "1 - create migrations schema"
+2022-05-24 15:29:34,832 WARN org.flywaydb.core.internal.logging.slf4j.Slf4jLog [main] DB: schema "migrations" already exists, skipping (SQL State: 42P06 - Error Code: 0)
+2022-05-24 15:29:34,837 INFO org.flywaydb.core.internal.logging.slf4j.Slf4jLog [main] Migrating schema "migrations" to version "2 - create faculties table"
+2022-05-24 15:29:34,846 INFO org.flywaydb.core.internal.logging.slf4j.Slf4jLog [main] Migrating schema "migrations" to version "3 - create roles table"
+2022-05-24 15:29:34,855 INFO org.flywaydb.core.internal.logging.slf4j.Slf4jLog [main] Migrating schema "migrations" to version "4 - insert values into roles table"
+2022-05-24 15:29:34,861 INFO org.flywaydb.core.internal.logging.slf4j.Slf4jLog [main] Migrating schema "migrations" to version "5 - create accounts table"
+2022-05-24 15:29:34,869 INFO org.flywaydb.core.internal.logging.slf4j.Slf4jLog [main] Migrating schema "migrations" to version "6 - create students table"
+2022-05-24 15:29:34,877 INFO org.flywaydb.core.internal.logging.slf4j.Slf4jLog [main] Migrating schema "migrations" to version "7 - create titles table"
+2022-05-24 15:29:34,886 INFO org.flywaydb.core.internal.logging.slf4j.Slf4jLog [main] Migrating schema "migrations" to version "8 - insert values into titles table"
+2022-05-24 15:29:34,895 INFO org.flywaydb.core.internal.logging.slf4j.Slf4jLog [main] Migrating schema "migrations" to version "9 - create teachers table"
+2022-05-24 15:29:34,903 INFO org.flywaydb.core.internal.logging.slf4j.Slf4jLog [main] Migrating schema "migrations" to version "10 - create staff members table"
+2022-05-24 15:29:34,910 INFO org.flywaydb.core.internal.logging.slf4j.Slf4jLog [main] Migrating schema "migrations" to version "11 - create degrees table"
+2022-05-24 15:29:34,922 INFO org.flywaydb.core.internal.logging.slf4j.Slf4jLog [main] Migrating schema "migrations" to version "12 - insert values into degrees table"
+2022-05-24 15:29:34,928 INFO org.flywaydb.core.internal.logging.slf4j.Slf4jLog [main] Migrating schema "migrations" to version "13 - create specializations table"
+2022-05-24 15:29:34,937 INFO org.flywaydb.core.internal.logging.slf4j.Slf4jLog [main] Migrating schema "migrations" to version "14 - create contracts table"
+2022-05-24 15:29:34,948 INFO org.flywaydb.core.internal.logging.slf4j.Slf4jLog [main] Migrating schema "migrations" to version "15 - create courses table"
+2022-05-24 15:29:34,957 INFO org.flywaydb.core.internal.logging.slf4j.Slf4jLog [main] Migrating schema "migrations" to version "16 - create grades table"
+2022-05-24 15:29:34,965 INFO org.flywaydb.core.internal.logging.slf4j.Slf4jLog [main] Migrating schema "migrations" to version "17 - create teacher courses table"
+2022-05-24 15:29:34,971 INFO org.flywaydb.core.internal.logging.slf4j.Slf4jLog [main] Migrating schema "migrations" to version "18 - create statuses table"
+2022-05-24 15:29:34,978 INFO org.flywaydb.core.internal.logging.slf4j.Slf4jLog [main] Migrating schema "migrations" to version "19 - insert values into statuses table"
+2022-05-24 15:29:34,983 INFO org.flywaydb.core.internal.logging.slf4j.Slf4jLog [main] Migrating schema "migrations" to version "20 - create optional proposals table"
+2022-05-24 15:29:34,991 INFO org.flywaydb.core.internal.logging.slf4j.Slf4jLog [main] Migrating schema "migrations" to version "21 - create optional preferences table"
+2022-05-24 15:29:35,004 INFO org.flywaydb.core.internal.logging.slf4j.Slf4jLog [main] Migrating schema "migrations" to version "22 - populate tables"
+2022-05-24 15:29:35,026 INFO org.flywaydb.core.internal.logging.slf4j.Slf4jLog [main] Successfully applied 22 migrations to schema "migrations", now at version v22 (execution time 00:00.203s)
+2022-05-24 15:29:35,085 INFO org.hibernate.jpa.internal.util.LogHelper [main] HHH000204: Processing PersistenceUnitInfo [name: default]
+2022-05-24 15:29:35,135 INFO org.hibernate.Version [main] HHH000412: Hibernate ORM core version 5.6.5.Final
+2022-05-24 15:29:35,264 INFO org.hibernate.annotations.common.reflection.java.JavaReflectionManager [main] HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+2022-05-24 15:29:35,351 INFO org.hibernate.dialect.Dialect [main] HHH000400: Using dialect: org.hibernate.dialect.PostgreSQLDialect
+2022-05-24 15:29:35,980 INFO org.hibernate.engine.transaction.jta.platform.internal.JtaPlatformInitiator [main] HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2022-05-24 15:29:35,989 INFO org.springframework.orm.jpa.AbstractEntityManagerFactoryBean [main] Initialized JPA EntityManagerFactory for persistence unit 'default'
+2022-05-24 15:29:36,458 DEBUG org.springframework.web.filter.GenericFilterBean [main] Filter 'authenticationJwtTokenFilter' configured for use
+2022-05-24 15:29:36,865 INFO org.springframework.security.web.DefaultSecurityFilterChain [main] Will not secure any request
+2022-05-24 15:29:37,465 INFO org.apache.juli.logging.DirectJDKLog [main] Starting ProtocolHandler ["http-nio-8080"]
+2022-05-24 15:29:37,479 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [main] Tomcat started on port(s): 8080 (http) with context path ''
+2022-05-24 15:29:37,488 INFO org.springframework.boot.StartupInfoLogger [main] Started IssProjectApplication in 4.887 seconds (JVM running for 5.357)
+2022-05-24 15:29:47,934 INFO org.apache.juli.logging.DirectJDKLog [http-nio-8080-exec-1] Initializing Spring DispatcherServlet 'dispatcherServlet'
+2022-05-24 15:29:47,935 INFO org.springframework.web.servlet.FrameworkServlet [http-nio-8080-exec-1] Initializing Servlet 'dispatcherServlet'
+2022-05-24 15:29:47,939 INFO org.springframework.web.servlet.FrameworkServlet [http-nio-8080-exec-1] Completed initialization in 4 ms
+2022-05-24 15:29:48,310 INFO com.example.controllers.TeacherController [http-nio-8080-exec-2] Getting the courses of the teacher with the ID 23
+2022-05-24 15:29:48,328 INFO com.example.controllers.TeacherController [http-nio-8080-exec-2] Transforming mandatory and optional courses to Course DTOs
+2022-05-24 15:29:48,340 INFO com.example.controllers.TeacherController [http-nio-8080-exec-2] Transforming proposed courses to Course DTOs
+2022-05-24 15:29:48,345 INFO com.example.controllers.TeacherController [http-nio-8080-exec-2] Merging the two lists
+2022-05-24 15:29:54,822 INFO com.example.controllers.AuthenticationController [http-nio-8080-exec-4] Signing in with username rborza
+2022-05-24 15:29:55,005 INFO com.example.controllers.AuthenticationController [http-nio-8080-exec-4] Sign in successful with username rborza
+2022-05-24 15:29:55,100 INFO com.example.controllers.TeacherController [http-nio-8080-exec-7] Getting the courses of the teacher with the ID 23
+2022-05-24 15:29:55,109 INFO com.example.controllers.TeacherController [http-nio-8080-exec-7] Transforming mandatory and optional courses to Course DTOs
+2022-05-24 15:29:55,115 INFO com.example.controllers.TeacherController [http-nio-8080-exec-7] Transforming proposed courses to Course DTOs
+2022-05-24 15:29:55,121 INFO com.example.controllers.TeacherController [http-nio-8080-exec-7] Merging the two lists
+2022-05-24 15:30:27,694 INFO org.springframework.orm.jpa.AbstractEntityManagerFactoryBean [SpringApplicationShutdownHook] Closing JPA EntityManagerFactory for persistence unit 'default'
+2022-05-24 15:30:27,697 INFO com.zaxxer.hikari.HikariDataSource [SpringApplicationShutdownHook] HikariPool-1 - Shutdown initiated...
+2022-05-24 15:30:27,700 INFO com.zaxxer.hikari.HikariDataSource [SpringApplicationShutdownHook] HikariPool-1 - Shutdown completed.
+2022-05-24 15:31:48,823 INFO org.hibernate.validator.internal.util.Version [background-preinit] HV000001: Hibernate Validator 6.2.2.Final
+2022-05-24 15:31:49,018 INFO org.springframework.boot.StartupInfoLogger [main] Starting IssProjectApplication using Java 17.0.2 on Alexs-personal-MacBook-Pro.local with PID 6882 (/Users/alexnedelcu/Desktop/Uni/ISS/academicmisinformation/backend/target/classes started by alexnedelcu in /Users/alexnedelcu/Desktop/Uni/ISS/academicmisinformation/backend)
+2022-05-24 15:31:49,020 DEBUG org.springframework.boot.StartupInfoLogger [main] Running with Spring Boot v2.6.4, Spring v5.3.16
+2022-05-24 15:31:49,033 INFO org.springframework.boot.SpringApplication [main] No active profile set, falling back to 1 default profile: "default"
+2022-05-24 15:31:50,498 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2022-05-24 15:31:50,592 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Finished Spring Data repository scanning in 86 ms. Found 13 JPA repository interfaces.
+2022-05-24 15:31:51,086 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [main] Tomcat initialized with port(s): 8080 (http)
+2022-05-24 15:31:51,093 INFO org.apache.juli.logging.DirectJDKLog [main] Initializing ProtocolHandler ["http-nio-8080"]
+2022-05-24 15:31:51,093 INFO org.apache.juli.logging.DirectJDKLog [main] Starting service [Tomcat]
+2022-05-24 15:31:51,094 INFO org.apache.juli.logging.DirectJDKLog [main] Starting Servlet engine: [Apache Tomcat/9.0.58]
+2022-05-24 15:31:51,146 INFO org.apache.juli.logging.DirectJDKLog [main] Initializing Spring embedded WebApplicationContext
+2022-05-24 15:31:51,146 INFO org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext [main] Root WebApplicationContext: initialization completed in 2042 ms
+2022-05-24 15:31:51,245 WARN org.springframework.boot.autoconfigure.orm.jpa.JpaBaseConfiguration$JpaWebConfiguration [main] spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2022-05-24 15:31:51,324 INFO com.zaxxer.hikari.HikariDataSource [main] HikariPool-1 - Starting...
+2022-05-24 15:31:51,394 INFO com.zaxxer.hikari.HikariDataSource [main] HikariPool-1 - Start completed.
+2022-05-24 15:31:51,413 INFO org.flywaydb.core.internal.logging.slf4j.Slf4jLog [main] Flyway Community Edition 8.5.4 by Redgate
+2022-05-24 15:31:51,414 INFO org.flywaydb.core.internal.logging.slf4j.Slf4jLog [main] See what's new here: https://flywaydb.org/documentation/learnmore/releaseNotes#8.5.4
+2022-05-24 15:31:51,414 INFO org.flywaydb.core.internal.logging.slf4j.Slf4jLog [main] 
+2022-05-24 15:31:51,414 INFO org.flywaydb.core.internal.logging.slf4j.Slf4jLog [main] Database: jdbc:postgresql://localhost:5432/AcademicMisinformation (PostgreSQL 14.2)
+2022-05-24 15:31:51,466 INFO org.flywaydb.core.internal.logging.slf4j.Slf4jLog [main] Successfully validated 23 migrations (execution time 00:00.036s)
+2022-05-24 15:31:51,472 INFO org.flywaydb.core.internal.logging.slf4j.Slf4jLog [main] Current version of schema "migrations": 22
+2022-05-24 15:31:51,473 INFO org.flywaydb.core.internal.logging.slf4j.Slf4jLog [main] Schema "migrations" is up to date. No migration necessary.
+2022-05-24 15:31:51,530 INFO org.hibernate.jpa.internal.util.LogHelper [main] HHH000204: Processing PersistenceUnitInfo [name: default]
+2022-05-24 15:31:51,575 INFO org.hibernate.Version [main] HHH000412: Hibernate ORM core version 5.6.5.Final
+2022-05-24 15:31:51,702 INFO org.hibernate.annotations.common.reflection.java.JavaReflectionManager [main] HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+2022-05-24 15:31:51,795 INFO org.hibernate.dialect.Dialect [main] HHH000400: Using dialect: org.hibernate.dialect.PostgreSQLDialect
+2022-05-24 15:31:52,431 INFO org.hibernate.engine.transaction.jta.platform.internal.JtaPlatformInitiator [main] HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2022-05-24 15:31:52,439 INFO org.springframework.orm.jpa.AbstractEntityManagerFactoryBean [main] Initialized JPA EntityManagerFactory for persistence unit 'default'
+2022-05-24 15:31:52,816 DEBUG org.springframework.web.filter.GenericFilterBean [main] Filter 'authenticationJwtTokenFilter' configured for use
+2022-05-24 15:31:53,215 INFO org.springframework.security.web.DefaultSecurityFilterChain [main] Will not secure any request
+2022-05-24 15:31:53,769 INFO org.apache.juli.logging.DirectJDKLog [main] Starting ProtocolHandler ["http-nio-8080"]
+2022-05-24 15:31:53,781 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [main] Tomcat started on port(s): 8080 (http) with context path ''
+2022-05-24 15:31:53,790 INFO org.springframework.boot.StartupInfoLogger [main] Started IssProjectApplication in 5.557 seconds (JVM running for 6.881)
+2022-05-24 15:31:54,727 INFO org.apache.juli.logging.DirectJDKLog [http-nio-8080-exec-1] Initializing Spring DispatcherServlet 'dispatcherServlet'
+2022-05-24 15:31:54,727 INFO org.springframework.web.servlet.FrameworkServlet [http-nio-8080-exec-1] Initializing Servlet 'dispatcherServlet'
+2022-05-24 15:31:54,728 INFO org.springframework.web.servlet.FrameworkServlet [http-nio-8080-exec-1] Completed initialization in 1 ms
+2022-05-24 15:31:54,882 INFO com.example.controllers.AuthenticationController [http-nio-8080-exec-2] Signing in with username rborza
+2022-05-24 15:31:55,237 INFO com.example.controllers.AuthenticationController [http-nio-8080-exec-2] Sign in successful with username rborza
+2022-05-24 15:31:55,320 ERROR com.example.security.jwt.AuthenticationEntryPointJwt [http-nio-8080-exec-5] Unauthorized error: Full authentication is required to access this resource
+2022-05-24 15:31:55,320 ERROR com.example.security.jwt.AuthenticationEntryPointJwt [http-nio-8080-exec-3] Unauthorized error: Full authentication is required to access this resource
+2022-05-24 15:31:55,320 ERROR com.example.security.jwt.AuthenticationEntryPointJwt [http-nio-8080-exec-4] Unauthorized error: Full authentication is required to access this resource
+2022-05-24 15:32:36,036 INFO com.example.controllers.TeacherController [http-nio-8080-exec-9] Getting the courses of the teacher with the ID 23
+2022-05-24 15:32:36,056 INFO com.example.controllers.TeacherController [http-nio-8080-exec-9] Transforming mandatory and optional courses to Course DTOs
+2022-05-24 15:32:36,076 INFO com.example.controllers.TeacherController [http-nio-8080-exec-9] Transforming proposed courses to Course DTOs
+2022-05-24 15:32:36,081 INFO com.example.controllers.TeacherController [http-nio-8080-exec-9] Merging the two lists
+2022-05-24 15:32:46,291 INFO com.example.controllers.TeacherController [http-nio-8080-exec-5] Getting the courses of the teacher with the ID 23
+2022-05-24 15:32:46,302 INFO com.example.controllers.TeacherController [http-nio-8080-exec-5] Transforming mandatory and optional courses to Course DTOs
+2022-05-24 15:32:46,312 INFO com.example.controllers.TeacherController [http-nio-8080-exec-5] Transforming proposed courses to Course DTOs
+2022-05-24 15:32:46,320 INFO com.example.controllers.TeacherController [http-nio-8080-exec-5] Merging the two lists
+2022-05-24 15:32:56,609 INFO com.example.controllers.AuthenticationController [http-nio-8080-exec-1] Signing in with username rborza
+2022-05-24 15:32:56,697 INFO com.example.controllers.AuthenticationController [http-nio-8080-exec-1] Sign in successful with username rborza
+2022-05-24 15:32:56,746 ERROR com.example.security.jwt.AuthenticationEntryPointJwt [http-nio-8080-exec-8] Unauthorized error: Full authentication is required to access this resource
+2022-05-24 15:32:56,746 ERROR com.example.security.jwt.AuthenticationEntryPointJwt [http-nio-8080-exec-9] Unauthorized error: Full authentication is required to access this resource
+2022-05-24 15:32:56,747 ERROR com.example.security.jwt.AuthenticationEntryPointJwt [http-nio-8080-exec-2] Unauthorized error: Full authentication is required to access this resource
+2022-05-24 15:37:39,266 INFO com.example.controllers.AuthenticationController [http-nio-8080-exec-5] Signing in with username anedelcu
+2022-05-24 15:37:39,430 INFO com.example.controllers.AuthenticationController [http-nio-8080-exec-5] Sign in successful with username anedelcu
+2022-05-24 15:39:54,663 INFO com.example.controllers.AuthenticationController [http-nio-8080-exec-8] Signing in with username anedelcu
+2022-05-24 15:39:54,753 INFO com.example.controllers.AuthenticationController [http-nio-8080-exec-8] Sign in successful with username anedelcu
+2022-05-24 15:40:17,654 INFO org.springframework.orm.jpa.AbstractEntityManagerFactoryBean [SpringApplicationShutdownHook] Closing JPA EntityManagerFactory for persistence unit 'default'
+2022-05-24 15:40:17,676 INFO com.zaxxer.hikari.HikariDataSource [SpringApplicationShutdownHook] HikariPool-1 - Shutdown initiated...
+2022-05-24 15:40:17,688 INFO com.zaxxer.hikari.HikariDataSource [SpringApplicationShutdownHook] HikariPool-1 - Shutdown completed.
+2022-05-24 15:40:49,381 INFO org.hibernate.validator.internal.util.Version [background-preinit] HV000001: Hibernate Validator 6.2.2.Final
+2022-05-24 15:40:49,381 INFO org.springframework.boot.StartupInfoLogger [main] Starting IssProjectApplication using Java 17.0.2 on Alexs-personal-MacBook-Pro.local with PID 7028 (/Users/alexnedelcu/Desktop/Uni/ISS/academicmisinformation/backend/target/classes started by alexnedelcu in /Users/alexnedelcu/Desktop/Uni/ISS/academicmisinformation/backend)
+2022-05-24 15:40:49,383 DEBUG org.springframework.boot.StartupInfoLogger [main] Running with Spring Boot v2.6.4, Spring v5.3.16
+2022-05-24 15:40:49,384 INFO org.springframework.boot.SpringApplication [main] No active profile set, falling back to 1 default profile: "default"
+2022-05-24 15:40:50,123 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2022-05-24 15:40:50,190 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Finished Spring Data repository scanning in 57 ms. Found 13 JPA repository interfaces.
+2022-05-24 15:40:50,667 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [main] Tomcat initialized with port(s): 8080 (http)
+2022-05-24 15:40:50,673 INFO org.apache.juli.logging.DirectJDKLog [main] Initializing ProtocolHandler ["http-nio-8080"]
+2022-05-24 15:40:50,674 INFO org.apache.juli.logging.DirectJDKLog [main] Starting service [Tomcat]
+2022-05-24 15:40:50,674 INFO org.apache.juli.logging.DirectJDKLog [main] Starting Servlet engine: [Apache Tomcat/9.0.58]
+2022-05-24 15:40:50,727 INFO org.apache.juli.logging.DirectJDKLog [main] Initializing Spring embedded WebApplicationContext
+2022-05-24 15:40:50,728 INFO org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext [main] Root WebApplicationContext: initialization completed in 1310 ms
+2022-05-24 15:40:50,834 WARN org.springframework.boot.autoconfigure.orm.jpa.JpaBaseConfiguration$JpaWebConfiguration [main] spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2022-05-24 15:40:50,922 INFO com.zaxxer.hikari.HikariDataSource [main] HikariPool-1 - Starting...
+2022-05-24 15:40:50,995 INFO com.zaxxer.hikari.HikariDataSource [main] HikariPool-1 - Start completed.
+2022-05-24 15:40:51,009 INFO org.flywaydb.core.internal.logging.slf4j.Slf4jLog [main] Flyway Community Edition 8.5.4 by Redgate
+2022-05-24 15:40:51,009 INFO org.flywaydb.core.internal.logging.slf4j.Slf4jLog [main] See what's new here: https://flywaydb.org/documentation/learnmore/releaseNotes#8.5.4
+2022-05-24 15:40:51,009 INFO org.flywaydb.core.internal.logging.slf4j.Slf4jLog [main] 
+2022-05-24 15:40:51,009 INFO org.flywaydb.core.internal.logging.slf4j.Slf4jLog [main] Database: jdbc:postgresql://localhost:5432/AcademicMisinformation (PostgreSQL 14.2)
+2022-05-24 15:40:51,051 INFO org.flywaydb.core.internal.logging.slf4j.Slf4jLog [main] Successfully validated 23 migrations (execution time 00:00.030s)
+2022-05-24 15:40:51,056 INFO org.flywaydb.core.internal.logging.slf4j.Slf4jLog [main] Current version of schema "migrations": 22
+2022-05-24 15:40:51,057 INFO org.flywaydb.core.internal.logging.slf4j.Slf4jLog [main] Schema "migrations" is up to date. No migration necessary.
+2022-05-24 15:40:51,113 INFO org.hibernate.jpa.internal.util.LogHelper [main] HHH000204: Processing PersistenceUnitInfo [name: default]
+2022-05-24 15:40:51,172 INFO org.hibernate.Version [main] HHH000412: Hibernate ORM core version 5.6.5.Final
+2022-05-24 15:40:51,300 INFO org.hibernate.annotations.common.reflection.java.JavaReflectionManager [main] HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+2022-05-24 15:40:51,381 INFO org.hibernate.dialect.Dialect [main] HHH000400: Using dialect: org.hibernate.dialect.PostgreSQLDialect
+2022-05-24 15:40:52,037 INFO org.hibernate.engine.transaction.jta.platform.internal.JtaPlatformInitiator [main] HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2022-05-24 15:40:52,046 INFO org.springframework.orm.jpa.AbstractEntityManagerFactoryBean [main] Initialized JPA EntityManagerFactory for persistence unit 'default'
+2022-05-24 15:40:52,489 DEBUG org.springframework.web.filter.GenericFilterBean [main] Filter 'authenticationJwtTokenFilter' configured for use
+2022-05-24 15:40:52,883 INFO org.springframework.security.web.DefaultSecurityFilterChain [main] Will not secure any request
+2022-05-24 15:40:53,444 INFO org.apache.juli.logging.DirectJDKLog [main] Starting ProtocolHandler ["http-nio-8080"]
+2022-05-24 15:40:53,458 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [main] Tomcat started on port(s): 8080 (http) with context path ''
+2022-05-24 15:40:53,467 INFO org.springframework.boot.StartupInfoLogger [main] Started IssProjectApplication in 4.434 seconds (JVM running for 4.953)
+2022-05-24 15:41:08,001 INFO org.apache.juli.logging.DirectJDKLog [http-nio-8080-exec-2] Initializing Spring DispatcherServlet 'dispatcherServlet'
+2022-05-24 15:41:08,002 INFO org.springframework.web.servlet.FrameworkServlet [http-nio-8080-exec-2] Initializing Servlet 'dispatcherServlet'
+2022-05-24 15:41:08,003 INFO org.springframework.web.servlet.FrameworkServlet [http-nio-8080-exec-2] Completed initialization in 1 ms
+2022-05-24 15:41:08,319 INFO com.example.controllers.StudentController [http-nio-8080-exec-4] Getting specializations for the student with the id 4
+2022-05-24 15:41:08,319 INFO com.example.controllers.StudentController [http-nio-8080-exec-3] Getting the contracts for the student with the id 4
+2022-05-24 15:41:08,332 INFO com.example.controllers.StudentController [http-nio-8080-exec-4] Specializations successfully obtained!
+2022-05-24 15:41:08,332 INFO com.example.controllers.StudentController [http-nio-8080-exec-3] Contracts successfully obtained!
+2022-05-24 15:41:08,439 INFO com.example.controllers.StudentController [http-nio-8080-exec-7] Getting courses of the student with the id 4 at the specialization 1
+2022-05-24 15:41:08,439 INFO com.example.controllers.StudentController [http-nio-8080-exec-8] Getting the grades for the student with the id 4 at the specialization 1
+2022-05-24 15:41:08,453 INFO com.example.controllers.StudentController [http-nio-8080-exec-8] Grades successfully retrieved!
+2022-05-24 15:41:08,468 INFO com.example.controllers.StudentController [http-nio-8080-exec-7] Courses successfully returned!
+2022-05-24 15:41:19,845 INFO com.example.controllers.AuthenticationController [http-nio-8080-exec-10] Signing in with username anedelcu
+2022-05-24 15:41:20,018 INFO com.example.controllers.AuthenticationController [http-nio-8080-exec-10] Sign in successful with username anedelcu
+2022-05-24 15:41:24,198 INFO com.example.controllers.StudentController [http-nio-8080-exec-3] Getting the contracts for the student with the id 4
+2022-05-24 15:41:24,200 INFO com.example.controllers.StudentController [http-nio-8080-exec-4] Getting specializations for the student with the id 4
+2022-05-24 15:41:24,204 INFO com.example.controllers.StudentController [http-nio-8080-exec-3] Contracts successfully obtained!
+2022-05-24 15:41:24,204 INFO com.example.controllers.StudentController [http-nio-8080-exec-4] Specializations successfully obtained!
+2022-05-24 15:41:24,293 INFO com.example.controllers.StudentController [http-nio-8080-exec-8] Getting the grades for the student with the id 4 at the specialization 1
+2022-05-24 15:41:24,295 INFO com.example.controllers.StudentController [http-nio-8080-exec-7] Getting courses of the student with the id 4 at the specialization 1
+2022-05-24 15:41:24,299 INFO com.example.controllers.StudentController [http-nio-8080-exec-8] Grades successfully retrieved!
+2022-05-24 15:41:24,303 INFO com.example.controllers.StudentController [http-nio-8080-exec-7] Courses successfully returned!
+2022-05-24 15:41:32,445 INFO com.example.controllers.StudentController [http-nio-8080-exec-2] Getting the contracts for the student with the id 4
+2022-05-24 15:41:32,446 INFO com.example.controllers.StudentController [http-nio-8080-exec-1] Getting specializations for the student with the id 4
+2022-05-24 15:41:32,450 INFO com.example.controllers.StudentController [http-nio-8080-exec-2] Contracts successfully obtained!
+2022-05-24 15:41:32,450 INFO com.example.controllers.StudentController [http-nio-8080-exec-1] Specializations successfully obtained!
+2022-05-24 15:41:32,493 INFO com.example.controllers.StudentController [http-nio-8080-exec-6] Getting courses of the student with the id 4 at the specialization 1
+2022-05-24 15:41:32,493 INFO com.example.controllers.StudentController [http-nio-8080-exec-5] Getting the grades for the student with the id 4 at the specialization 1
+2022-05-24 15:41:32,502 INFO com.example.controllers.StudentController [http-nio-8080-exec-5] Grades successfully retrieved!
+2022-05-24 15:41:32,505 INFO com.example.controllers.StudentController [http-nio-8080-exec-6] Courses successfully returned!
+2022-05-24 15:41:32,961 INFO com.example.controllers.StudentController [http-nio-8080-exec-9] Getting specializations for the student with the id 4
+2022-05-24 15:41:32,961 INFO com.example.controllers.StudentController [http-nio-8080-exec-10] Getting the contracts for the student with the id 4
+2022-05-24 15:41:32,964 INFO com.example.controllers.StudentController [http-nio-8080-exec-9] Specializations successfully obtained!
+2022-05-24 15:41:32,964 INFO com.example.controllers.StudentController [http-nio-8080-exec-10] Contracts successfully obtained!
+2022-05-24 15:41:32,993 INFO com.example.controllers.StudentController [http-nio-8080-exec-4] Getting courses of the student with the id 4 at the specialization 1
+2022-05-24 15:41:32,994 INFO com.example.controllers.StudentController [http-nio-8080-exec-3] Getting the grades for the student with the id 4 at the specialization 1
+2022-05-24 15:41:33,000 INFO com.example.controllers.StudentController [http-nio-8080-exec-3] Grades successfully retrieved!
+2022-05-24 15:41:33,002 INFO com.example.controllers.StudentController [http-nio-8080-exec-4] Courses successfully returned!
+2022-05-24 15:41:35,664 INFO com.example.controllers.StudentController [http-nio-8080-exec-8] Getting the contracts for the student with the id 4
+2022-05-24 15:41:35,664 INFO com.example.controllers.StudentController [http-nio-8080-exec-7] Getting specializations for the student with the id 4
+2022-05-24 15:41:35,667 INFO com.example.controllers.StudentController [http-nio-8080-exec-8] Contracts successfully obtained!
+2022-05-24 15:41:35,667 INFO com.example.controllers.StudentController [http-nio-8080-exec-7] Specializations successfully obtained!
+2022-05-24 15:41:35,703 INFO com.example.controllers.StudentController [http-nio-8080-exec-1] Getting courses of the student with the id 4 at the specialization 1
+2022-05-24 15:41:35,703 INFO com.example.controllers.StudentController [http-nio-8080-exec-2] Getting the grades for the student with the id 4 at the specialization 1
+2022-05-24 15:41:35,708 INFO com.example.controllers.StudentController [http-nio-8080-exec-2] Grades successfully retrieved!
+2022-05-24 15:41:35,710 INFO com.example.controllers.StudentController [http-nio-8080-exec-1] Courses successfully returned!
+2022-05-24 15:41:42,346 INFO com.example.controllers.AuthenticationController [http-nio-8080-exec-3] Signing in with username rborza
+2022-05-24 15:41:42,433 INFO com.example.controllers.AuthenticationController [http-nio-8080-exec-3] Sign in successful with username rborza
+2022-05-24 15:41:43,469 INFO com.example.controllers.TeacherController [http-nio-8080-exec-6] Getting the courses of the teacher with the ID 23
+2022-05-24 15:41:43,474 INFO com.example.controllers.TeacherController [http-nio-8080-exec-6] Transforming mandatory and optional courses to Course DTOs
+2022-05-24 15:41:43,479 INFO com.example.controllers.TeacherController [http-nio-8080-exec-6] Transforming proposed courses to Course DTOs
+2022-05-24 15:41:43,484 INFO com.example.controllers.TeacherController [http-nio-8080-exec-6] Merging the two lists
+2022-05-24 15:41:44,497 INFO com.example.controllers.TeacherController [http-nio-8080-exec-1] Getting the courses of the teacher with the ID 23
+2022-05-24 15:41:44,501 INFO com.example.controllers.TeacherController [http-nio-8080-exec-1] Transforming mandatory and optional courses to Course DTOs
+2022-05-24 15:41:44,506 INFO com.example.controllers.TeacherController [http-nio-8080-exec-1] Transforming proposed courses to Course DTOs
+2022-05-24 15:41:44,512 INFO com.example.controllers.TeacherController [http-nio-8080-exec-1] Merging the two lists
+2022-05-24 15:41:45,184 INFO com.example.controllers.TeacherController [http-nio-8080-exec-6] Getting the courses of the teacher with the ID 23
+2022-05-24 15:41:45,188 INFO com.example.controllers.TeacherController [http-nio-8080-exec-6] Transforming mandatory and optional courses to Course DTOs
+2022-05-24 15:41:45,193 INFO com.example.controllers.TeacherController [http-nio-8080-exec-6] Transforming proposed courses to Course DTOs
+2022-05-24 15:41:45,198 INFO com.example.controllers.TeacherController [http-nio-8080-exec-6] Merging the two lists
+2022-05-24 15:41:51,880 INFO com.example.controllers.TeacherController [http-nio-8080-exec-5] Getting the courses of the teacher with the ID 23
+2022-05-24 15:41:51,886 INFO com.example.controllers.TeacherController [http-nio-8080-exec-5] Transforming mandatory and optional courses to Course DTOs
+2022-05-24 15:41:51,892 INFO com.example.controllers.TeacherController [http-nio-8080-exec-5] Transforming proposed courses to Course DTOs
+2022-05-24 15:41:51,897 INFO com.example.controllers.TeacherController [http-nio-8080-exec-5] Merging the two lists
+2022-05-24 15:41:55,008 INFO com.example.controllers.TeacherController [http-nio-8080-exec-6] Getting the courses of the teacher with the ID 23
+2022-05-24 15:41:55,013 INFO com.example.controllers.TeacherController [http-nio-8080-exec-6] Transforming mandatory and optional courses to Course DTOs
+2022-05-24 15:41:55,018 INFO com.example.controllers.TeacherController [http-nio-8080-exec-6] Transforming proposed courses to Course DTOs
+2022-05-24 15:41:55,022 INFO com.example.controllers.TeacherController [http-nio-8080-exec-6] Merging the two lists
+2022-05-24 15:41:55,290 INFO com.example.controllers.TeacherController [http-nio-8080-exec-3] Getting the courses of the teacher with the ID 23
+2022-05-24 15:41:55,293 INFO com.example.controllers.TeacherController [http-nio-8080-exec-3] Transforming mandatory and optional courses to Course DTOs
+2022-05-24 15:41:55,296 INFO com.example.controllers.TeacherController [http-nio-8080-exec-3] Transforming proposed courses to Course DTOs
+2022-05-24 15:41:55,300 INFO com.example.controllers.TeacherController [http-nio-8080-exec-3] Merging the two lists
+2022-05-24 15:42:09,480 INFO com.example.controllers.TeacherController [http-nio-8080-exec-6] Getting the courses of the teacher with the ID 23
+2022-05-24 15:42:09,484 INFO com.example.controllers.TeacherController [http-nio-8080-exec-6] Transforming mandatory and optional courses to Course DTOs
+2022-05-24 15:42:09,489 INFO com.example.controllers.TeacherController [http-nio-8080-exec-6] Transforming proposed courses to Course DTOs
+2022-05-24 15:42:09,493 INFO com.example.controllers.TeacherController [http-nio-8080-exec-6] Merging the two lists
+2022-05-24 15:48:14,392 INFO com.example.controllers.TeacherController [http-nio-8080-exec-9] Getting the courses of the teacher with the ID 23
+2022-05-24 15:48:14,399 INFO com.example.controllers.TeacherController [http-nio-8080-exec-9] Transforming mandatory and optional courses to Course DTOs
+2022-05-24 15:48:14,406 INFO com.example.controllers.TeacherController [http-nio-8080-exec-9] Transforming proposed courses to Course DTOs
+2022-05-24 15:48:14,411 INFO com.example.controllers.TeacherController [http-nio-8080-exec-9] Merging the two lists
+2022-05-24 15:50:33,484 INFO com.example.controllers.TeacherController [http-nio-8080-exec-1] Getting the courses of the teacher with the ID 23
+2022-05-24 15:50:33,491 INFO com.example.controllers.TeacherController [http-nio-8080-exec-1] Transforming mandatory and optional courses to Course DTOs
+2022-05-24 15:50:33,498 INFO com.example.controllers.TeacherController [http-nio-8080-exec-1] Transforming proposed courses to Course DTOs
+2022-05-24 15:50:33,502 INFO com.example.controllers.TeacherController [http-nio-8080-exec-1] Merging the two lists
+2022-05-24 15:53:21,472 INFO com.example.controllers.TeacherController [http-nio-8080-exec-8] Getting the courses of the teacher with the ID 23
+2022-05-24 15:53:21,483 INFO com.example.controllers.TeacherController [http-nio-8080-exec-8] Transforming mandatory and optional courses to Course DTOs
+2022-05-24 15:53:21,493 INFO com.example.controllers.TeacherController [http-nio-8080-exec-8] Transforming proposed courses to Course DTOs
+2022-05-24 15:53:21,497 INFO com.example.controllers.TeacherController [http-nio-8080-exec-8] Merging the two lists
+2022-05-24 16:12:56,249 INFO org.springframework.orm.jpa.AbstractEntityManagerFactoryBean [SpringApplicationShutdownHook] Closing JPA EntityManagerFactory for persistence unit 'default'
+2022-05-24 16:12:56,261 INFO com.zaxxer.hikari.HikariDataSource [SpringApplicationShutdownHook] HikariPool-1 - Shutdown initiated...
+2022-05-24 16:12:56,266 INFO com.zaxxer.hikari.HikariDataSource [SpringApplicationShutdownHook] HikariPool-1 - Shutdown completed.
+2022-05-24 16:15:35,936 INFO org.hibernate.validator.internal.util.Version [background-preinit] HV000001: Hibernate Validator 6.2.2.Final
+2022-05-24 16:15:35,939 INFO org.springframework.boot.StartupInfoLogger [main] Starting IssProjectApplication using Java 17.0.2 on Alexs-personal-MacBook-Pro.local with PID 7901 (/Users/alexnedelcu/Desktop/Uni/ISS/academicmisinformation/backend/target/classes started by alexnedelcu in /Users/alexnedelcu/Desktop/Uni/ISS/academicmisinformation/backend)
+2022-05-24 16:15:35,940 DEBUG org.springframework.boot.StartupInfoLogger [main] Running with Spring Boot v2.6.4, Spring v5.3.16
+2022-05-24 16:15:35,941 INFO org.springframework.boot.SpringApplication [main] No active profile set, falling back to 1 default profile: "default"
+2022-05-24 16:15:36,641 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2022-05-24 16:15:36,717 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Finished Spring Data repository scanning in 67 ms. Found 13 JPA repository interfaces.
+2022-05-24 16:15:37,211 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [main] Tomcat initialized with port(s): 8080 (http)
+2022-05-24 16:15:37,288 INFO org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext [main] Root WebApplicationContext: initialization completed in 1302 ms
+2022-05-24 16:15:37,460 WARN org.springframework.boot.autoconfigure.orm.jpa.JpaBaseConfiguration$JpaWebConfiguration [main] spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2022-05-24 16:15:37,560 INFO com.zaxxer.hikari.HikariDataSource [main] HikariPool-1 - Starting...
+2022-05-24 16:15:37,650 INFO com.zaxxer.hikari.HikariDataSource [main] HikariPool-1 - Start completed.
+2022-05-24 16:15:37,667 INFO org.flywaydb.core.internal.logging.slf4j.Slf4jLog [main] Flyway Community Edition 8.5.4 by Redgate
+2022-05-24 16:15:37,668 INFO org.flywaydb.core.internal.logging.slf4j.Slf4jLog [main] See what's new here: https://flywaydb.org/documentation/learnmore/releaseNotes#8.5.4
+2022-05-24 16:15:37,668 INFO org.flywaydb.core.internal.logging.slf4j.Slf4jLog [main] 
+2022-05-24 16:15:37,668 INFO org.flywaydb.core.internal.logging.slf4j.Slf4jLog [main] Database: jdbc:postgresql://localhost:5432/AcademicMisinformation (PostgreSQL 14.2)
+2022-05-24 16:15:37,730 INFO org.flywaydb.core.internal.logging.slf4j.Slf4jLog [main] Successfully validated 23 migrations (execution time 00:00.044s)
+2022-05-24 16:15:37,739 INFO org.flywaydb.core.internal.logging.slf4j.Slf4jLog [main] Current version of schema "migrations": 22
+2022-05-24 16:15:37,740 INFO org.flywaydb.core.internal.logging.slf4j.Slf4jLog [main] Schema "migrations" is up to date. No migration necessary.
+2022-05-24 16:15:37,824 INFO org.hibernate.jpa.internal.util.LogHelper [main] HHH000204: Processing PersistenceUnitInfo [name: default]
+2022-05-24 16:15:37,883 INFO org.hibernate.Version [main] HHH000412: Hibernate ORM core version 5.6.5.Final
+2022-05-24 16:15:38,048 INFO org.hibernate.annotations.common.reflection.java.JavaReflectionManager [main] HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+2022-05-24 16:15:38,164 INFO org.hibernate.dialect.Dialect [main] HHH000400: Using dialect: org.hibernate.dialect.PostgreSQLDialect
+2022-05-24 16:15:38,942 INFO org.hibernate.engine.transaction.jta.platform.internal.JtaPlatformInitiator [main] HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2022-05-24 16:15:38,955 INFO org.springframework.orm.jpa.AbstractEntityManagerFactoryBean [main] Initialized JPA EntityManagerFactory for persistence unit 'default'
+2022-05-24 16:15:39,436 DEBUG org.springframework.web.filter.GenericFilterBean [main] Filter 'authenticationJwtTokenFilter' configured for use
+2022-05-24 16:15:39,888 INFO org.springframework.security.web.DefaultSecurityFilterChain [main] Will not secure any request
+2022-05-24 16:15:40,638 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [main] Tomcat started on port(s): 8080 (http) with context path ''
+2022-05-24 16:15:40,648 INFO org.springframework.boot.StartupInfoLogger [main] Started IssProjectApplication in 5.153 seconds (JVM running for 6.03)
+2022-05-24 16:15:40,664 INFO org.springframework.orm.jpa.AbstractEntityManagerFactoryBean [SpringApplicationShutdownHook] Closing JPA EntityManagerFactory for persistence unit 'default'
+2022-05-24 16:15:40,667 INFO com.zaxxer.hikari.HikariDataSource [SpringApplicationShutdownHook] HikariPool-1 - Shutdown initiated...
+2022-05-24 16:15:40,669 INFO com.zaxxer.hikari.HikariDataSource [SpringApplicationShutdownHook] HikariPool-1 - Shutdown completed.
+2022-05-24 16:47:16,574 INFO org.hibernate.validator.internal.util.Version [background-preinit] HV000001: Hibernate Validator 6.2.2.Final
+2022-05-24 16:47:16,601 INFO org.springframework.boot.StartupInfoLogger [main] Starting IssProjectApplication using Java 17.0.2 on Alexs-personal-MacBook-Pro.local with PID 8356 (/Users/alexnedelcu/Desktop/Uni/ISS/academicmisinformation/backend/target/classes started by alexnedelcu in /Users/alexnedelcu/Desktop/Uni/ISS/academicmisinformation/backend)
+2022-05-24 16:47:16,602 DEBUG org.springframework.boot.StartupInfoLogger [main] Running with Spring Boot v2.6.4, Spring v5.3.16
+2022-05-24 16:47:16,603 INFO org.springframework.boot.SpringApplication [main] No active profile set, falling back to 1 default profile: "default"
+2022-05-24 16:47:18,180 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2022-05-24 16:47:18,249 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Finished Spring Data repository scanning in 61 ms. Found 13 JPA repository interfaces.
+2022-05-24 16:47:18,722 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [main] Tomcat initialized with port(s): 8080 (http)
+2022-05-24 16:47:18,730 INFO org.apache.juli.logging.DirectJDKLog [main] Initializing ProtocolHandler ["http-nio-8080"]
+2022-05-24 16:47:18,730 INFO org.apache.juli.logging.DirectJDKLog [main] Starting service [Tomcat]
+2022-05-24 16:47:18,730 INFO org.apache.juli.logging.DirectJDKLog [main] Starting Servlet engine: [Apache Tomcat/9.0.58]
+2022-05-24 16:47:18,802 INFO org.apache.juli.logging.DirectJDKLog [main] Initializing Spring embedded WebApplicationContext
+2022-05-24 16:47:18,803 INFO org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext [main] Root WebApplicationContext: initialization completed in 2137 ms
+2022-05-24 16:47:18,924 WARN org.springframework.boot.autoconfigure.orm.jpa.JpaBaseConfiguration$JpaWebConfiguration [main] spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2022-05-24 16:47:19,023 INFO com.zaxxer.hikari.HikariDataSource [main] HikariPool-1 - Starting...
+2022-05-24 16:47:19,091 INFO com.zaxxer.hikari.HikariDataSource [main] HikariPool-1 - Start completed.
+2022-05-24 16:47:19,107 INFO org.flywaydb.core.internal.logging.slf4j.Slf4jLog [main] Flyway Community Edition 8.5.4 by Redgate
+2022-05-24 16:47:19,107 INFO org.flywaydb.core.internal.logging.slf4j.Slf4jLog [main] See what's new here: https://flywaydb.org/documentation/learnmore/releaseNotes#8.5.4
+2022-05-24 16:47:19,107 INFO org.flywaydb.core.internal.logging.slf4j.Slf4jLog [main] 
+2022-05-24 16:47:19,108 INFO org.flywaydb.core.internal.logging.slf4j.Slf4jLog [main] Database: jdbc:postgresql://localhost:5432/AcademicMisinformation (PostgreSQL 14.2)
+2022-05-24 16:47:19,156 INFO org.flywaydb.core.internal.logging.slf4j.Slf4jLog [main] Successfully validated 23 migrations (execution time 00:00.035s)
+2022-05-24 16:47:19,162 INFO org.flywaydb.core.internal.logging.slf4j.Slf4jLog [main] Current version of schema "migrations": 22
+2022-05-24 16:47:19,163 INFO org.flywaydb.core.internal.logging.slf4j.Slf4jLog [main] Schema "migrations" is up to date. No migration necessary.
+2022-05-24 16:47:19,224 INFO org.hibernate.jpa.internal.util.LogHelper [main] HHH000204: Processing PersistenceUnitInfo [name: default]
+2022-05-24 16:47:19,277 INFO org.hibernate.Version [main] HHH000412: Hibernate ORM core version 5.6.5.Final
+2022-05-24 16:47:19,448 INFO org.hibernate.annotations.common.reflection.java.JavaReflectionManager [main] HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+2022-05-24 16:47:19,545 INFO org.hibernate.dialect.Dialect [main] HHH000400: Using dialect: org.hibernate.dialect.PostgreSQLDialect
+2022-05-24 16:47:20,285 INFO org.hibernate.engine.transaction.jta.platform.internal.JtaPlatformInitiator [main] HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2022-05-24 16:47:20,294 INFO org.springframework.orm.jpa.AbstractEntityManagerFactoryBean [main] Initialized JPA EntityManagerFactory for persistence unit 'default'
+2022-05-24 16:47:20,723 DEBUG org.springframework.web.filter.GenericFilterBean [main] Filter 'authenticationJwtTokenFilter' configured for use
+2022-05-24 16:47:21,138 INFO org.springframework.security.web.DefaultSecurityFilterChain [main] Will not secure any request
+2022-05-24 16:47:21,698 INFO org.apache.juli.logging.DirectJDKLog [main] Starting ProtocolHandler ["http-nio-8080"]
+2022-05-24 16:47:21,711 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [main] Tomcat started on port(s): 8080 (http) with context path ''
+2022-05-24 16:47:21,720 INFO org.springframework.boot.StartupInfoLogger [main] Started IssProjectApplication in 5.707 seconds (JVM running for 6.728)
+2022-05-24 16:47:22,009 INFO org.apache.juli.logging.DirectJDKLog [http-nio-8080-exec-1] Initializing Spring DispatcherServlet 'dispatcherServlet'
+2022-05-24 16:47:22,009 INFO org.springframework.web.servlet.FrameworkServlet [http-nio-8080-exec-1] Initializing Servlet 'dispatcherServlet'
+2022-05-24 16:47:22,011 INFO org.springframework.web.servlet.FrameworkServlet [http-nio-8080-exec-1] Completed initialization in 2 ms
+2022-05-24 16:47:22,156 INFO com.example.controllers.AuthenticationController [http-nio-8080-exec-2] Signing in with username anedelcu
+2022-05-24 16:47:22,531 INFO com.example.controllers.AuthenticationController [http-nio-8080-exec-2] Sign in successful with username anedelcu
+2022-05-24 16:47:24,224 INFO com.example.controllers.StudentController [http-nio-8080-exec-6] Getting specializations for the student with the id 4
+2022-05-24 16:47:24,224 INFO com.example.controllers.StudentController [http-nio-8080-exec-4] Getting the contracts for the student with the id 4
+2022-05-24 16:47:24,239 INFO com.example.controllers.StudentController [http-nio-8080-exec-6] Specializations successfully obtained!
+2022-05-24 16:47:24,239 INFO com.example.controllers.StudentController [http-nio-8080-exec-4] Contracts successfully obtained!
+2022-05-24 16:47:24,450 INFO com.example.controllers.StudentController [http-nio-8080-exec-10] Getting courses of the student with the id 4 at the specialization 1
+2022-05-24 16:47:24,451 INFO com.example.controllers.StudentController [http-nio-8080-exec-9] Getting the grades for the student with the id 4 at the specialization 1
+2022-05-24 16:47:24,459 INFO com.example.controllers.StudentController [http-nio-8080-exec-9] Grades successfully retrieved!
+2022-05-24 16:47:24,464 INFO com.example.controllers.StudentController [http-nio-8080-exec-10] Courses successfully returned!
+2022-05-24 16:47:24,479 ERROR org.apache.juli.logging.DirectJDKLog [http-nio-8080-exec-10] Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Request processing failed; nested exception is java.lang.IndexOutOfBoundsException: Index 0 out of bounds for length 0] with root cause
+java.lang.IndexOutOfBoundsException: Index 0 out of bounds for length 0
+	at java.base/jdk.internal.util.Preconditions.outOfBounds(Preconditions.java:64)
+	at java.base/jdk.internal.util.Preconditions.outOfBoundsCheckIndex(Preconditions.java:70)
+	at java.base/jdk.internal.util.Preconditions.checkIndex(Preconditions.java:266)
+	at java.base/java.util.Objects.checkIndex(Objects.java:359)
+	at java.base/java.util.ArrayList.get(ArrayList.java:427)
+	at org.hibernate.collection.internal.PersistentBag.get(PersistentBag.java:562)
+	at com.example.payload.responses.CourseDTO.<init>(CourseDTO.java:40)
+	at java.base/java.util.stream.ReferencePipeline$3$1.accept(ReferencePipeline.java:197)
+	at java.base/java.util.stream.ReferencePipeline$2$1.accept(ReferencePipeline.java:179)
+	at java.base/java.util.Iterator.forEachRemaining(Iterator.java:133)
+	at java.base/java.util.Spliterators$IteratorSpliterator.forEachRemaining(Spliterators.java:1845)
+	at java.base/java.util.stream.AbstractPipeline.copyInto(AbstractPipeline.java:509)
+	at java.base/java.util.stream.AbstractPipeline.wrapAndCopyInto(AbstractPipeline.java:499)
+	at java.base/java.util.stream.ReduceOps$ReduceOp.evaluateSequential(ReduceOps.java:921)
+	at java.base/java.util.stream.AbstractPipeline.evaluate(AbstractPipeline.java:234)
+	at java.base/java.util.stream.ReferencePipeline.collect(ReferencePipeline.java:682)
+	at com.example.controllers.StudentController.getCoursesForSpecialization(StudentController.java:113)
+	at com.example.controllers.StudentController$$FastClassBySpringCGLIB$$5e5e2e0f.invoke(<generated>)
+	at org.springframework.cglib.proxy.MethodProxy.invoke(MethodProxy.java:218)
+	at org.springframework.aop.framework.CglibAopProxy$CglibMethodInvocation.invokeJoinpoint(CglibAopProxy.java:783)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:163)
+	at org.springframework.aop.framework.CglibAopProxy$CglibMethodInvocation.proceed(CglibAopProxy.java:753)
+	at org.springframework.security.access.intercept.aopalliance.MethodSecurityInterceptor.invoke(MethodSecurityInterceptor.java:61)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:186)
+	at org.springframework.aop.framework.CglibAopProxy$CglibMethodInvocation.proceed(CglibAopProxy.java:753)
+	at org.springframework.aop.framework.CglibAopProxy$DynamicAdvisedInterceptor.intercept(CglibAopProxy.java:698)
+	at com.example.controllers.StudentController$$EnhancerBySpringCGLIB$$63f81f67.getCoursesForSpecialization(<generated>)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:568)
+	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:205)
+	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:150)
+	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:117)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:895)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:808)
+	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:87)
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1067)
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:963)
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1006)
+	at org.springframework.web.servlet.FrameworkServlet.doGet(FrameworkServlet.java:898)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:655)
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:883)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:764)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:227)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:53)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:111)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:327)
+	at org.springframework.security.web.access.intercept.FilterSecurityInterceptor.invoke(FilterSecurityInterceptor.java:115)
+	at org.springframework.security.web.access.intercept.FilterSecurityInterceptor.doFilter(FilterSecurityInterceptor.java:81)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:336)
+	at org.springframework.security.web.access.ExceptionTranslationFilter.doFilter(ExceptionTranslationFilter.java:122)
+	at org.springframework.security.web.access.ExceptionTranslationFilter.doFilter(ExceptionTranslationFilter.java:116)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:336)
+	at org.springframework.security.web.session.SessionManagementFilter.doFilter(SessionManagementFilter.java:126)
+	at org.springframework.security.web.session.SessionManagementFilter.doFilter(SessionManagementFilter.java:81)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:336)
+	at org.springframework.security.web.authentication.AnonymousAuthenticationFilter.doFilter(AnonymousAuthenticationFilter.java:109)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:336)
+	at org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter.doFilter(SecurityContextHolderAwareRequestFilter.java:149)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:336)
+	at org.springframework.security.web.savedrequest.RequestCacheAwareFilter.doFilter(RequestCacheAwareFilter.java:63)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:336)
+	at com.example.security.jwt.AuthenticationTokenFilter.doFilterInternal(AuthenticationTokenFilter.java:42)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:117)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:336)
+	at org.springframework.security.web.authentication.logout.LogoutFilter.doFilter(LogoutFilter.java:103)
+	at org.springframework.security.web.authentication.logout.LogoutFilter.doFilter(LogoutFilter.java:89)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:336)
+	at org.springframework.web.filter.CorsFilter.doFilterInternal(CorsFilter.java:91)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:117)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:336)
+	at org.springframework.security.web.header.HeaderWriterFilter.doHeadersAfter(HeaderWriterFilter.java:90)
+	at org.springframework.security.web.header.HeaderWriterFilter.doFilterInternal(HeaderWriterFilter.java:75)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:117)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:336)
+	at org.springframework.security.web.context.SecurityContextPersistenceFilter.doFilter(SecurityContextPersistenceFilter.java:110)
+	at org.springframework.security.web.context.SecurityContextPersistenceFilter.doFilter(SecurityContextPersistenceFilter.java:80)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:336)
+	at org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter.doFilterInternal(WebAsyncManagerIntegrationFilter.java:55)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:117)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:336)
+	at org.springframework.security.web.FilterChainProxy.doFilterInternal(FilterChainProxy.java:211)
+	at org.springframework.security.web.FilterChainProxy.doFilter(FilterChainProxy.java:183)
+	at org.springframework.web.filter.DelegatingFilterProxy.invokeDelegate(DelegatingFilterProxy.java:354)
+	at org.springframework.web.filter.DelegatingFilterProxy.doFilter(DelegatingFilterProxy.java:267)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:117)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:117)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:117)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:197)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:97)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:540)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:135)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:92)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:78)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:359)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:399)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:65)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:889)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1735)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1191)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
+	at java.base/java.lang.Thread.run(Thread.java:833)
+2022-05-24 16:48:55,598 INFO org.springframework.orm.jpa.AbstractEntityManagerFactoryBean [SpringApplicationShutdownHook] Closing JPA EntityManagerFactory for persistence unit 'default'
+2022-05-24 16:48:55,602 INFO com.zaxxer.hikari.HikariDataSource [SpringApplicationShutdownHook] HikariPool-1 - Shutdown initiated...
+2022-05-24 16:48:55,605 INFO com.zaxxer.hikari.HikariDataSource [SpringApplicationShutdownHook] HikariPool-1 - Shutdown completed.
+2022-05-24 16:48:59,154 INFO org.springframework.boot.StartupInfoLogger [main] Starting IssProjectApplication using Java 17.0.2 on Alexs-personal-MacBook-Pro.local with PID 8386 (/Users/alexnedelcu/Desktop/Uni/ISS/academicmisinformation/backend/target/classes started by alexnedelcu in /Users/alexnedelcu/Desktop/Uni/ISS/academicmisinformation/backend)
+2022-05-24 16:48:59,154 INFO org.hibernate.validator.internal.util.Version [background-preinit] HV000001: Hibernate Validator 6.2.2.Final
+2022-05-24 16:48:59,156 DEBUG org.springframework.boot.StartupInfoLogger [main] Running with Spring Boot v2.6.4, Spring v5.3.16
+2022-05-24 16:48:59,157 INFO org.springframework.boot.SpringApplication [main] No active profile set, falling back to 1 default profile: "default"
+2022-05-24 16:48:59,859 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2022-05-24 16:48:59,927 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Finished Spring Data repository scanning in 62 ms. Found 13 JPA repository interfaces.
+2022-05-24 16:49:00,381 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [main] Tomcat initialized with port(s): 8080 (http)
+2022-05-24 16:49:00,388 INFO org.apache.juli.logging.DirectJDKLog [main] Initializing ProtocolHandler ["http-nio-8080"]
+2022-05-24 16:49:00,388 INFO org.apache.juli.logging.DirectJDKLog [main] Starting service [Tomcat]
+2022-05-24 16:49:00,388 INFO org.apache.juli.logging.DirectJDKLog [main] Starting Servlet engine: [Apache Tomcat/9.0.58]
+2022-05-24 16:49:00,465 INFO org.apache.juli.logging.DirectJDKLog [main] Initializing Spring embedded WebApplicationContext
+2022-05-24 16:49:00,466 INFO org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext [main] Root WebApplicationContext: initialization completed in 1269 ms
+2022-05-24 16:49:00,580 WARN org.springframework.boot.autoconfigure.orm.jpa.JpaBaseConfiguration$JpaWebConfiguration [main] spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2022-05-24 16:49:00,692 INFO com.zaxxer.hikari.HikariDataSource [main] HikariPool-1 - Starting...
+2022-05-24 16:49:00,778 INFO com.zaxxer.hikari.HikariDataSource [main] HikariPool-1 - Start completed.
+2022-05-24 16:49:00,796 INFO org.flywaydb.core.internal.logging.slf4j.Slf4jLog [main] Flyway Community Edition 8.5.4 by Redgate
+2022-05-24 16:49:00,797 INFO org.flywaydb.core.internal.logging.slf4j.Slf4jLog [main] See what's new here: https://flywaydb.org/documentation/learnmore/releaseNotes#8.5.4
+2022-05-24 16:49:00,797 INFO org.flywaydb.core.internal.logging.slf4j.Slf4jLog [main] 
+2022-05-24 16:49:00,798 INFO org.flywaydb.core.internal.logging.slf4j.Slf4jLog [main] Database: jdbc:postgresql://localhost:5432/AcademicMisinformation (PostgreSQL 14.2)
+2022-05-24 16:49:00,856 INFO org.flywaydb.core.internal.logging.slf4j.Slf4jLog [main] Successfully validated 23 migrations (execution time 00:00.045s)
+2022-05-24 16:49:00,863 INFO org.flywaydb.core.internal.logging.slf4j.Slf4jLog [main] Current version of schema "migrations": 22
+2022-05-24 16:49:00,864 INFO org.flywaydb.core.internal.logging.slf4j.Slf4jLog [main] Schema "migrations" is up to date. No migration necessary.
+2022-05-24 16:49:00,939 INFO org.hibernate.jpa.internal.util.LogHelper [main] HHH000204: Processing PersistenceUnitInfo [name: default]
+2022-05-24 16:49:01,003 INFO org.hibernate.Version [main] HHH000412: Hibernate ORM core version 5.6.5.Final
+2022-05-24 16:49:01,181 INFO org.hibernate.annotations.common.reflection.java.JavaReflectionManager [main] HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+2022-05-24 16:49:01,291 INFO org.hibernate.dialect.Dialect [main] HHH000400: Using dialect: org.hibernate.dialect.PostgreSQLDialect
+2022-05-24 16:49:02,030 INFO org.hibernate.engine.transaction.jta.platform.internal.JtaPlatformInitiator [main] HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2022-05-24 16:49:02,037 INFO org.springframework.orm.jpa.AbstractEntityManagerFactoryBean [main] Initialized JPA EntityManagerFactory for persistence unit 'default'
+2022-05-24 16:49:02,461 DEBUG org.springframework.web.filter.GenericFilterBean [main] Filter 'authenticationJwtTokenFilter' configured for use
+2022-05-24 16:49:02,909 INFO org.springframework.security.web.DefaultSecurityFilterChain [main] Will not secure any request
+2022-05-24 16:49:03,535 INFO org.apache.juli.logging.DirectJDKLog [main] Starting ProtocolHandler ["http-nio-8080"]
+2022-05-24 16:49:03,549 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [main] Tomcat started on port(s): 8080 (http) with context path ''
+2022-05-24 16:49:03,558 INFO org.springframework.boot.StartupInfoLogger [main] Started IssProjectApplication in 4.825 seconds (JVM running for 5.371)
+2022-05-24 16:49:05,739 INFO org.apache.juli.logging.DirectJDKLog [http-nio-8080-exec-2] Initializing Spring DispatcherServlet 'dispatcherServlet'
+2022-05-24 16:49:05,741 INFO org.springframework.web.servlet.FrameworkServlet [http-nio-8080-exec-2] Initializing Servlet 'dispatcherServlet'
+2022-05-24 16:49:05,748 INFO org.springframework.web.servlet.FrameworkServlet [http-nio-8080-exec-2] Completed initialization in 7 ms
+2022-05-24 16:49:06,104 INFO com.example.controllers.StudentController [http-nio-8080-exec-3] Getting specializations for the student with the id 4
+2022-05-24 16:49:06,104 INFO com.example.controllers.StudentController [http-nio-8080-exec-4] Getting the contracts for the student with the id 4
+2022-05-24 16:49:06,117 INFO com.example.controllers.StudentController [http-nio-8080-exec-4] Contracts successfully obtained!
+2022-05-24 16:49:06,117 INFO com.example.controllers.StudentController [http-nio-8080-exec-3] Specializations successfully obtained!
+2022-05-24 16:49:06,203 INFO com.example.controllers.StudentController [http-nio-8080-exec-8] Getting courses of the student with the id 4 at the specialization 1
+2022-05-24 16:49:06,203 INFO com.example.controllers.StudentController [http-nio-8080-exec-7] Getting the grades for the student with the id 4 at the specialization 1
+2022-05-24 16:49:06,213 INFO com.example.controllers.StudentController [http-nio-8080-exec-7] Grades successfully retrieved!
+2022-05-24 16:49:06,223 INFO com.example.controllers.StudentController [http-nio-8080-exec-8] Courses successfully returned!
+2022-05-24 16:49:11,568 INFO com.example.controllers.StudentController [http-nio-8080-exec-2] Getting courses of the student with the id 4 at the specialization 3
+2022-05-24 16:49:11,569 INFO com.example.controllers.StudentController [http-nio-8080-exec-1] Getting the grades for the student with the id 4 at the specialization 3
+2022-05-24 16:49:11,575 INFO com.example.controllers.StudentController [http-nio-8080-exec-1] Grades successfully retrieved!
+2022-05-24 16:49:11,578 INFO com.example.controllers.StudentController [http-nio-8080-exec-2] Courses successfully returned!
+2022-05-24 16:49:14,964 INFO com.example.controllers.StudentController [http-nio-8080-exec-5] Getting courses of the student with the id 4 at the specialization 1
+2022-05-24 16:49:14,964 INFO com.example.controllers.StudentController [http-nio-8080-exec-6] Getting the grades for the student with the id 4 at the specialization 1
+2022-05-24 16:49:14,971 INFO com.example.controllers.StudentController [http-nio-8080-exec-6] Grades successfully retrieved!
+2022-05-24 16:49:14,974 INFO com.example.controllers.StudentController [http-nio-8080-exec-5] Courses successfully returned!
+2022-05-24 16:49:18,755 INFO com.example.controllers.StudentController [http-nio-8080-exec-8] Getting optional courses for the student with id 4 at the specialization 1
+2022-05-24 16:49:18,763 INFO com.example.controllers.StudentController [http-nio-8080-exec-8] Optional preferences successfully returned!
+2022-05-24 16:49:21,655 INFO com.example.controllers.StudentController [http-nio-8080-exec-10] Getting the optionals in their preference order for student with id 4 and specialization 1
+2022-05-24 16:49:22,229 INFO com.example.controllers.StudentController [http-nio-8080-exec-1] Getting the optionals in their preference order for student with id 4 and specialization 1
+2022-05-24 16:49:22,370 INFO com.example.controllers.StudentController [http-nio-8080-exec-2] Getting the optionals in their preference order for student with id 4 and specialization 1
+2022-05-24 16:49:22,508 INFO com.example.controllers.StudentController [http-nio-8080-exec-3] Getting the optionals in their preference order for student with id 4 and specialization 1
+2022-05-24 16:50:26,900 INFO com.example.controllers.StudentController [http-nio-8080-exec-9] Getting specializations for the student with the id 4
+2022-05-24 16:50:26,901 INFO com.example.controllers.StudentController [http-nio-8080-exec-10] Getting the contracts for the student with the id 4
+2022-05-24 16:50:26,908 INFO com.example.controllers.StudentController [http-nio-8080-exec-9] Specializations successfully obtained!
+2022-05-24 16:50:26,909 INFO com.example.controllers.StudentController [http-nio-8080-exec-10] Contracts successfully obtained!
+2022-05-24 16:50:27,024 INFO com.example.controllers.StudentController [http-nio-8080-exec-4] Getting courses of the student with the id 4 at the specialization 1
+2022-05-24 16:50:27,024 INFO com.example.controllers.StudentController [http-nio-8080-exec-3] Getting the grades for the student with the id 4 at the specialization 1
+2022-05-24 16:50:27,029 INFO com.example.controllers.StudentController [http-nio-8080-exec-3] Grades successfully retrieved!
+2022-05-24 16:50:27,032 INFO com.example.controllers.StudentController [http-nio-8080-exec-4] Courses successfully returned!
+2022-05-24 16:53:29,774 INFO com.example.controllers.CommonResourcesController [http-nio-8080-exec-3] Getting all faculties
+2022-05-24 16:53:39,704 INFO com.example.controllers.StudentController [http-nio-8080-exec-5] Getting specializations for the student with the id 4
+2022-05-24 16:53:39,704 INFO com.example.controllers.StudentController [http-nio-8080-exec-8] Getting the contracts for the student with the id 4
+2022-05-24 16:53:39,716 INFO com.example.controllers.StudentController [http-nio-8080-exec-8] Contracts successfully obtained!
+2022-05-24 16:53:39,717 INFO com.example.controllers.StudentController [http-nio-8080-exec-5] Specializations successfully obtained!
+2022-05-24 16:53:39,834 INFO com.example.controllers.StudentController [http-nio-8080-exec-9] Getting courses of the student with the id 4 at the specialization 1
+2022-05-24 16:53:39,834 INFO com.example.controllers.StudentController [http-nio-8080-exec-1] Getting the grades for the student with the id 4 at the specialization 1
+2022-05-24 16:53:39,839 INFO com.example.controllers.StudentController [http-nio-8080-exec-1] Grades successfully retrieved!
+2022-05-24 16:53:39,846 INFO com.example.controllers.StudentController [http-nio-8080-exec-9] Courses successfully returned!
+2022-05-24 16:53:42,867 INFO com.example.controllers.CommonResourcesController [http-nio-8080-exec-3] Getting all faculties
+2022-05-24 16:55:03,597 INFO com.example.controllers.StudentController [http-nio-8080-exec-7] Getting the contracts for the student with the id 4
+2022-05-24 16:55:03,597 INFO com.example.controllers.StudentController [http-nio-8080-exec-10] Getting specializations for the student with the id 4
+2022-05-24 16:55:03,609 INFO com.example.controllers.StudentController [http-nio-8080-exec-10] Specializations successfully obtained!
+2022-05-24 16:55:03,609 INFO com.example.controllers.StudentController [http-nio-8080-exec-7] Contracts successfully obtained!
+2022-05-24 16:55:03,663 INFO com.example.controllers.StudentController [http-nio-8080-exec-3] Getting the grades for the student with the id 4 at the specialization 1
+2022-05-24 16:55:03,666 INFO com.example.controllers.StudentController [http-nio-8080-exec-2] Getting courses of the student with the id 4 at the specialization 1
+2022-05-24 16:55:03,669 INFO com.example.controllers.StudentController [http-nio-8080-exec-3] Grades successfully retrieved!
+2022-05-24 16:55:03,677 INFO com.example.controllers.StudentController [http-nio-8080-exec-2] Courses successfully returned!
+2022-05-24 16:55:05,523 INFO com.example.controllers.CommonResourcesController [http-nio-8080-exec-4] Getting all faculties
+2022-05-24 16:55:12,353 INFO com.example.controllers.CommonResourcesController [http-nio-8080-exec-8] Getting all faculties
+2022-05-24 16:56:27,461 INFO com.example.controllers.StudentController [http-nio-8080-exec-2] Getting the contracts for the student with the id 4
+2022-05-24 16:56:27,465 INFO com.example.controllers.StudentController [http-nio-8080-exec-3] Getting specializations for the student with the id 4
+2022-05-24 16:56:27,470 INFO com.example.controllers.StudentController [http-nio-8080-exec-2] Contracts successfully obtained!
+2022-05-24 16:56:27,470 INFO com.example.controllers.StudentController [http-nio-8080-exec-3] Specializations successfully obtained!
+2022-05-24 16:56:27,584 INFO com.example.controllers.StudentController [http-nio-8080-exec-8] Getting the grades for the student with the id 4 at the specialization 1
+2022-05-24 16:56:27,584 INFO com.example.controllers.StudentController [http-nio-8080-exec-5] Getting courses of the student with the id 4 at the specialization 1
+2022-05-24 16:56:27,591 INFO com.example.controllers.StudentController [http-nio-8080-exec-8] Grades successfully retrieved!
+2022-05-24 16:56:27,593 INFO com.example.controllers.StudentController [http-nio-8080-exec-5] Courses successfully returned!
+2022-05-24 16:56:28,421 INFO com.example.controllers.CommonResourcesController [http-nio-8080-exec-7] Getting all faculties
+2022-05-24 16:56:49,539 INFO com.example.controllers.StudentController [http-nio-8080-exec-9] Getting the contracts for the student with the id 4
+2022-05-24 16:56:49,542 INFO com.example.controllers.StudentController [http-nio-8080-exec-9] Contracts successfully obtained!
+2022-05-24 16:56:49,556 INFO com.example.controllers.StudentController [http-nio-8080-exec-2] Getting specializations for the student with the id 4
+2022-05-24 16:56:49,562 INFO com.example.controllers.StudentController [http-nio-8080-exec-2] Specializations successfully obtained!
+2022-05-24 16:56:49,821 INFO com.example.controllers.StudentController [http-nio-8080-exec-4] Getting specializations for the student with the id 4
+2022-05-24 16:56:49,822 INFO com.example.controllers.StudentController [http-nio-8080-exec-6] Getting the contracts for the student with the id 4
+2022-05-24 16:56:49,839 INFO com.example.controllers.StudentController [http-nio-8080-exec-4] Specializations successfully obtained!
+2022-05-24 16:56:49,840 INFO com.example.controllers.StudentController [http-nio-8080-exec-6] Contracts successfully obtained!
+2022-05-24 16:56:49,978 INFO com.example.controllers.StudentController [http-nio-8080-exec-10] Getting courses of the student with the id 4 at the specialization 1
+2022-05-24 16:56:49,978 INFO com.example.controllers.StudentController [http-nio-8080-exec-7] Getting the grades for the student with the id 4 at the specialization 1
+2022-05-24 16:56:49,981 INFO com.example.controllers.StudentController [http-nio-8080-exec-7] Grades successfully retrieved!
+2022-05-24 16:56:49,986 INFO com.example.controllers.StudentController [http-nio-8080-exec-10] Courses successfully returned!
+2022-05-24 16:56:50,975 INFO com.example.controllers.CommonResourcesController [http-nio-8080-exec-3] Getting all faculties
+2022-05-24 16:57:31,601 INFO com.example.controllers.StudentController [http-nio-8080-exec-4] Getting the grades for the student with the id 4 at the specialization 3
+2022-05-24 16:57:31,602 INFO com.example.controllers.StudentController [http-nio-8080-exec-6] Getting courses of the student with the id 4 at the specialization 3
+2022-05-24 16:57:31,605 INFO com.example.controllers.StudentController [http-nio-8080-exec-4] Grades successfully retrieved!
+2022-05-24 16:57:31,609 INFO com.example.controllers.StudentController [http-nio-8080-exec-6] Courses successfully returned!
+2022-05-24 16:58:52,662 INFO com.example.controllers.StudentController [http-nio-8080-exec-3] Getting the contracts for the student with the id 4
+2022-05-24 16:58:52,662 INFO com.example.controllers.StudentController [http-nio-8080-exec-1] Getting specializations for the student with the id 4
+2022-05-24 16:58:52,671 INFO com.example.controllers.StudentController [http-nio-8080-exec-3] Contracts successfully obtained!
+2022-05-24 16:58:52,671 INFO com.example.controllers.StudentController [http-nio-8080-exec-1] Specializations successfully obtained!
+2022-05-24 16:58:52,740 INFO com.example.controllers.StudentController [http-nio-8080-exec-4] Getting courses of the student with the id 4 at the specialization 1
+2022-05-24 16:58:52,740 INFO com.example.controllers.StudentController [http-nio-8080-exec-6] Getting the grades for the student with the id 4 at the specialization 1
+2022-05-24 16:58:52,745 INFO com.example.controllers.StudentController [http-nio-8080-exec-6] Grades successfully retrieved!
+2022-05-24 16:58:52,747 INFO com.example.controllers.StudentController [http-nio-8080-exec-4] Courses successfully returned!
+2022-05-24 16:59:32,284 INFO com.example.controllers.CommonResourcesController [http-nio-8080-exec-5] Getting all faculties
+2022-05-24 17:02:15,717 INFO com.example.controllers.StudentController [http-nio-8080-exec-2] Getting the contracts for the student with the id 4
+2022-05-24 17:02:15,717 INFO com.example.controllers.StudentController [http-nio-8080-exec-9] Getting specializations for the student with the id 4
+2022-05-24 17:02:15,727 INFO com.example.controllers.StudentController [http-nio-8080-exec-9] Specializations successfully obtained!
+2022-05-24 17:02:15,727 INFO com.example.controllers.StudentController [http-nio-8080-exec-2] Contracts successfully obtained!
+2022-05-24 17:02:15,776 INFO com.example.controllers.StudentController [http-nio-8080-exec-8] Getting courses of the student with the id 4 at the specialization 1
+2022-05-24 17:02:15,778 INFO com.example.controllers.StudentController [http-nio-8080-exec-5] Getting the grades for the student with the id 4 at the specialization 1
+2022-05-24 17:02:15,780 INFO com.example.controllers.StudentController [http-nio-8080-exec-5] Grades successfully retrieved!
+2022-05-24 17:02:15,782 INFO com.example.controllers.StudentController [http-nio-8080-exec-8] Courses successfully returned!
+2022-05-24 17:02:17,490 INFO com.example.controllers.CommonResourcesController [http-nio-8080-exec-7] Getting all faculties
+2022-05-24 17:02:22,102 INFO com.example.controllers.CommonResourcesController [http-nio-8080-exec-1] Getting all faculties
+2022-05-24 17:02:25,189 INFO com.example.controllers.CommonResourcesController [http-nio-8080-exec-9] Getting all faculties
+2022-05-24 17:02:35,184 INFO com.example.controllers.StudentController [http-nio-8080-exec-6] Getting the contracts for the student with the id 4
+2022-05-24 17:02:35,186 INFO com.example.controllers.StudentController [http-nio-8080-exec-6] Contracts successfully obtained!
+2022-05-24 17:02:35,187 INFO com.example.controllers.StudentController [http-nio-8080-exec-5] Getting specializations for the student with the id 4
+2022-05-24 17:02:35,189 INFO com.example.controllers.StudentController [http-nio-8080-exec-5] Specializations successfully obtained!
+2022-05-24 17:02:35,406 INFO com.example.controllers.StudentController [http-nio-8080-exec-7] Getting courses of the student with the id 4 at the specialization 1
+2022-05-24 17:02:35,406 INFO com.example.controllers.StudentController [http-nio-8080-exec-1] Getting the grades for the student with the id 4 at the specialization 1
+2022-05-24 17:02:35,416 INFO com.example.controllers.StudentController [http-nio-8080-exec-1] Grades successfully retrieved!
+2022-05-24 17:02:35,421 INFO com.example.controllers.StudentController [http-nio-8080-exec-7] Courses successfully returned!
+2022-05-24 17:02:36,380 INFO com.example.controllers.CommonResourcesController [http-nio-8080-exec-9] Getting all faculties
+2022-05-24 17:03:42,064 INFO com.example.controllers.StudentController [http-nio-8080-exec-8] Getting specializations for the student with the id 4
+2022-05-24 17:03:42,075 INFO com.example.controllers.StudentController [http-nio-8080-exec-8] Specializations successfully obtained!
+2022-05-24 17:03:42,077 INFO com.example.controllers.StudentController [http-nio-8080-exec-10] Getting the contracts for the student with the id 4
+2022-05-24 17:03:42,079 INFO com.example.controllers.StudentController [http-nio-8080-exec-10] Contracts successfully obtained!
+2022-05-24 17:03:42,122 INFO com.example.controllers.StudentController [http-nio-8080-exec-3] Getting courses of the student with the id 4 at the specialization 1
+2022-05-24 17:03:42,123 INFO com.example.controllers.StudentController [http-nio-8080-exec-9] Getting the grades for the student with the id 4 at the specialization 1
+2022-05-24 17:03:42,129 INFO com.example.controllers.StudentController [http-nio-8080-exec-9] Grades successfully retrieved!
+2022-05-24 17:03:42,131 INFO com.example.controllers.StudentController [http-nio-8080-exec-3] Courses successfully returned!
+2022-05-24 17:03:43,432 INFO com.example.controllers.CommonResourcesController [http-nio-8080-exec-4] Getting all faculties
+2022-05-24 17:04:19,072 INFO com.example.controllers.StudentController [http-nio-8080-exec-10] Getting the contracts for the student with the id 4
+2022-05-24 17:04:19,072 INFO com.example.controllers.StudentController [http-nio-8080-exec-8] Getting specializations for the student with the id 4
+2022-05-24 17:04:19,074 INFO com.example.controllers.StudentController [http-nio-8080-exec-8] Specializations successfully obtained!
+2022-05-24 17:04:19,074 INFO com.example.controllers.StudentController [http-nio-8080-exec-10] Contracts successfully obtained!
+2022-05-24 17:04:19,152 INFO com.example.controllers.StudentController [http-nio-8080-exec-7] Getting courses of the student with the id 4 at the specialization 1
+2022-05-24 17:04:19,152 INFO com.example.controllers.StudentController [http-nio-8080-exec-3] Getting the grades for the student with the id 4 at the specialization 1
+2022-05-24 17:04:19,155 INFO com.example.controllers.StudentController [http-nio-8080-exec-3] Grades successfully retrieved!
+2022-05-24 17:04:19,157 INFO com.example.controllers.StudentController [http-nio-8080-exec-7] Courses successfully returned!
+2022-05-24 17:04:20,308 INFO com.example.controllers.CommonResourcesController [http-nio-8080-exec-4] Getting all faculties
+2022-05-24 17:05:51,009 INFO com.example.controllers.StudentController [http-nio-8080-exec-9] Getting specializations for the student with the id 4
+2022-05-24 17:05:51,009 INFO com.example.controllers.StudentController [http-nio-8080-exec-1] Getting the contracts for the student with the id 4
+2022-05-24 17:05:51,014 INFO com.example.controllers.StudentController [http-nio-8080-exec-9] Specializations successfully obtained!
+2022-05-24 17:05:51,014 INFO com.example.controllers.StudentController [http-nio-8080-exec-1] Contracts successfully obtained!
+2022-05-24 17:05:51,081 INFO com.example.controllers.StudentController [http-nio-8080-exec-2] Getting courses of the student with the id 4 at the specialization 1
+2022-05-24 17:05:51,083 INFO com.example.controllers.StudentController [http-nio-8080-exec-4] Getting the grades for the student with the id 4 at the specialization 1
+2022-05-24 17:05:51,088 INFO com.example.controllers.StudentController [http-nio-8080-exec-4] Grades successfully retrieved!
+2022-05-24 17:05:51,089 INFO com.example.controllers.StudentController [http-nio-8080-exec-2] Courses successfully returned!
+2022-05-24 17:05:51,974 INFO com.example.controllers.CommonResourcesController [http-nio-8080-exec-6] Getting all faculties
+2022-05-24 17:06:24,682 WARN org.springframework.web.servlet.handler.AbstractHandlerExceptionResolver [http-nio-8080-exec-10] Resolved [org.springframework.web.HttpMediaTypeNotSupportedException: Content type 'application/json' not supported]
+2022-05-24 17:08:29,205 ERROR com.example.security.jwt.AuthenticationEntryPointJwt [http-nio-8080-exec-7] Unauthorized error: Full authentication is required to access this resource
+2022-05-24 17:08:29,205 ERROR com.example.security.jwt.AuthenticationEntryPointJwt [http-nio-8080-exec-3] Unauthorized error: Full authentication is required to access this resource
+2022-05-24 17:08:29,444 INFO com.example.controllers.StudentController [http-nio-8080-exec-1] Getting specializations for the student with the id 4
+2022-05-24 17:08:29,444 INFO com.example.controllers.StudentController [http-nio-8080-exec-8] Getting the contracts for the student with the id 4
+2022-05-24 17:08:29,446 INFO com.example.controllers.StudentController [http-nio-8080-exec-9] Getting the grades for the student with the id 4 at the specialization 1
+2022-05-24 17:08:29,448 INFO com.example.controllers.StudentController [http-nio-8080-exec-10] Getting courses of the student with the id 4 at the specialization 1
+2022-05-24 17:08:29,460 INFO com.example.controllers.StudentController [http-nio-8080-exec-8] Contracts successfully obtained!
+2022-05-24 17:08:29,460 INFO com.example.controllers.StudentController [http-nio-8080-exec-1] Specializations successfully obtained!
+2022-05-24 17:08:29,471 INFO com.example.controllers.StudentController [http-nio-8080-exec-9] Grades successfully retrieved!
+2022-05-24 17:08:29,478 INFO com.example.controllers.StudentController [http-nio-8080-exec-10] Courses successfully returned!
+2022-05-24 17:08:37,286 INFO com.example.controllers.StudentController [http-nio-8080-exec-6] Getting courses of the student with the id 4 at the specialization 1
+2022-05-24 17:08:37,287 INFO com.example.controllers.StudentController [http-nio-8080-exec-1] Getting the grades for the student with the id 4 at the specialization 1
+2022-05-24 17:08:37,286 INFO com.example.controllers.StudentController [http-nio-8080-exec-4] Getting the contracts for the student with the id 4
+2022-05-24 17:08:37,289 INFO com.example.controllers.StudentController [http-nio-8080-exec-8] Getting specializations for the student with the id 4
+2022-05-24 17:08:37,294 ERROR com.example.security.jwt.AuthenticationEntryPointJwt [http-nio-8080-exec-9] Unauthorized error: Full authentication is required to access this resource
+2022-05-24 17:08:37,294 INFO com.example.controllers.StudentController [http-nio-8080-exec-4] Contracts successfully obtained!
+2022-05-24 17:08:37,294 INFO com.example.controllers.StudentController [http-nio-8080-exec-8] Specializations successfully obtained!
+2022-05-24 17:08:37,295 ERROR com.example.security.jwt.AuthenticationEntryPointJwt [http-nio-8080-exec-10] Unauthorized error: Full authentication is required to access this resource
+2022-05-24 17:08:37,296 INFO com.example.controllers.StudentController [http-nio-8080-exec-1] Grades successfully retrieved!
+2022-05-24 17:08:37,310 INFO com.example.controllers.StudentController [http-nio-8080-exec-6] Courses successfully returned!
+2022-05-24 17:09:33,984 ERROR com.example.security.jwt.AuthenticationEntryPointJwt [http-nio-8080-exec-7] Unauthorized error: Full authentication is required to access this resource
+2022-05-24 17:09:33,984 ERROR com.example.security.jwt.AuthenticationEntryPointJwt [http-nio-8080-exec-3] Unauthorized error: Full authentication is required to access this resource
+2022-05-24 17:09:33,995 INFO com.example.controllers.StudentController [http-nio-8080-exec-6] Getting courses of the student with the id 4 at the specialization 1
+2022-05-24 17:09:33,995 INFO com.example.controllers.StudentController [http-nio-8080-exec-4] Getting the grades for the student with the id 4 at the specialization 1
+2022-05-24 17:09:33,999 INFO com.example.controllers.StudentController [http-nio-8080-exec-8] Getting specializations for the student with the id 4
+2022-05-24 17:09:33,999 INFO com.example.controllers.StudentController [http-nio-8080-exec-1] Getting the contracts for the student with the id 4
+2022-05-24 17:09:34,002 INFO com.example.controllers.StudentController [http-nio-8080-exec-8] Specializations successfully obtained!
+2022-05-24 17:09:34,002 INFO com.example.controllers.StudentController [http-nio-8080-exec-1] Contracts successfully obtained!
+2022-05-24 17:09:34,008 INFO com.example.controllers.StudentController [http-nio-8080-exec-4] Grades successfully retrieved!
+2022-05-24 17:09:34,014 INFO com.example.controllers.StudentController [http-nio-8080-exec-6] Courses successfully returned!
+2022-05-24 17:09:35,100 INFO com.example.controllers.StudentController [http-nio-8080-exec-5] Getting specializations for the student with the id 4
+2022-05-24 17:09:35,100 INFO com.example.controllers.StudentController [http-nio-8080-exec-10] Getting the contracts for the student with the id 4
+2022-05-24 17:09:35,103 INFO com.example.controllers.StudentController [http-nio-8080-exec-5] Specializations successfully obtained!
+2022-05-24 17:09:35,105 INFO com.example.controllers.StudentController [http-nio-8080-exec-10] Contracts successfully obtained!
+2022-05-24 17:09:35,214 INFO com.example.controllers.StudentController [http-nio-8080-exec-8] Getting courses of the student with the id 4 at the specialization 1
+2022-05-24 17:09:35,214 INFO com.example.controllers.StudentController [http-nio-8080-exec-1] Getting the grades for the student with the id 4 at the specialization 1
+2022-05-24 17:09:35,219 INFO com.example.controllers.StudentController [http-nio-8080-exec-1] Grades successfully retrieved!
+2022-05-24 17:09:35,225 INFO com.example.controllers.StudentController [http-nio-8080-exec-8] Courses successfully returned!
+2022-05-24 17:09:42,245 INFO com.example.controllers.StudentController [http-nio-8080-exec-2] Getting specializations for the student with the id 4
+2022-05-24 17:09:42,246 INFO com.example.controllers.StudentController [http-nio-8080-exec-9] Getting the contracts for the student with the id 4
+2022-05-24 17:09:42,249 INFO com.example.controllers.StudentController [http-nio-8080-exec-9] Contracts successfully obtained!
+2022-05-24 17:09:42,250 INFO com.example.controllers.StudentController [http-nio-8080-exec-2] Specializations successfully obtained!
+2022-05-24 17:09:42,334 INFO com.example.controllers.StudentController [http-nio-8080-exec-7] Getting courses of the student with the id 4 at the specialization 1
+2022-05-24 17:09:42,340 INFO com.example.controllers.StudentController [http-nio-8080-exec-3] Getting the grades for the student with the id 4 at the specialization 1
+2022-05-24 17:09:42,343 INFO com.example.controllers.StudentController [http-nio-8080-exec-7] Courses successfully returned!
+2022-05-24 17:09:42,344 INFO com.example.controllers.StudentController [http-nio-8080-exec-3] Grades successfully retrieved!
+2022-05-24 17:10:08,060 INFO com.example.controllers.CommonResourcesController [http-nio-8080-exec-4] Getting all faculties
+2022-05-24 17:10:19,081 INFO com.example.controllers.StudentController [http-nio-8080-exec-2] The student with id 4 is uploading a contract
+2022-05-24 17:10:19,111 INFO com.example.controllers.StudentController [http-nio-8080-exec-2] PDF successfully uploaded!
+2022-05-24 17:11:42,726 INFO org.springframework.orm.jpa.AbstractEntityManagerFactoryBean [SpringApplicationShutdownHook] Closing JPA EntityManagerFactory for persistence unit 'default'
+2022-05-24 17:11:42,781 INFO com.zaxxer.hikari.HikariDataSource [SpringApplicationShutdownHook] HikariPool-1 - Shutdown initiated...
+2022-05-24 17:11:42,819 INFO com.zaxxer.hikari.HikariDataSource [SpringApplicationShutdownHook] HikariPool-1 - Shutdown completed.
