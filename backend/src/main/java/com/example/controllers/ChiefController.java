@@ -7,6 +7,7 @@ import com.example.models.Teacher;
 import com.example.payload.requests.OptionalReviewDTO;
 import com.example.payload.responses.CourseDTO;
 import com.example.payload.responses.RankingDTO;
+import com.example.payload.responses.TeacherDTO;
 import com.example.services.*;
 import lombok.AllArgsConstructor;
 import org.slf4j.Logger;
@@ -32,6 +33,7 @@ public class ChiefController {
     private final ICourseService courseService;
     private final IStatusService statusService;
     private final ISpecializationService specializationService;
+    private final ITeacherService teacherService;
 
     @Autowired
     private Logger logger;
@@ -83,7 +85,7 @@ public class ChiefController {
     @GetMapping("/teachers/disciplines/{teacherId}")
     @PreAuthorize("hasRole('CHIEF')")
     public List<CourseDTO> getDisciplinesForTeacher(@PathVariable("id") Long id,
-                                                    @PathVariable("teacherId") Long teacherId){
+                                                    @PathVariable("teacherId") Long teacherId) {
         logger.info("Getting disciplines for teacher with id " + teacherId);
         Teacher teacher = chiefService.findTeacherById(teacherId).orElseThrow(
                 () -> {
@@ -112,7 +114,7 @@ public class ChiefController {
 
     @GetMapping("/teachers/rankings")
     @PreAuthorize("hasRole('CHIEF')")
-    public List<RankingDTO> getTeacherRankings(@PathVariable("id") Long id){
+    public List<RankingDTO> getTeacherRankings(@PathVariable("id") Long id) {
         logger.info("Getting the teacher rankings for chief with id " + id);
         Specialization specialization = getSpecializationOfChief(id);
         Map<Teacher, Double> averages = chiefService.getAveragesForTeachers(specialization);
@@ -122,7 +124,7 @@ public class ChiefController {
                 .collect(Collectors.toList());
 
         List<RankingDTO> dtos = new LinkedList<>();
-        for (int i = 0; i < orderedTeachers.size(); i++){
+        for (int i = 0; i < orderedTeachers.size(); i++) {
             Teacher currentTeacher = orderedTeachers.get(i);
             logger.info("Added on position " + i + " teacher with id " + currentTeacher.getId());
             String fullName = currentTeacher.getAccount().getFirstName() + " " + currentTeacher.getAccount().getLastName();
@@ -131,17 +133,46 @@ public class ChiefController {
         return dtos;
     }
 
-    private Specialization getSpecializationOfChief(Long id){
-        List<Specialization> specializations =
-                specializationService.getAllSpecializations().stream()
-                        .filter(specialization -> specialization.getChiefOfDepartment() != null &&
-                                id.equals(specialization.getChiefOfDepartment().getId()))
-                        .collect(Collectors.toList());
-        if (specializations.isEmpty()) {
-            logger.warn("There is no specialization that the teacher is the chief of!");
-            throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "There is no specialization that the teacher is the chief of");
-        }
-        return specializations.get(0);
+    @GetMapping("/teachers")
+    @PreAuthorize("hasRole('CHIEF')")
+    public List<TeacherDTO> getTeachers(@PathVariable("id") Long id) {
+        Specialization specialization = getSpecializationOfChief(id);
+
+        return teacherService.getAllTeachers()
+                .stream()
+                .filter(
+                        teacher -> teacher.getCourses()
+                                .stream()
+                                .anyMatch(course -> course.getSpecialization().equals(specialization))
+                )
+                .map(
+                        teacher -> new TeacherDTO(
+                                teacher.getId(),
+                                teacher.getAccount().getFirstName() + " " + teacher.getAccount().getLastName()
+                        )
+                )
+                .collect(Collectors.toList());
     }
 
+
+    private Specialization getSpecializationOfChief(Long id) {
+        List<Specialization> specializations =
+                specializationService.getAllSpecializations()
+                        .stream()
+                        .filter(
+                                specialization -> specialization.getChiefOfDepartment() != null &&
+                                        id.equals(specialization.getChiefOfDepartment().getId())
+                        )
+                        .toList();
+
+        if (specializations.isEmpty()) {
+            logger.warn("There is no specialization that the teacher is the chief of!");
+            throw new ResponseStatusException(
+                    HttpStatus.INTERNAL_SERVER_ERROR,
+                    "There is no specialization that the teacher is the chief of"
+            );
+        }
+
+        return specializations.get(0);
+    }
 }
