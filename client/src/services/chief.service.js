@@ -1,7 +1,9 @@
 import http from "./http-common";
 import { USE_MOCK_SERVICE } from "../helpers/constants";
+import authService from "./auth.service";
 
-const API_URL = "chief/";
+const API_URL = "chief";
+const currentUser = authService.getCurrentUser();
 
 const getOptionals = () => {
   if (USE_MOCK_SERVICE) {
@@ -53,18 +55,23 @@ const getOptionals = () => {
     });
   }
 
-  return http.get(API_URL + `optionals`);
+  return http.get(`${API_URL}/${currentUser.id}/optionals`);
 };
 
-const reviewOptional = (optionalReview) => {
+const reviewOptional = ({ reviewMessage, status, optionalId }) => {
   if (USE_MOCK_SERVICE) {
-    console.log("Review ", optionalReview);
+    console.log("Review optional with id", optionalId);
+
+    return new Promise((resolve) => {
+      setTimeout(() => {
+        resolve();
+      }, 1000);
+    });
   }
 
-  return new Promise((resolve) => {
-    setTimeout(() => {
-      resolve();
-    }, 1000);
+  return http.post(`${API_URL}/${currentUser.id}/optionals/${optionalId}`, {
+    status,
+    reviewMessage
   });
 };
 
@@ -117,6 +124,8 @@ const getTeacherDisciplines = (teacherId) => {
       }, 1000);
     });
   }
+
+  return http.get(`${API_URL}/${currentUser.id}/teachers/disciplines/${teacherId}`);
 };
 
 const getTeacherRankings = () => {
@@ -135,7 +144,7 @@ const getTeacherRankings = () => {
     });
   }
 
-  return http.get(API_URL + `rankings`);
+  return http.get(`${API_URL}/${currentUser.id}/teachers/rankings`);
 };
 
 const getAllTeachers = () => {
@@ -154,7 +163,7 @@ const getAllTeachers = () => {
     });
   }
 
-  return http.get(API_URL + `teachers`);
+  return http.get(`${API_URL}/${currentUser.id}/teachers`);
 };
 
 const ChiefService = {
