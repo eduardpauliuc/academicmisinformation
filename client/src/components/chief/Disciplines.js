@@ -68,7 +68,7 @@ const Disciplines = () => {
   });
 
   const onTeacherChange = (teacher) => {
-    setSelectedTeacher(teacher);
+    setSelectedTeacher(teacher.value);
   };
 
   const columns = [
@@ -95,7 +95,6 @@ const Disciplines = () => {
               ? { label: "Loading..." }
               : { value: selectedTeacher, label: selectedTeacher?.name }
           }
-          // value={{ value: selectedTeacher, label: selectedTeacher?.name }}
           disabled={isLoading}
         />
       </div>

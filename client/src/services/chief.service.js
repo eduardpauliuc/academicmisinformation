@@ -68,9 +68,75 @@ const reviewOptional = (optionalReview) => {
   });
 };
 
-const getTeacherDisciplines = (teacherId) => {};
+const getTeacherDisciplines = (teacherId) => {
+  if (USE_MOCK_SERVICE) {
+    const response = {
+      data: [
+        {
+          id: 1,
+          name: "Fundamentals of Programming",
+          teacherName: "Aurel Pop",
+          specializationName: "Computer Science",
+          credits: 6,
+          description: "Short introduction into programming concepts",
+          semesterNumber: 1,
+          isOptional: false,
+          status: null,
+          maximumStudentsNumber: 200,
+        },
+        {
+          id: 2,
+          name: "Professional Development",
+          teacherName: "Aurel Pop",
+          specializationName: "Computer Science",
+          credits: 3,
+          description: "",
+          semesterNumber: 2,
+          isOptional: true,
+          status: null,
+          maximumStudentsNumber: 100,
+        },
+        {
+          id: 3,
+          name: "Algebra in Comptuer Science",
+          teacherName: "Constantin Vlaicu",
+          specializationName: "Mathematics",
+          credits: 6,
+          description: "",
+          semesterNumber: 2,
+          isOptional: null,
+          status: "PENDING",
+          maximumStudentsNumber: 200,
+        },
+      ],
+    };
 
-const getTeacherRankings = () => {};
+    return new Promise((resolve) => {
+      setTimeout(() => {
+        resolve(response);
+      }, 1000);
+    });
+  }
+};
+
+const getTeacherRankings = () => {
+  if (USE_MOCK_SERVICE) {
+    const response = {
+      data: [
+        { ranking: 1, teacherName: "Teacher Name 1" },
+        { ranking: 2, teacherName: "Teacher Name 2" },
+      ],
+    };
+
+    return new Promise((resolve) => {
+      setTimeout(() => {
+        resolve(response);
+      }, 1000);
+    });
+  }
+
+  return http.get(API_URL + `rankings`);
+};
 
 const getAllTeachers = () => {
   if (USE_MOCK_SERVICE) {

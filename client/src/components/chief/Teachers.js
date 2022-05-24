@@ -15,7 +15,7 @@ const Teachers = () => {
   };
 
   const rankingsClicked = () => {
-    setRankingsVisible(!disciplinesVisible);
+    setRankingsVisible(!rankingsVisible);
     setDisciplinesVisible(false);
   };
 
