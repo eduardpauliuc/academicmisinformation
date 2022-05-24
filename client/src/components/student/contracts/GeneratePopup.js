@@ -51,6 +51,7 @@ const GeneratePopup = ({ closePopup, user }) => {
     )
       .then((response) => {
         console.log(response);
+        // DOWNLOAD REPONSE FILE idk
         closePopup();
       })
       .catch((error) => {

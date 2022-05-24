@@ -58,6 +58,7 @@ const Manage = ({}) => {
     const reviewOptional = {
       reviewMessage: message,
       status: accepted,
+      optionalId: optional.id
     };
 
     ChiefService.reviewOptional(reviewOptional)
