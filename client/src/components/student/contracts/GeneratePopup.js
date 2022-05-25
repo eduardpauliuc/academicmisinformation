@@ -51,7 +51,8 @@ const GeneratePopup = ({ closePopup, user }) => {
     )
       .then((response) => {
         console.log(response);
-        // DOWNLOAD REPONSE FILE idk
+        const FileDownload = require('js-file-download');
+        FileDownload(response.data, 'contract.pdf');
         closePopup();
       })
       .catch((error) => {
@@ -62,15 +63,15 @@ const GeneratePopup = ({ closePopup, user }) => {
 
   const facultyOptions = faculties.map((faculty) => {
     return {
-      value: faculty.facultyID,
+      value: faculty.facultyId,
       label: faculty.name,
     };
   });
 
   const specializationOptions = specializations.map((spec) => {
     return {
-      value: spec.specializationID,
-      label: `${spec.name} - ${spec.degree_type}`,
+      value: spec.id,
+      label: `${spec.name} - ${spec.degreeType}`,
     };
   });
 
@@ -78,7 +79,7 @@ const GeneratePopup = ({ closePopup, user }) => {
     if (!selectedSpecID) return [];
 
     let spec = specializations.find(
-      (spec) => spec.specializationID === selectedSpecID
+      (spec) => spec.id === selectedSpecID
     );
 
     if (!spec) return [];
@@ -98,7 +99,7 @@ const GeneratePopup = ({ closePopup, user }) => {
 
   const facultyChanged = (facultyID) => {
     setSpecializations(
-      faculties.find((faculty) => faculty.facultyID === facultyID)
+      faculties.find((faculty) => faculty.facultyId === facultyID)
         .specializations
     );
   };

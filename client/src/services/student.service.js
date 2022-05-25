@@ -100,7 +100,7 @@ const generateContract = (specializationId, semester) => {
       params: {
         specializationId,
         semester
-      }
+      }, responseType: 'blob'
     }
   );
 };
