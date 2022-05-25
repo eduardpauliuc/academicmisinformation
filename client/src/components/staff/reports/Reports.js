@@ -4,7 +4,7 @@ import StudentsTable from "./StudentsTable";
 import styled from "styled-components/macro";
 import { StyledButton } from "../../helpers/Button.style";
 import reactSelect from "react-select";
-
+import { CSVLink } from "react-csv";
 export const DownloadButton = styled(StyledButton)`
   margin-left: auto;
   display: block;
@@ -31,6 +31,17 @@ const StyledSelect = styled(reactSelect)`
   /* width: 150px; */
   font-size: small;
   width: 200px;
+`;
+
+const headers = [
+  { label: "Student Name", key: "name" },
+  { label: "Grade", key: "averageGrade" },
+  { label: "Group", key: "group" },
+];
+
+const StyledCSV = styled(CSVLink)`
+  color: darkgreen;
+  text-decoration: none;
 `;
 
 const Reports = ({ students, isLoading }) => {
@@ -87,7 +98,15 @@ const Reports = ({ students, isLoading }) => {
       </GroupContainer>
       <StudentsTable students={filteredStudents} isLoading={isLoading} />
 
-      <DownloadButton>Generate CSV</DownloadButton>
+      <DownloadButton>
+        <StyledCSV
+          headers={headers}
+          data={filteredStudents}
+          filename="students"
+        >
+          Export to CSV
+        </StyledCSV>
+      </DownloadButton>
     </ActionsCategory>
   );
 };

@@ -5,8 +5,8 @@ import { DownloadButton } from "./Reports";
 const StudentsTable = ({ students, isLoading }) => {
   const columns = [
     {
-      name: "StudentID",
-      selector: (row) => row.studentID,
+      name: "Student name",
+      selector: (row) => row.name,
       grow: 4,
     },
     {
