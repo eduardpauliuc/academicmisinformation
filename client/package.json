@@ -12,6 +12,7 @@
     "formik": "^2.2.9",
     "js-file-download": "^0.4.12",
     "react": "^17.0.2",
+    "react-csv": "^2.2.2",
     "react-data-table-component": "^7.4.7",
     "react-dom": "^17.0.2",
     "react-redux": "^7.2.6",
