@@ -24,6 +24,8 @@ public class CourseDTO {
 
     private final EStatus status; // null for CourseDTOs converted from Course
 
+    private final String teacherName;
+
 
     public CourseDTO(Course course) {
         this.id = course.getId();
@@ -35,6 +37,10 @@ public class CourseDTO {
         this.isOptional = course.getIsOptional();
         this.maximumStudentsNumber = course.getMaximumStudentsNumber();
         this.status = null;
+
+        this.teacherName = course.getTeachers().size() > 0
+                ? course.getTeachers().get(0).getAccount().getFirstName() + " " + course.getTeachers().get(0).getAccount().getLastName()
+                : "N/A";
     }
 
     public CourseDTO(OptionalProposal optionalProposal) {
@@ -47,6 +53,7 @@ public class CourseDTO {
         this.isOptional = null;
         this.maximumStudentsNumber = optionalProposal.getMaximumStudentsNumber();
         this.status = optionalProposal.getStatus().getName();
+        this.teacherName = optionalProposal.getTeacher().getAccount().getFirstName() + " " + optionalProposal.getTeacher().getAccount().getLastName();
     }
 
     public Long getId() {
@@ -83,5 +90,9 @@ public class CourseDTO {
 
     public EStatus getStatus() {
         return status;
+    }
+
+    public String getTeacherName() {
+        return teacherName;
     }
 }

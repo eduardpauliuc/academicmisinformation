@@ -3,8 +3,6 @@ import { USE_MOCK_SERVICE } from "../helpers/constants";
 
 // const USE_MOCK_SERVICE = true;
 
-const API_URL = "faculty/";
-
 export const getFaculties = () => {
   if (USE_MOCK_SERVICE) {
     const response = {
@@ -67,6 +65,6 @@ export const getFaculties = () => {
     });
   }
 
-  return http.get(API_URL);
+  return http.get(`common/faculties`);
 };
 

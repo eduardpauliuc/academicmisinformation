@@ -3,7 +3,7 @@ import { USE_MOCK_SERVICE } from "../helpers/constants";
 
 // const USE_MOCK_SERVICE = true;
 
-const API_URL = "teacher/";
+const API_URL = "teacher";
 
 const getTeacherCourses = () => {
   if (USE_MOCK_SERVICE) {
@@ -52,9 +52,35 @@ const getTeacherCourses = () => {
     });
   }
 
-  return http.get(API_URL + `courses`);
+  return http.get(`${API_URL}/courses`);
 };
 
-const TeacherService = { getTeacherCourses };
+const addGrade = (grade, courseId, studentId) => {
+  return http.post(`${API_URL}/grade`, {
+    grade,
+    studentId,
+    courseId
+  });
+}
+
+const addOptional = (
+  teacherId, specializationId,
+  name, credits,
+  description, semesterNumber,
+  maximumStudentsNumber
+) => {
+  return http.post(`${API_URL}/optional`, {
+    teacherId, specializationId,
+    name, credits,
+    description, semesterNumber,
+    maximumStudentsNumber
+  });
+}
+
+const TeacherService = {
+  getTeacherCourses,
+  addGrade,
+  addOptional
+};
 
 export default TeacherService;
