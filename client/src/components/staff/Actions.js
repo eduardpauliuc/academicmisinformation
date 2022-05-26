@@ -7,7 +7,7 @@ import ActionsCategory from "../common-components/home/ActionsCategory";
 
 const Actions = ({ specialization, semester }) => {
   const optionalsClicked = () => {
-    let promise = StaffService.assignToOpionals();
+    let promise = StaffService.assignToOpionals(specialization.id, semester);
 
     promise
       .then(() => {})
@@ -23,7 +23,7 @@ const Actions = ({ specialization, semester }) => {
   };
 
   const groupsClicked = () => {
-    let promise = StaffService.assignToGroups();
+    let promise = StaffService.assignToGroups(specialization.id, semester);
 
     promise
       .then(() => {})
