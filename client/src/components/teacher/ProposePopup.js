@@ -76,8 +76,12 @@ const ProposePopup = ({ closePopup }) => {
       formValue.description,
       formValue.semesterNumber,
       formValue.maximumStudentsNumber
-    );
-    // TODO CALL SERVICE!
+    )
+      .then(() => toast.success("Added optional"))
+      .catch((error) => {
+        toast.error(error.message);
+      })
+      .finally(() => closePopup());
   };
 
   return (
