@@ -23,20 +23,19 @@ const getStudents = (specializationId, semester) => {
   }
 
   // TODO ADD ID HERE
-  return http.get(API_URL + `${specializationId}/${semester}/students`);
+  return http().get(API_URL + `${specializationId}/${semester}/students`);
 };
 
 const assignToOpionals = (specializationId, semester) => {
   // TODO ADD ID HERE
-
-  return http.post(
+  return http().post(
     API_URL + `${specializationId}/${semester}/students/assignment/optionals`
   );
 };
 
 const assignToGroups = (specializationId, semester) => {
   // TODO ADD ID HERE
-  return http.post(
+  return http().post(
     API_URL + `${specializationId}/${semester}/students/assignment/groups`
   );
 };

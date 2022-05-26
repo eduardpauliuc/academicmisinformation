@@ -34,10 +34,10 @@ const CoursesTable = ({ courses, isLoading }) => {
       data={courses}
       progressPending={isLoading}
       striped
+      keyField="name"
     />
   );
 };
-
 CoursesTable.propTypes = {
   courses: PropTypes.arrayOf(
     PropTypes.shape({
@@ -49,7 +49,7 @@ CoursesTable.propTypes = {
       isOptional: PropTypes.oneOf([null, false, true]),
     })
   ),
-  isLoading: PropTypes.bool
+  isLoading: PropTypes.bool,
 };
 
 export default CoursesTable;

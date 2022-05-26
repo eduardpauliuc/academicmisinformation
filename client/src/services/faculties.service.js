@@ -65,6 +65,5 @@ export const getFaculties = () => {
     });
   }
 
-  return http.get(`common/faculties`);
+  return http().get(`common/faculties`);
 };
-

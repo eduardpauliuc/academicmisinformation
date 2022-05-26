@@ -66,7 +66,11 @@ public class CommonResourcesController {
         account.setFirstName(profileInformationDTO.getFirstName());
         account.setLastName(profileInformationDTO.getLastName());
         account.setBirthDate(Date.valueOf(profileInformationDTO.getBirthDate()));
-        account.setPasswordDigest(encoder.encode(profileInformationDTO.getNewPassword()));
+
+        String newPassword = profileInformationDTO.getNewPassword();
+        if (newPassword.length() >= 8)
+            account.setPasswordDigest(encoder.encode(newPassword));
+
         logger.info("Saving account with the new data");
         accountService.saveAccount(account);
     }

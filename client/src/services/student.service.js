@@ -4,8 +4,7 @@ import authService from "./auth.service";
 import authHeader from "./auth-header";
 
 const API_URL = "student";
-const currentUser = authService.getCurrentUser();
-
+const currentUser = () => authService.getCurrentUser();
 
 const getStudentSpecializations = () => {
   if (USE_MOCK_SERVICE) {
@@ -35,7 +34,7 @@ const getStudentSpecializations = () => {
     });
   }
 
-  return http.get(`${API_URL}/${currentUser.id}/specializations`);
+  return http().get(`${API_URL}/${currentUser().id}/specializations`);
 };
 
 const getStudentContracts = () => {
@@ -91,12 +90,12 @@ const getStudentContracts = () => {
     });
   }
 
-  return http.get(`${API_URL}/${currentUser.id}/contracts`);
+  return http().get(`${API_URL}/${currentUser().id}/contracts`);
 };
 
 const generateContract = (specializationId, semester) => {
-  return http.get(
-    `${API_URL}/${currentUser.id}/contracts/generate`, {
+  return http().get(
+    `${API_URL}/${currentUser().id}/contracts/generate`, {
       params: {
         specializationId,
         semester
@@ -111,11 +110,15 @@ const uploadContract = (specializationId, semester, contract) => {
   formData.append("semester", semester);
   formData.append("specializationId", specializationId);
 
-  return http.post(`${API_URL}/${currentUser.id}/contracts/upload`, formData, {
+  return http().post(
+    `${API_URL}/${currentUser().id}/contracts/upload`,
+    formData,
+    {
       headers: {
-        ...authHeader(), "Content-type": "multipart/form-data",
-      }
-    },
+        ...authHeader(),
+        "Content-type": "multipart/form-data",
+      },
+    }
   );
 };
 
@@ -169,7 +172,9 @@ const getCurriculum = (specializationId) => {
     });
   }
 
-  return http.get(`${API_URL}/${currentUser.id}/${specializationId}/courses`);
+  return http().get(
+    `${API_URL}/${currentUser().id}/${specializationId}/courses`
+  );
 };
 
 const getOptionalsOrder = (specializationId) => {
@@ -177,45 +182,45 @@ const getOptionalsOrder = (specializationId) => {
     const response =
       specializationId === 1
         ? {
-          data: [
-            {
-              id: 1,
-              name: "Fundamentals of Programming",
-              credits: 6,
-              index: 1,
-            },
-            {
-              id: 2,
-              name: "Algebra",
-              credits: 6,
-              index: 2,
-            },
-            {
-              id: 3,
-              name: "Computer Systems Architecture",
-              credits: 6,
-              index: 3,
-            },
-            {
-              id: 4,
-              name: "Dynamic Systems",
-              credits: 6,
-              index: 6,
-            },
-            {
-              id: 5,
-              name: "English",
-              credits: 3,
-              index: 5,
-            },
-            {
-              id: 6,
-              name: "Sports",
-              credits: 3,
-              index: 4,
-            },
-          ],
-        }
+            data: [
+              {
+                id: 1,
+                name: "Fundamentals of Programming",
+                credits: 6,
+                index: 1,
+              },
+              {
+                id: 2,
+                name: "Algebra",
+                credits: 6,
+                index: 2,
+              },
+              {
+                id: 3,
+                name: "Computer Systems Architecture",
+                credits: 6,
+                index: 3,
+              },
+              {
+                id: 4,
+                name: "Dynamic Systems",
+                credits: 6,
+                index: 6,
+              },
+              {
+                id: 5,
+                name: "English",
+                credits: 3,
+                index: 5,
+              },
+              {
+                id: 6,
+                name: "Sports",
+                credits: 3,
+                index: 4,
+              },
+            ],
+          }
         : [];
 
     return new Promise((resolve, reject) => {
@@ -225,7 +230,9 @@ const getOptionalsOrder = (specializationId) => {
     });
   }
 
-  return http.get(`${API_URL}/${currentUser.id}/${specializationId}/courses/optionals`);
+  return http().get(
+    `${API_URL}/${currentUser().id}/${specializationId}/courses/optionals`
+  );
 };
 
 const setOptionalsOrder = (specializationId, optionalIdIndexPairs) => {
@@ -239,7 +246,12 @@ const setOptionalsOrder = (specializationId, optionalIdIndexPairs) => {
     });
   }
 
-  return http.post(`${API_URL}/${currentUser.id}/${specializationId}/courses/optionals/order`, { optionalIdIndexPairs });
+  return http().post(
+    `${API_URL}/${
+      currentUser().id
+    }/${specializationId}/courses/optionals/order`,
+    { optionalIdIndexPairs }
+  );
 };
 
 const getGrades = (specializationId) => {
@@ -259,7 +271,9 @@ const getGrades = (specializationId) => {
     });
   }
 
-  return http.get(`${API_URL}/${currentUser.id}/${specializationId}/grades`);
+  return http().get(
+    `${API_URL}/${currentUser().id}/${specializationId}/grades`
+  );
 };
 
 const StudentService = {

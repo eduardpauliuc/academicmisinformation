@@ -52,35 +52,41 @@ const getTeacherCourses = () => {
     });
   }
 
-  return http.get(`${API_URL}/courses`);
+  return http().get(`${API_URL}/courses`);
 };
 
 const addGrade = (grade, courseId, studentId) => {
-  return http.post(`${API_URL}/grade`, {
+  return http().post(`${API_URL}/grade`, {
     grade,
     studentId,
-    courseId
+    courseId,
   });
-}
+};
 
 const addOptional = (
-  teacherId, specializationId,
-  name, credits,
-  description, semesterNumber,
+  teacherId,
+  specializationId,
+  name,
+  credits,
+  description,
+  semesterNumber,
   maximumStudentsNumber
 ) => {
-  return http.post(`${API_URL}/optional`, {
-    teacherId, specializationId,
-    name, credits,
-    description, semesterNumber,
-    maximumStudentsNumber
+  return http().post(`${API_URL}/optional`, {
+    teacherId,
+    specializationId,
+    name,
+    credits,
+    description,
+    semesterNumber,
+    maximumStudentsNumber,
   });
-}
+};
 
 const TeacherService = {
   getTeacherCourses,
   addGrade,
-  addOptional
+  addOptional,
 };
 
 export default TeacherService;

@@ -21,9 +21,18 @@ const ConfigureProfilePopup = (props) => {
   const handleFormSubmitted = (formValue, actions) => {
     console.log(formValue);
 
-    ProfileService.updateProfile(formValue)
+    ProfileService.updateProfile({
+      id: user.id,
+      newPassword: formValue.newpassword,
+      birthDate: formValue.birthdate,
+      firstName: formValue.firstname,
+      lastName: formValue.lastname,
+      role: formValue.role,
+      email: formValue.email,
+      username: formValue.username,
+    })
       .then((response) => {
-        dispatch(updateProfile(response.data));
+        dispatch(updateProfile(formValue));
         toast.success("Profile updated");
         closePopup();
       })
