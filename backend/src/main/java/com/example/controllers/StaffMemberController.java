@@ -28,6 +28,8 @@ public class StaffMemberController {
     private final IContractService contractService;
     private final IGradeService gradeService;
     private final IOptionalPreferenceService optionalPreferenceService;
+    private final IOptionalProposalService optionalProposalService;
+    private final IStatusService statusService;
 
     @Autowired
     private Logger logger;
@@ -42,7 +44,7 @@ public class StaffMemberController {
         Specialization specialization = specializationService.findSpecializationById(specializationId).orElse(null);
 
         var studentGradeDTOs = new LinkedList<StudentGradeDTO>();
-        if (semester == 1){
+        if (semester == 1) {
             var students = studentService.sortStudentsByName(specialization, semester);
             students.forEach(student -> studentGradeDTOs.add(
                     StudentGradeDTO.builder()
@@ -59,7 +61,7 @@ public class StaffMemberController {
                                     .getGroupCode()
                             )
                             .build(
-            )));
+                            )));
             return studentGradeDTOs;
         }
 
@@ -70,21 +72,21 @@ public class StaffMemberController {
         var students = studentService.sortStudentsByAverage(specialization, semester, requestedSemester);
 
         students.forEach(student -> studentGradeDTOs.add(
-                                StudentGradeDTO.builder()
-                                        .studentId(student.getId())
-                                        .average(student.findAverageForSemester(specialization, requestedSemester))
-                                        .name(student.getAccount().getFirstName() + " " + student.getAccount().getLastName())
-                                        .group(student.getContracts()
-                                                .stream()
-                                                .filter(contract -> Objects.equals(contract.getSpecialization().getId(), specializationId) && Objects.equals(contract.getSemesterNumber(), semester))
-                                                .findFirst()
-                                                .orElseThrow(
-                                                        () -> new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "Contract not found")
-                                                )
-                                                .getGroupCode()
+                        StudentGradeDTO.builder()
+                                .studentId(student.getId())
+                                .average(student.findAverageForSemester(specialization, requestedSemester))
+                                .name(student.getAccount().getFirstName() + " " + student.getAccount().getLastName())
+                                .group(student.getContracts()
+                                        .stream()
+                                        .filter(contract -> Objects.equals(contract.getSpecialization().getId(), specializationId) && Objects.equals(contract.getSemesterNumber(), semester))
+                                        .findFirst()
+                                        .orElseThrow(
+                                                () -> new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "Contract not found")
                                         )
-                                        .build()
-                        )
+                                        .getGroupCode()
+                                )
+                                .build()
+                )
         );
         logger.info("Student averages successfully retrieved!");
         return studentGradeDTOs;
@@ -156,7 +158,6 @@ public class StaffMemberController {
             // we'll assume each of our students has got an average for each of its courses
             students = studentService.sortStudentsByAverage(specialization, semester, semester - 1);
 
-
         // each optional is mapped to how many empty places they have left
         // initially, each optional is mapped to its maximum number of students
         // use a concurrent map maybe?
@@ -177,7 +178,7 @@ public class StaffMemberController {
             int currentIndex = 0;
             // while we haven't signed our student to a number of optionals,
             // and we aren't at the end of the list
-            while (optionalsConfirmed < 2 && currentIndex < preferences.size()) {
+            while (optionalsConfirmed < 1 && currentIndex < preferences.size()) {
                 var currentOptional = preferences.get(currentIndex).getCourse();
                 var placesLeft = optionalsMap.get(currentOptional);
                 if (placesLeft > 0) {
@@ -192,6 +193,31 @@ public class StaffMemberController {
             }
             optionalPreferenceService.removePreferencesForStudent(student, specialization);
         }
+
+        int MINIMUM_STUDENTS_PER_OPTIONAL = 3;
+        List<Course> toRejectOptionals = optionalsMap.entrySet().stream()
+                .filter(courseAvailablePlacesPair -> Objects.equals(courseAvailablePlacesPair.getKey().getMaximumStudentsNumber(), courseAvailablePlacesPair.getValue()))
+                .map(Map.Entry::getKey)
+                .collect(Collectors.toList());
+
+        toRejectOptionals.forEach((toRejectOptional) -> {
+            courseService.deleteCourseById(toRejectOptional.getId());
+            OptionalProposal optionalProposal = new OptionalProposal(
+              null,
+              toRejectOptional.getSpecialization(),
+              toRejectOptional.getTeachers().size() > 0 ? toRejectOptional.getTeachers().get(0) : null,
+                    statusService.getRejectedStatus(),
+                    "not enough students",
+                    toRejectOptional.getMaximumStudentsNumber(),
+                    toRejectOptional.getCredits(),
+                    toRejectOptional.getDescription(),
+                    toRejectOptional.getSemesterNumber(),
+                    toRejectOptional.getName()
+            );
+
+            optionalProposalService.saveOptionalProposal(optionalProposal);
+        });
+
         logger.info("Optional assignment successfully done!");
     }
 
