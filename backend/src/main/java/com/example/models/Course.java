@@ -30,7 +30,7 @@ public class Course {
     @OneToMany(mappedBy = "course")
     private List<Grade> grades;
 
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(
             name = "teacher_courses",
             joinColumns = {@JoinColumn(name = "course_id")},
