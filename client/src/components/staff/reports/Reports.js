@@ -35,7 +35,7 @@ const StyledSelect = styled(reactSelect)`
 
 const headers = [
   { label: "Student Name", key: "name" },
-  { label: "Grade", key: "averageGrade" },
+  { label: "Grade", key: "average" },
   { label: "Group", key: "group" },
 ];
 

@@ -68,7 +68,14 @@ const StaffHome = () => {
     StaffService.getStudents(selectedSpec.id, selectedSemester)
       .then((data) => {
         console.log(data);
-        setStudents(data.data);
+        setStudents(
+          data.data.map((s) => {
+            return {
+              ...s,
+              average: s.average === -1 ? undefined : s.average.toFixed(2),
+            };
+          })
+        );
       })
       .catch((error) => {
         toast.error(error.message);
@@ -144,7 +151,10 @@ const StaffHome = () => {
             <>
               <Reports students={students} isLoading={isLoading} />
 
-              <Actions specialization={selectedSpec} semester={selectedSemester}/>
+              <Actions
+                specialization={selectedSpec}
+                semester={selectedSemester}
+              />
             </>
           ) : (
             <h2 style={{ color: "white" }}>

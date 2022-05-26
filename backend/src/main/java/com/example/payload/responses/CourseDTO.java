@@ -20,6 +20,8 @@ public class CourseDTO {
 
     private final Boolean isOptional; // null for CourseDTOs converted from OptionalProposal
 
+    private final String message; // null for CourseDTOs converted from OptionalProposal
+
     private final Integer maximumStudentsNumber; // null for CourseDTOs converted from Course that was not an optional
 
     private final EStatus status; // null for CourseDTOs converted from Course
@@ -35,6 +37,7 @@ public class CourseDTO {
         this.description = course.getDescription();
         this.semesterNumber = course.getSemesterNumber();
         this.isOptional = course.getIsOptional();
+        this.message = "";
         this.maximumStudentsNumber = course.getMaximumStudentsNumber();
         this.status = null;
 
@@ -51,6 +54,7 @@ public class CourseDTO {
         this.description = optionalProposal.getDescription();
         this.semesterNumber = optionalProposal.getSemesterNumber();
         this.isOptional = null;
+        this.message = optionalProposal.getComments();
         this.maximumStudentsNumber = optionalProposal.getMaximumStudentsNumber();
         this.status = optionalProposal.getStatus().getName();
         this.teacherName = optionalProposal.getTeacher().getAccount().getFirstName() + " " + optionalProposal.getTeacher().getAccount().getLastName();
@@ -70,6 +74,10 @@ public class CourseDTO {
 
     public Integer getCredits() {
         return credits;
+    }
+
+    public String getMessage() {
+        return message;
     }
 
     public String getDescription() {

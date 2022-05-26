@@ -82,13 +82,13 @@ const Manage = ({}) => {
       <ButtonsContainer>
         <Icon
           icon="akar-icons:circle-check-fill"
-          color={isReviewing ? "gray" : "#f24e1e"}
+          color={isReviewing ? "gray" : "green"}
           style={isReviewing && { pointerEvents: "none" }}
           onClick={() => reviewOptional(optional, true)}
         />
         <Icon
           icon="akar-icons:circle-x"
-          color={isReviewing ? "gray" : "#f24e1e"}
+          color={isReviewing ? "gray" : "red"}
           style={isReviewing && { pointerEvents: "none" }}
           onClick={() => reviewOptional(optional, false)}
         />
@@ -115,18 +115,22 @@ const Manage = ({}) => {
     {
       name: "Semester",
       selector: (row) => row.semesterNumber,
+      center: true,
     },
     {
       name: "Credits",
       selector: (row) => row.credits,
+      center: true,
     },
     {
       name: "Students",
       selector: (row) => row.maximumStudentsNumber,
+      center: true,
     },
     {
       name: "Review",
       selector: (row) => row.status === "PENDING" && actionButtons(row),
+      center: true,
     },
   ];
   return (
