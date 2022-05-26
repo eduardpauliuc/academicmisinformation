@@ -1,9 +1,12 @@
 import http from "./http-common";
 import { USE_MOCK_SERVICE } from "../helpers/constants";
+import authService from "./auth.service";
 
 // const USE_MOCK_SERVICE = true;
 
 const API_URL = "teacher";
+
+const currentUser = () => authService.getCurrentUser();
 
 const getTeacherCourses = () => {
   if (USE_MOCK_SERVICE) {
@@ -64,7 +67,6 @@ const addGrade = (grade, courseId, studentId) => {
 };
 
 const addOptional = (
-  teacherId,
   specializationId,
   name,
   credits,
@@ -72,6 +74,8 @@ const addOptional = (
   semesterNumber,
   maximumStudentsNumber
 ) => {
+  const teacherId = currentUser().id;
+
   return http().post(`${API_URL}/optional`, {
     teacherId,
     specializationId,
@@ -83,10 +87,15 @@ const addOptional = (
   });
 };
 
+const getStudents = (courseId) => {
+  return http().get(`${API_URL}/students/${courseId}`);
+};
+
 const TeacherService = {
   getTeacherCourses,
   addGrade,
   addOptional,
+  getStudents,
 };
 
 export default TeacherService;

@@ -8,6 +8,7 @@ import { StyledButton } from "../helpers/Button.style";
 import { MySelect, MyTextArea, MyTextInput } from "../helpers/FormComponents";
 import { getFaculties } from "../../services/faculties.service";
 import { toast } from "react-toastify";
+import TeacherService from "../../services/teacher.service";
 
 const ProposePopup = ({ closePopup }) => {
   const [faculties, setFaculties] = useState([]);
@@ -17,6 +18,7 @@ const ProposePopup = ({ closePopup }) => {
     getFaculties()
       .then((response) => {
         setFaculties(response.data);
+        console.log(response.data);
       })
       .catch((error) => {
         toast.error(error.message);
@@ -25,15 +27,15 @@ const ProposePopup = ({ closePopup }) => {
 
   const facultyOptions = faculties.map((faculty) => {
     return {
-      value: faculty.facultyID,
+      value: faculty.facultyId,
       label: faculty.name,
     };
   });
 
   const specializationOptions = specializations.map((spec) => {
     return {
-      value: spec.specializationID,
-      label: `${spec.name} - ${spec.degree_type}`,
+      value: spec.id,
+      label: `${spec.name} - ${spec.degreeType}`,
     };
   });
 
@@ -58,7 +60,7 @@ const ProposePopup = ({ closePopup }) => {
 
   const facultyChanged = (facultyID) => {
     setSpecializations(
-      faculties.find((faculty) => faculty.facultyID === facultyID)
+      faculties.find((faculty) => faculty.facultyId === facultyID)
         .specializations
     );
   };
@@ -67,6 +69,14 @@ const ProposePopup = ({ closePopup }) => {
     console.log(formValue);
     actions.setSubmitting(false);
 
+    TeacherService.addOptional(
+      formValue.specializationID,
+      formValue.name,
+      formValue.credits,
+      formValue.description,
+      formValue.semesterNumber,
+      formValue.maximumStudentsNumber
+    );
     // TODO CALL SERVICE!
   };
 

@@ -30,7 +30,6 @@ const Manage = ({}) => {
   useEffect(() => {
     ChiefService.getOptionals()
       .then((data) => {
-        console.log("Got optionals: ", data);
         setOptionals(
           data.data.filter((optional) => optional.status !== "REJECTED")
         );
@@ -58,7 +57,7 @@ const Manage = ({}) => {
     const reviewOptional = {
       reviewMessage: message,
       status: accepted,
-      optionalId: optional.id
+      optionalId: optional.id,
     };
 
     ChiefService.reviewOptional(reviewOptional)
