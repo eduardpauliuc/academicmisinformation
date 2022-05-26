@@ -7,6 +7,7 @@ import com.example.repositories.IGradeRepository;
 import com.example.repositories.IStudentRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
 @AllArgsConstructor
@@ -16,8 +17,14 @@ public class GradeService implements IGradeService {
     private ICourseRepository courseRepository;
 
     @Override
+    @Transactional
     public Grade saveGrade(Grade grade) {
-        return gradeRepository.save(grade);
+        if (grade.getGrade() == null)
+            return gradeRepository.save(grade);
+        Grade savedGrade = gradeRepository.findGradeByCourseAndStudent(grade.getCourse(), grade.getStudent())
+                .orElseThrow(() -> new RuntimeException("Nu exista grade"));
+        savedGrade.setGrade(grade.getGrade());
+        return savedGrade;
     }
 
     @Override

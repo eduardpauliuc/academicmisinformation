@@ -70,6 +70,7 @@ public class ChiefController {
         if (optionalReviewDTO.getStatus()) {
             logger.info("Accepting the optional with the id " + optionalId);
             Course acceptedOptional = new Course(optionalProposal);
+            acceptedOptional.getTeachers().add(optionalProposal.getTeacher());
             courseService.saveCourse(acceptedOptional);
             optionalProposalService.deleteOptionalProposal(optionalId);
             logger.info("Optional accepted successfully!");
@@ -103,11 +104,6 @@ public class ChiefController {
                 .map(CourseDTO::new)
                 .collect(Collectors.toList());
 
-        List<CourseDTO> notYetAcceptedCourses = teacher.getOptionalProposals().stream()
-                .map(CourseDTO::new)
-                .collect(Collectors.toList());
-
-        acceptedCourses.addAll(notYetAcceptedCourses);
         logger.info("All courses returned successfully!");
         return acceptedCourses;
     }

@@ -22,7 +22,7 @@ const Teachers = () => {
   const disciplinesAction = (
     <Action
       name="Disciplines"
-      subname="for a teacher"
+      subname="in my specialization"
       icon={<Icon icon="ant-design:unordered-list-outlined" color="#bdf841" />}
       clickHandler={disciplinesClicked}
       key={1}

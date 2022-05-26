@@ -10,7 +10,7 @@ const Rankings = () => {
   const columns = [
     {
       name: "Rank",
-      selector: (row) => row.ranking,
+      selector: (row) => row.rank + 1,
     },
     {
       name: "Teacher",

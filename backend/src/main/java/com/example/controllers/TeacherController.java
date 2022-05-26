@@ -109,7 +109,7 @@ public class TeacherController {
         logger.info("Grade saved successfully!");
     }
 
-    @GetMapping(value = "/students/{courseId}", consumes = "application/json", produces = "application/json")
+    @GetMapping(value = "/students/{courseId}", produces = "application/json")
     @PreAuthorize("hasRole('TEACHER') or hasRole('CHIEF')")
     public List<TeacherGradeDTO> getStudentsForCourse(@PathVariable Long courseId){
         logger.info("Getting students for course with id " + courseId);

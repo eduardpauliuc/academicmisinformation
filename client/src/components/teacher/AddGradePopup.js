@@ -9,46 +9,31 @@ import { StyledButton } from "../helpers/Button.style";
 import { MySelect, MyTextInput } from "../helpers/FormComponents";
 
 import { toast } from "react-toastify";
+import TeacherService from "../../services/teacher.service";
 
 const AddGradePopup = ({ closePopup, courses }) => {
   const [students, setStudents] = useState([]);
 
   const studentOptions = students.map((student) => {
     return {
-      value: student.id,
-      label: student.name,
+      value: student.studentId,
+      label: student.studentName,
     };
   });
-
-  const courseOptions = courses.map((course) => {
-    return {
-      value: course.id,
-      label: course.name,
-    };
-  });
-
-  useEffect(() => {
-    // TODO call service
-    setStudents([
-      {
-        id: 1,
-        name: "Vasile Ion",
-      },
-      {
-        id: 2,
-        name: "George Satmarean",
-      },
-      {
-        id: 3,
-        name: "Mihai Popovici",
-      },
-    ]);
-  }, []);
+  console.log(courses);
+  const courseOptions = courses
+    .filter((c) => c.status !== "PENDING" && c.status !== "REJECTED")
+    .map((course) => {
+      return {
+        value: course.id,
+        label: course.name,
+      };
+    });
 
   const initialValues = {
     courseID: undefined,
     studentID: undefined,
-    grade: 10,
+    grade: "",
   };
 
   const validationSchema = Yup.object().shape({
@@ -58,12 +43,37 @@ const AddGradePopup = ({ closePopup, courses }) => {
   });
 
   const handleFormSubmitted = (formValue, actions) => {
-    console.log(formValue);
-    actions.setSubmitting(false);
+    let promise = TeacherService.addGrade(
+      formValue.grade,
+      formValue.courseID,
+      formValue.studentID
+    );
+
+    promise
+      .catch((err) => console.log(err))
+      .then(() => actions.setSubmitting(false));
+
+    toast.promise(promise, {
+      pending: "Assigning",
+      success: "Added grade",
+      error: "Error assigning grade",
+    });
   };
 
   const courseChanged = (courseID) => {
-    // TODO
+    console.log(courseID);
+    TeacherService.getStudents(courseID).then((data) => {
+      console.log("Got students: ", data.data);
+      setStudents(data.data);
+    });
+  };
+
+  const studentChanged = (studentId, setFieldValue) => {
+    console.log(studentId);
+    var student = students.filter((s) => s.studentId === studentId)[0];
+    let currentGrade = student.grade ?? "";
+    console.log("settting previous grade: ", currentGrade);
+    setFieldValue("grade", currentGrade);
   };
 
   return (
@@ -98,10 +108,16 @@ const AddGradePopup = ({ closePopup, courses }) => {
                 setFieldValue={setFieldValue}
               />
               <Label htmlFor="studentID">Student:</Label>
-              <MySelect name="studentID" options={studentOptions} />
+              <MySelect
+                name="studentID"
+                options={studentOptions}
+                valueChanged={(studentId) =>
+                  studentChanged(studentId, setFieldValue)
+                }
+              />
 
               <Label htmlFor="grade">Grade:</Label>
-              <MyTextInput name="grade" />
+              <MyTextInput type="number" name="grade" min="1" max="10" />
             </FormContainer>
             <ButtonsWrapper>
               <StyledButton type="submit" primary disabled={isSubmitting}>

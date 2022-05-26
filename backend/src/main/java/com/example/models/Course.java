@@ -8,6 +8,8 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 
 @Entity
@@ -70,6 +72,7 @@ public class Course {
         this.name = optionalProposal.getName();
         this.maximumStudentsNumber = optionalProposal.getMaximumStudentsNumber();
         this.isOptional = true;
+        this.setTeachers(new LinkedList<>());
     }
 
 }

@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 import java.util.Optional;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.atomic.AtomicInteger;
@@ -82,21 +83,21 @@ public class ChiefService implements IChiefService {
                     AtomicInteger gradeCount = new AtomicInteger(0);
                     teacher.getCourses().stream()
                             .filter(course -> course.getSpecialization().equals(specialization)).forEach(
-                            course -> {
-                                List<Grade> grades = course.getGrades();
-                                gradeSum.addAndGet(
-                                        grades.stream().map(Grade::getGrade)
-                                                .reduce(0, Integer::sum)
-                                );
-                                gradeCount.addAndGet(
-                                        grades.size());
-                            });
+                                    course -> {
+                                        List<Grade> grades = course.getGrades();
+                                        gradeSum.addAndGet(
+                                                grades.stream().map(Grade::getGrade).filter(Objects::nonNull)
+                                                        .reduce(0, Integer::sum)
+                                        );
+                                        gradeCount.addAndGet(
+                                                grades.size());
+                                    });
 
-                    if (gradeCount.get() != 0){
+                    if (gradeCount.get() != 0) {
                         Double average = (double) gradeSum.get() / (double) gradeCount.get();
                         averages.put(teacher, average);
                     }
                 });
-    return averages;
+        return averages;
     }
 }
