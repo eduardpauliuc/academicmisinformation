@@ -55,7 +55,7 @@ const StaffHome = () => {
         setFaculties(response.data);
       })
       .catch((error) => {
-        toast.error("Getting facultie:" + error.message);
+        toast.error("Getting faculties:" + error.message);
       });
   }, []);
 
@@ -78,7 +78,7 @@ const StaffHome = () => {
 
   const facultyOptions = faculties.map((faculty) => {
     return {
-      value: faculty.facultyID,
+      value: faculty.facultyId,
       label: faculty.name,
     };
   });
@@ -86,7 +86,7 @@ const StaffHome = () => {
   const specializationOptions = specializations.map((spec) => {
     return {
       value: spec,
-      label: `${spec.name} - ${spec.degree_type}`,
+      label: `${spec.name} - ${spec.degreeType}`,
     };
   });
 
@@ -103,7 +103,7 @@ const StaffHome = () => {
 
   const facultyChanged = (option) => {
     setSpecializations(
-      faculties.find((faculty) => faculty.facultyID === option.value)
+      faculties.find((faculty) => faculty.facultyId === option.value)
         .specializations
     );
     setSelectedSpec(undefined);
@@ -144,7 +144,7 @@ const StaffHome = () => {
             <>
               <Reports students={students} isLoading={isLoading} />
 
-              <Actions />
+              <Actions specialization={selectedSpec} semester={selectedSemester}/>
             </>
           ) : (
             <h2 style={{ color: "white" }}>

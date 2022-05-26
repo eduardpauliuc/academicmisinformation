@@ -1,7 +1,9 @@
 import { USE_MOCK_SERVICE } from "../helpers/constants";
 import http from "./http-common";
+import authService from "./auth.service";
 
-const API_URL = "staff/";
+const API_URL = "staff";
+const currentUser = () => authService.getCurrentUser();
 
 const getStudents = (specializationId, semester) => {
   if (USE_MOCK_SERVICE) {
@@ -22,21 +24,18 @@ const getStudents = (specializationId, semester) => {
     });
   }
 
-  // TODO ADD ID HERE
-  return http().get(API_URL + `${specializationId}/${semester}/students`);
+  return http().get(API_URL + `/${currentUser().id}/${specializationId}/${semester}/students`);
 };
 
 const assignToOpionals = (specializationId, semester) => {
-  // TODO ADD ID HERE
   return http().post(
-    API_URL + `${specializationId}/${semester}/students/assignment/optionals`
+    API_URL + `/${currentUser().id}/${specializationId}/${semester}/assignment/optionals`
   );
 };
 
 const assignToGroups = (specializationId, semester) => {
-  // TODO ADD ID HERE
   return http().post(
-    API_URL + `${specializationId}/${semester}/students/assignment/groups`
+    API_URL + `/${currentUser().id}/${specializationId}/${semester}/assignment/groups`
   );
 };
 

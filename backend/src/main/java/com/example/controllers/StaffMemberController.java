@@ -11,6 +11,7 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
+import javax.transaction.Transactional;
 import java.util.*;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.stream.Collectors;
@@ -37,7 +38,8 @@ public class StaffMemberController {
                                              @PathVariable("specializationId") Long specializationId,
                                              @PathVariable("semester") Integer semester) {
         logger.info("Getting the students' averages studying at the specialization with the id " + specializationId + " in the semester " + semester);
-        Specialization specialization = validateData(specializationId, staffMemberId, semester);
+//        Specialization specialization = validateData(specializationId, staffMemberId, semester);
+        Specialization specialization = specializationService.findSpecializationById(specializationId).orElse(null);
 
         // for each student, add to the current student id and its average, considering
         // it is different from -1
@@ -65,14 +67,16 @@ public class StaffMemberController {
     }
 
     // we should return something when something goes wrong, but I am not sure what yet
-    @PutMapping("/{specializationId}/{semester}/assignment/groups")
+    @PostMapping("/{specializationId}/{semester}/assignment/groups")
     @PreAuthorize("hasRole('STAFF')")
+    @Transactional
     public void assignStudentsToGroups(@PathVariable("id") Long staffMemberId,
                                        @PathVariable("specializationId") Long specializationId,
                                        @PathVariable("semester") Integer semester) {
         logger.info("Assigning students studying at the specialization with the id " + specializationId +
                 " in the semester " + semester + " to their respective groups");
-        Specialization specialization = validateData(specializationId, staffMemberId, semester);
+//        Specialization specialization = validateData(specializationId, staffMemberId, semester);
+        Specialization specialization = specializationService.findSpecializationById(specializationId).orElse(null);
 
         var students = studentService.sortStudentsByName(specialization, semester);
         students = students.stream().
@@ -100,20 +104,20 @@ public class StaffMemberController {
                     // an is Present because we did it above
                     var latestContract = student.getLatestContract(specialization).get();
                     latestContract.setGroupCode(groupString);
-                    contractService.saveContract(latestContract);
                     logger.info("Assigned to student with id " + student.getId() + " the group " + groupString);
                 });
         logger.info("Group assignment successfully done!");
     }
 
-    @PutMapping("/{specializationId}/{semester}/assignment/optionals")
+    @PostMapping("/{specializationId}/{semester}/assignment/optionals")
     @PreAuthorize("hasRole('STAFF')")
     public void assignStudentsToOptionals(@PathVariable("id") Long staffMemberId,
                                           @PathVariable("specializationId") Long specializationId,
                                           @PathVariable("semester") Integer semester) {
         logger.info("Assigning students studying at the specialization with the id " + specializationId +
                 " in the semester " + semester + " to their chosen optionals");
-        Specialization specialization = validateData(specializationId, staffMemberId, semester);
+//        Specialization specialization = validateData(specializationId, staffMemberId, semester);
+        Specialization specialization = specializationService.findSpecializationById(specializationId).orElse(null);
 
         List<Student> students;
         // if we're in our first semester, there's no average to look into, so we
