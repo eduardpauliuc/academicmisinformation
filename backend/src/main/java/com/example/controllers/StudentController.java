@@ -106,11 +106,13 @@ public class StudentController {
 
         Integer semester = contract.getSemesterNumber();
         logger.info("Courses successfully returned!");
-        return specialization.getCourses()
-                .stream()
+
+        return student.getGrades().stream().map(Grade::getCourse)
                 .filter(course -> Objects.equals(course.getSemesterNumber(), semester))
+                .filter(course -> Objects.equals(course.getSpecialization(), specialization))
                 .map(CourseDTO::new)
                 .collect(Collectors.toList());
+
     }
 
     @GetMapping("/contracts/generate")

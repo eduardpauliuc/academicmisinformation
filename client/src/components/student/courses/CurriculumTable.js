@@ -25,7 +25,7 @@ const CurriculumTable = ({ courses, isLoading }) => {
     },
     {
       name: "Optional",
-      selector: (row) => (row.isOptional ? optionalIcon : notOptionalIcon),
+      selector: (row) => (row.optional ? optionalIcon : notOptionalIcon),
       center: true,
     },
   ];

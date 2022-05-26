@@ -45,18 +45,15 @@ const GeneratePopup = ({ closePopup, user }) => {
     console.log(formValue);
     const semester = (formValue.year - 1) * 2 + formValue.semester;
 
-    StudentService.generateContract(
-      formValue.specializationID,
-      semester
-    )
+    StudentService.generateContract(formValue.specializationID, semester)
       .then((response) => {
         console.log(response);
-        const FileDownload = require('js-file-download');
-        FileDownload(response.data, 'contract.pdf');
+        const FileDownload = require("js-file-download");
+        FileDownload(response.data, "contract.pdf");
         closePopup();
       })
       .catch((error) => {
-        toast.error(error.message);
+        toast.error("No contract for previous semester");
       })
       .finally(() => actions.setSubmitting(false));
   };
@@ -78,9 +75,7 @@ const GeneratePopup = ({ closePopup, user }) => {
   const getYearOptions = () => {
     if (!selectedSpecID) return [];
 
-    let spec = specializations.find(
-      (spec) => spec.id === selectedSpecID
-    );
+    let spec = specializations.find((spec) => spec.id === selectedSpecID);
 
     if (!spec) return [];
 

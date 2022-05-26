@@ -11,7 +11,7 @@ const StudentsTable = ({ students, isLoading }) => {
     },
     {
       name: "Average Grade",
-      selector: (row) => row.averageGrade,
+      selector: (row) => row.average,
     },
     {
       name: "Group",
