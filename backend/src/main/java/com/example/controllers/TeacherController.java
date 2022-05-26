@@ -7,6 +7,7 @@ import com.example.models.Teacher;
 import com.example.payload.requests.GradeRequestDTO;
 import com.example.payload.requests.OptionalProposalDTO;
 import com.example.payload.responses.CourseDTO;
+import com.example.payload.responses.TeacherGradeDTO;
 import com.example.services.*;
 import lombok.AllArgsConstructor;
 import org.slf4j.Logger;
@@ -106,5 +107,22 @@ public class TeacherController {
         Grade grade = this.gradeService.convertToGrade(gradeRequestDTO);
         this.gradeService.saveGrade(grade);
         logger.info("Grade saved successfully!");
+    }
+
+    @GetMapping(value = "/students/{courseId}", consumes = "application/json", produces = "application/json")
+    @PreAuthorize("hasRole('TEACHER') or hasRole('CHIEF')")
+    public List<TeacherGradeDTO> getStudentsForCourse(@PathVariable Long courseId){
+        logger.info("Getting students for course with id " + courseId);
+        Course course = this.courseService.findCourseById(courseId).orElseThrow(
+                () -> {
+                    logger.warn("Course with id " + courseId + " not found!");
+                    return new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "Course not found.");
+                }
+        );
+
+        List<TeacherGradeDTO> grades =
+                course.getGrades().stream().map(TeacherGradeDTO::new).collect(Collectors.toList());
+        logger.info("Students returned successfully!");
+        return grades;
     }
 }
