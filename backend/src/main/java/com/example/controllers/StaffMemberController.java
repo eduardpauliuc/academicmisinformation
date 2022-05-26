@@ -41,14 +41,38 @@ public class StaffMemberController {
 //        Specialization specialization = validateData(specializationId, staffMemberId, semester);
         Specialization specialization = specializationService.findSpecializationById(specializationId).orElse(null);
 
+        var studentGradeDTOs = new LinkedList<StudentGradeDTO>();
+        if (semester == 1){
+            var students = studentService.sortStudentsByName(specialization, semester);
+            students.forEach(student -> studentGradeDTOs.add(
+                    StudentGradeDTO.builder()
+                            .studentId(student.getId())
+                            .average(-1.0)
+                            .name(student.getAccount().getFirstName() + " " + student.getAccount().getLastName())
+                            .group(student.getContracts()
+                                    .stream()
+                                    .filter(contract -> Objects.equals(contract.getSpecialization().getId(), specializationId) && Objects.equals(contract.getSemesterNumber(), semester))
+                                    .findFirst()
+                                    .orElseThrow(
+                                            () -> new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "Contract not found")
+                                    )
+                                    .getGroupCode()
+                            )
+                            .build(
+            )));
+            return studentGradeDTOs;
+        }
+
         // for each student, add to the current student id and its average, considering
         // it is different from -1
-        var students = studentService.sortStudentsByAverage(specialization, semester, semester);
-        var studentGradeDTOs = new LinkedList<StudentGradeDTO>();
+        Integer requestedSemester = semester - 1;
+        // TODO: what the fuck
+        var students = studentService.sortStudentsByAverage(specialization, semester, requestedSemester);
+
         students.forEach(student -> studentGradeDTOs.add(
                                 StudentGradeDTO.builder()
                                         .studentId(student.getId())
-                                        .average(student.findAverageForSemester(specialization, semester))
+                                        .average(student.findAverageForSemester(specialization, requestedSemester))
                                         .name(student.getAccount().getFirstName() + " " + student.getAccount().getLastName())
                                         .group(student.getContracts()
                                                 .stream()
