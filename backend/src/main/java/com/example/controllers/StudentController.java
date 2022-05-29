@@ -74,7 +74,7 @@ public class StudentController {
                 .map(Contract::getSpecialization)
                 .distinct()
                 .map(SpecializationDTO::new)
-                .toList();
+                .collect(Collectors.toList());
     }
 
     @GetMapping("/{specializationId}/courses")
@@ -134,6 +134,12 @@ public class StudentController {
                     return new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "Specialization not found.");
                 }
         );
+
+        List<SpecializationDTO> specializations = getStudentsSpecializations(student.getId());
+
+        if(specializations.size() == 2 && specializations.stream().noneMatch(s -> s.getId().equals(specialization.getId()))){
+            throw new ResponseStatusException(HttpStatus.CONFLICT, "Cannot enrol in more than 2 specializations!");
+        }
 
         Optional<Contract> contract = student.getLatestContract(specialization);
 
@@ -297,7 +303,7 @@ public class StudentController {
         // check if duplicate indexes exist
         List<Integer> indexes = innerList.stream()
                 .map(StudentOptionalsRankingDTO::getIndex)
-                .toList();
+                .collect(Collectors.toList());
         if (indexes.size() != new HashSet<>(indexes).size()) {
             logger.info("Duplicate optional indexes found!");
             throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "Duplicate optional indexes found.");
