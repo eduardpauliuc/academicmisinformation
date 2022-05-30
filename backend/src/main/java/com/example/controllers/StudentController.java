@@ -23,6 +23,7 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.*;
 import java.util.stream.Collectors;
+import java.sql.Date;
 
 @RestController
 @AllArgsConstructor
@@ -36,6 +37,7 @@ public class StudentController {
     private final IContractService contractService;
     private final ICourseService courseService;
     private final IOptionalPreferenceService optionalPreferenceService;
+    private final IGradeService gradeService;
 
     @Autowired
     private Logger logger;
@@ -137,7 +139,7 @@ public class StudentController {
 
         List<SpecializationDTO> specializations = getStudentsSpecializations(student.getId());
 
-        if(specializations.size() == 2 && specializations.stream().noneMatch(s -> s.getId().equals(specialization.getId()))){
+        if (specializations.size() == 2 && specializations.stream().noneMatch(s -> s.getId().equals(specialization.getId()))) {
             throw new ResponseStatusException(HttpStatus.CONFLICT, "Cannot enrol in more than 2 specializations!");
         }
 
@@ -155,9 +157,8 @@ public class StudentController {
 
         response.setContentType("application/pdf");
         DateFormat dateFormatter = new SimpleDateFormat("yyyy-MM-dd:hh:mm:ss");
-        String currentDateTime = dateFormatter.format(new Date());
         String headerKey = "Content-Disposition";
-        String headerValue = "attachment; filename=contract_" + currentDateTime + ".pdf";
+        String headerValue = "attachment; filename=contract" + ".pdf";
         response.setHeader(headerKey, headerValue);
 
         PdfDTO pdfDTO = new PdfDTO(student, specialization, semester);
@@ -251,6 +252,16 @@ public class StudentController {
                 }
         );
 
+        contractService.saveContract(new Contract(null, specialization, student, Date.valueOf("2021-01-01"), Date.valueOf("2022-06-01"), uploadContractRequest.getSemester(), null));
+
+        specialization.getCourses()
+                .stream()
+                .filter(course -> !course.getIsOptional() && Objects.equals(course.getSemesterNumber(), uploadContractRequest.getSemester()))
+                .forEach(mandatoryCourse -> {
+                    Grade grade = new Grade(null, null, student, mandatoryCourse);
+                    gradeService.saveGrade(grade);
+                });
+
         String name = student.getAccount().getLastName() +
                 "-" + student.getAccount().getFirstName() +
                 "_" + specialization.getName().replace(' ', '-') + "_"
@@ -263,16 +274,6 @@ public class StudentController {
             logger.info("An error happened while uploading the PDF!");
             throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, exception.getMessage());
         }
-
-        contractService.saveContract(new Contract(
-                null,
-                specialization,
-                student,
-                java.sql.Date.valueOf("2020-02-20"),
-                java.sql.Date.valueOf("2021-02-20"),
-                1,
-                "A17")
-        );
     }
 
     @PostMapping("/{specializationId}/courses/optionals/order")

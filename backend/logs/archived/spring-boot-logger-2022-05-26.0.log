@@ -1,0 +1,561 @@
+2022-05-26 13:06:54,755 INFO org.springframework.boot.StartupInfoLogger [main] Starting IssProjectApplication using Java 17.0.2 on Alexs-personal-MacBook-Pro.local with PID 8308 (/Users/alexnedelcu/Desktop/Uni/ISS/academicmisinformation/backend/target/classes started by alexnedelcu in /Users/alexnedelcu/Desktop/Uni/ISS/academicmisinformation/backend)
+2022-05-26 13:06:54,759 DEBUG org.springframework.boot.StartupInfoLogger [main] Running with Spring Boot v2.6.4, Spring v5.3.16
+2022-05-26 13:06:54,759 INFO org.springframework.boot.SpringApplication [main] No active profile set, falling back to 1 default profile: "default"
+2022-05-26 13:06:54,765 INFO org.hibernate.validator.internal.util.Version [background-preinit] HV000001: Hibernate Validator 6.2.2.Final
+2022-05-26 13:06:55,704 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2022-05-26 13:06:55,791 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Finished Spring Data repository scanning in 77 ms. Found 13 JPA repository interfaces.
+2022-05-26 13:06:56,332 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [main] Tomcat initialized with port(s): 8080 (http)
+2022-05-26 13:06:56,340 INFO org.apache.juli.logging.DirectJDKLog [main] Initializing ProtocolHandler ["http-nio-8080"]
+2022-05-26 13:06:56,340 INFO org.apache.juli.logging.DirectJDKLog [main] Starting service [Tomcat]
+2022-05-26 13:06:56,341 INFO org.apache.juli.logging.DirectJDKLog [main] Starting Servlet engine: [Apache Tomcat/9.0.58]
+2022-05-26 13:06:56,415 INFO org.apache.juli.logging.DirectJDKLog [main] Initializing Spring embedded WebApplicationContext
+2022-05-26 13:06:56,416 INFO org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext [main] Root WebApplicationContext: initialization completed in 1600 ms
+2022-05-26 13:06:56,547 WARN org.springframework.boot.autoconfigure.orm.jpa.JpaBaseConfiguration$JpaWebConfiguration [main] spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2022-05-26 13:06:56,646 INFO com.zaxxer.hikari.HikariDataSource [main] HikariPool-1 - Starting...
+2022-05-26 13:06:56,752 INFO com.zaxxer.hikari.HikariDataSource [main] HikariPool-1 - Start completed.
+2022-05-26 13:06:56,777 INFO org.flywaydb.core.internal.logging.slf4j.Slf4jLog [main] Flyway Community Edition 8.5.4 by Redgate
+2022-05-26 13:06:56,777 INFO org.flywaydb.core.internal.logging.slf4j.Slf4jLog [main] See what's new here: https://flywaydb.org/documentation/learnmore/releaseNotes#8.5.4
+2022-05-26 13:06:56,778 INFO org.flywaydb.core.internal.logging.slf4j.Slf4jLog [main] 
+2022-05-26 13:06:56,778 INFO org.flywaydb.core.internal.logging.slf4j.Slf4jLog [main] Database: jdbc:postgresql://localhost:5432/AcademicMisinformation (PostgreSQL 14.2)
+2022-05-26 13:06:56,868 INFO org.flywaydb.core.internal.logging.slf4j.Slf4jLog [main] Successfully validated 23 migrations (execution time 00:00.050s)
+2022-05-26 13:06:56,877 INFO org.flywaydb.core.internal.logging.slf4j.Slf4jLog [main] Current version of schema "migrations": 22
+2022-05-26 13:06:56,878 INFO org.flywaydb.core.internal.logging.slf4j.Slf4jLog [main] Schema "migrations" is up to date. No migration necessary.
+2022-05-26 13:06:56,949 INFO org.hibernate.jpa.internal.util.LogHelper [main] HHH000204: Processing PersistenceUnitInfo [name: default]
+2022-05-26 13:06:57,004 INFO org.hibernate.Version [main] HHH000412: Hibernate ORM core version 5.6.5.Final
+2022-05-26 13:06:57,206 INFO org.hibernate.annotations.common.reflection.java.JavaReflectionManager [main] HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+2022-05-26 13:06:57,321 INFO org.hibernate.dialect.Dialect [main] HHH000400: Using dialect: org.hibernate.dialect.PostgreSQLDialect
+2022-05-26 13:06:58,026 INFO org.hibernate.engine.transaction.jta.platform.internal.JtaPlatformInitiator [main] HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2022-05-26 13:06:58,035 INFO org.springframework.orm.jpa.AbstractEntityManagerFactoryBean [main] Initialized JPA EntityManagerFactory for persistence unit 'default'
+2022-05-26 13:06:58,438 DEBUG org.springframework.web.filter.GenericFilterBean [main] Filter 'authenticationJwtTokenFilter' configured for use
+2022-05-26 13:06:59,022 INFO org.springframework.security.web.DefaultSecurityFilterChain [main] Will not secure any request
+2022-05-26 13:06:59,658 INFO org.apache.juli.logging.DirectJDKLog [main] Starting ProtocolHandler ["http-nio-8080"]
+2022-05-26 13:06:59,672 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [main] Tomcat started on port(s): 8080 (http) with context path ''
+2022-05-26 13:06:59,686 INFO org.springframework.boot.StartupInfoLogger [main] Started IssProjectApplication in 5.603 seconds (JVM running for 6.407)
+2022-05-26 13:07:27,161 INFO org.apache.juli.logging.DirectJDKLog [http-nio-8080-exec-1] Initializing Spring DispatcherServlet 'dispatcherServlet'
+2022-05-26 13:07:27,162 INFO org.springframework.web.servlet.FrameworkServlet [http-nio-8080-exec-1] Initializing Servlet 'dispatcherServlet'
+2022-05-26 13:07:27,164 INFO org.springframework.web.servlet.FrameworkServlet [http-nio-8080-exec-1] Completed initialization in 2 ms
+2022-05-26 13:07:27,289 ERROR com.example.security.jwt.JwtUtils [http-nio-8080-exec-3] JWT token is expired: JWT expired at 2022-05-25T16:47:22Z. Current time: 2022-05-26T13:07:27Z, a difference of 73205288 milliseconds.  Allowed clock skew: 0 milliseconds.
+2022-05-26 13:07:27,289 ERROR com.example.security.jwt.JwtUtils [http-nio-8080-exec-4] JWT token is expired: JWT expired at 2022-05-25T16:47:22Z. Current time: 2022-05-26T13:07:27Z, a difference of 73205288 milliseconds.  Allowed clock skew: 0 milliseconds.
+2022-05-26 13:07:27,296 ERROR com.example.security.jwt.AuthenticationEntryPointJwt [http-nio-8080-exec-3] Unauthorized error: Full authentication is required to access this resource
+2022-05-26 13:07:27,296 ERROR com.example.security.jwt.AuthenticationEntryPointJwt [http-nio-8080-exec-4] Unauthorized error: Full authentication is required to access this resource
+2022-05-26 13:07:54,987 INFO com.example.controllers.AuthenticationController [http-nio-8080-exec-6] Signing in with username rborza
+2022-05-26 13:07:55,410 INFO com.example.controllers.AuthenticationController [http-nio-8080-exec-6] Sign in successful with username rborza
+2022-05-26 13:07:55,562 INFO com.example.controllers.TeacherController [http-nio-8080-exec-10] Getting the courses of the teacher with the ID 23
+2022-05-26 13:07:55,565 INFO com.example.controllers.ChiefController [http-nio-8080-exec-9] Getting all optionals of teacher with id 23
+2022-05-26 13:07:55,580 INFO com.example.controllers.ChiefController [http-nio-8080-exec-9] Optionals successfully retrieved!
+2022-05-26 13:07:55,580 INFO com.example.controllers.TeacherController [http-nio-8080-exec-10] Transforming mandatory and optional courses to Course DTOs
+2022-05-26 13:07:55,605 INFO com.example.controllers.TeacherController [http-nio-8080-exec-10] Transforming proposed courses to Course DTOs
+2022-05-26 13:07:55,612 INFO com.example.controllers.TeacherController [http-nio-8080-exec-10] Merging the two lists
+2022-05-26 13:08:24,317 INFO com.example.controllers.AuthenticationController [http-nio-8080-exec-3] Signing in with username belvira
+2022-05-26 13:08:24,422 INFO com.example.controllers.AuthenticationController [http-nio-8080-exec-3] Sign in successful with username belvira
+2022-05-26 13:08:24,496 INFO com.example.controllers.CommonResourcesController [http-nio-8080-exec-6] Getting all faculties
+2022-05-26 13:09:07,190 INFO com.example.controllers.CommonResourcesController [http-nio-8080-exec-3] Getting all faculties
+2022-05-26 13:10:08,409 INFO com.example.controllers.AuthenticationController [http-nio-8080-exec-8] Signing in with username belvira
+2022-05-26 13:10:08,498 INFO com.example.controllers.AuthenticationController [http-nio-8080-exec-8] Sign in successful with username belvira
+2022-05-26 13:10:08,569 INFO com.example.controllers.CommonResourcesController [http-nio-8080-exec-1] Getting all faculties
+2022-05-26 13:13:59,977 INFO com.example.controllers.StaffMemberController [http-nio-8080-exec-8] Getting the students' averages studying at the specialization with the id 2 in the semester 2
+2022-05-26 13:14:00,075 INFO com.example.controllers.StaffMemberController [http-nio-8080-exec-8] Student averages successfully retrieved!
+2022-05-26 13:16:09,955 INFO com.example.controllers.CommonResourcesController [http-nio-8080-exec-4] Getting all faculties
+2022-05-26 13:16:09,959 INFO com.example.controllers.StaffMemberController [http-nio-8080-exec-9] Getting the students' averages studying at the specialization with the id 2 in the semester 2
+2022-05-26 13:16:10,052 INFO com.example.controllers.StaffMemberController [http-nio-8080-exec-9] Student averages successfully retrieved!
+2022-05-26 13:16:31,509 INFO com.example.controllers.AuthenticationController [http-nio-8080-exec-5] Signing in with username belvira
+2022-05-26 13:16:31,630 INFO com.example.controllers.AuthenticationController [http-nio-8080-exec-5] Sign in successful with username belvira
+2022-05-26 13:16:31,692 INFO com.example.controllers.CommonResourcesController [http-nio-8080-exec-7] Getting all faculties
+2022-05-26 13:16:42,310 INFO com.example.controllers.StaffMemberController [http-nio-8080-exec-2] Getting the students' averages studying at the specialization with the id 2 in the semester 2
+2022-05-26 13:16:42,345 INFO com.example.controllers.StaffMemberController [http-nio-8080-exec-2] Student averages successfully retrieved!
+2022-05-26 13:16:50,670 INFO com.example.controllers.StaffMemberController [http-nio-8080-exec-10] Getting the students' averages studying at the specialization with the id 1 in the semester 2
+2022-05-26 13:16:50,731 INFO com.example.controllers.StaffMemberController [http-nio-8080-exec-10] Student averages successfully retrieved!
+2022-05-26 13:16:51,662 INFO com.example.controllers.StaffMemberController [http-nio-8080-exec-9] Getting the students' averages studying at the specialization with the id 1 in the semester 1
+2022-05-26 13:16:51,719 INFO com.example.controllers.StaffMemberController [http-nio-8080-exec-9] Student averages successfully retrieved!
+2022-05-26 13:16:52,765 INFO com.example.controllers.StaffMemberController [http-nio-8080-exec-5] Getting the students' averages studying at the specialization with the id 1 in the semester 3
+2022-05-26 13:16:52,793 INFO com.example.controllers.StaffMemberController [http-nio-8080-exec-5] Student averages successfully retrieved!
+2022-05-26 13:16:53,935 INFO com.example.controllers.StaffMemberController [http-nio-8080-exec-7] Getting the students' averages studying at the specialization with the id 1 in the semester 4
+2022-05-26 13:16:53,963 INFO com.example.controllers.StaffMemberController [http-nio-8080-exec-7] Student averages successfully retrieved!
+2022-05-26 13:16:55,485 INFO com.example.controllers.StaffMemberController [http-nio-8080-exec-2] Getting the students' averages studying at the specialization with the id 1 in the semester 5
+2022-05-26 13:16:55,509 INFO com.example.controllers.StaffMemberController [http-nio-8080-exec-2] Student averages successfully retrieved!
+2022-05-26 13:16:56,741 INFO com.example.controllers.StaffMemberController [http-nio-8080-exec-10] Getting the students' averages studying at the specialization with the id 1 in the semester 6
+2022-05-26 13:16:56,769 INFO com.example.controllers.StaffMemberController [http-nio-8080-exec-10] Student averages successfully retrieved!
+2022-05-26 13:16:59,208 INFO com.example.controllers.StaffMemberController [http-nio-8080-exec-9] Getting the students' averages studying at the specialization with the id 2 in the semester 2
+2022-05-26 13:16:59,232 INFO com.example.controllers.StaffMemberController [http-nio-8080-exec-9] Student averages successfully retrieved!
+2022-05-26 13:17:00,041 INFO com.example.controllers.StaffMemberController [http-nio-8080-exec-5] Getting the students' averages studying at the specialization with the id 2 in the semester 1
+2022-05-26 13:17:00,063 INFO com.example.controllers.StaffMemberController [http-nio-8080-exec-5] Student averages successfully retrieved!
+2022-05-26 13:17:01,890 INFO com.example.controllers.StaffMemberController [http-nio-8080-exec-7] Getting the students' averages studying at the specialization with the id 2 in the semester 3
+2022-05-26 13:17:01,911 INFO com.example.controllers.StaffMemberController [http-nio-8080-exec-7] Student averages successfully retrieved!
+2022-05-26 13:17:03,306 INFO com.example.controllers.StaffMemberController [http-nio-8080-exec-2] Getting the students' averages studying at the specialization with the id 2 in the semester 4
+2022-05-26 13:17:03,327 INFO com.example.controllers.StaffMemberController [http-nio-8080-exec-2] Student averages successfully retrieved!
+2022-05-26 13:17:06,481 INFO com.example.controllers.StaffMemberController [http-nio-8080-exec-10] Getting the students' averages studying at the specialization with the id 1 in the semester 1
+2022-05-26 13:17:06,518 INFO com.example.controllers.StaffMemberController [http-nio-8080-exec-10] Student averages successfully retrieved!
+2022-05-26 13:17:07,550 INFO com.example.controllers.StaffMemberController [http-nio-8080-exec-9] Getting the students' averages studying at the specialization with the id 1 in the semester 2
+2022-05-26 13:17:07,577 INFO com.example.controllers.StaffMemberController [http-nio-8080-exec-9] Student averages successfully retrieved!
+2022-05-26 13:17:09,093 INFO com.example.controllers.StaffMemberController [http-nio-8080-exec-5] Getting the students' averages studying at the specialization with the id 1 in the semester 3
+2022-05-26 13:17:09,122 INFO com.example.controllers.StaffMemberController [http-nio-8080-exec-5] Student averages successfully retrieved!
+2022-05-26 13:17:11,268 INFO com.example.controllers.StaffMemberController [http-nio-8080-exec-8] Getting the students' averages studying at the specialization with the id 1 in the semester 4
+2022-05-26 13:17:11,290 INFO com.example.controllers.StaffMemberController [http-nio-8080-exec-8] Student averages successfully retrieved!
+2022-05-26 13:17:20,868 INFO com.example.controllers.StaffMemberController [http-nio-8080-exec-1] Getting the students' averages studying at the specialization with the id 1 in the semester 2
+2022-05-26 13:17:20,935 INFO com.example.controllers.StaffMemberController [http-nio-8080-exec-1] Student averages successfully retrieved!
+2022-05-26 13:18:02,481 INFO com.example.controllers.CommonResourcesController [http-nio-8080-exec-4] Getting all faculties
+2022-05-26 13:18:06,421 INFO com.example.controllers.CommonResourcesController [http-nio-8080-exec-3] Getting all faculties
+2022-05-26 13:18:13,316 INFO com.example.controllers.StaffMemberController [http-nio-8080-exec-6] Getting the students' averages studying at the specialization with the id 1 in the semester 2
+2022-05-26 13:18:13,357 INFO com.example.controllers.StaffMemberController [http-nio-8080-exec-6] Student averages successfully retrieved!
+2022-05-26 13:18:52,314 INFO com.example.controllers.CommonResourcesController [http-nio-8080-exec-8] Getting all faculties
+2022-05-26 13:19:07,616 INFO com.example.controllers.CommonResourcesController [http-nio-8080-exec-1] Getting all faculties
+2022-05-26 13:19:21,029 INFO com.example.controllers.CommonResourcesController [http-nio-8080-exec-4] Getting all faculties
+2022-05-26 13:19:42,846 INFO com.example.controllers.CommonResourcesController [http-nio-8080-exec-3] Getting all faculties
+2022-05-26 13:19:48,490 INFO com.example.controllers.StaffMemberController [http-nio-8080-exec-6] Getting the students' averages studying at the specialization with the id 1 in the semester 2
+2022-05-26 13:19:48,523 INFO com.example.controllers.StaffMemberController [http-nio-8080-exec-6] Student averages successfully retrieved!
+2022-05-26 13:20:28,074 INFO com.example.controllers.CommonResourcesController [http-nio-8080-exec-8] Getting all faculties
+2022-05-26 13:20:28,093 INFO com.example.controllers.StaffMemberController [http-nio-8080-exec-1] Getting the students' averages studying at the specialization with the id 1 in the semester 2
+2022-05-26 13:20:28,131 INFO com.example.controllers.StaffMemberController [http-nio-8080-exec-1] Student averages successfully retrieved!
+2022-05-26 13:21:33,476 INFO org.springframework.orm.jpa.AbstractEntityManagerFactoryBean [SpringApplicationShutdownHook] Closing JPA EntityManagerFactory for persistence unit 'default'
+2022-05-26 13:21:33,497 INFO com.zaxxer.hikari.HikariDataSource [SpringApplicationShutdownHook] HikariPool-1 - Shutdown initiated...
+2022-05-26 13:21:33,505 INFO com.zaxxer.hikari.HikariDataSource [SpringApplicationShutdownHook] HikariPool-1 - Shutdown completed.
+2022-05-26 13:21:38,537 INFO org.hibernate.validator.internal.util.Version [background-preinit] HV000001: Hibernate Validator 6.2.2.Final
+2022-05-26 13:21:38,552 INFO org.springframework.boot.StartupInfoLogger [main] Starting IssProjectApplication using Java 17.0.2 on Alexs-personal-MacBook-Pro.local with PID 8533 (/Users/alexnedelcu/Desktop/Uni/ISS/academicmisinformation/backend/target/classes started by alexnedelcu in /Users/alexnedelcu/Desktop/Uni/ISS/academicmisinformation/backend)
+2022-05-26 13:21:38,553 DEBUG org.springframework.boot.StartupInfoLogger [main] Running with Spring Boot v2.6.4, Spring v5.3.16
+2022-05-26 13:21:38,554 INFO org.springframework.boot.SpringApplication [main] No active profile set, falling back to 1 default profile: "default"
+2022-05-26 13:21:39,527 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2022-05-26 13:21:39,609 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Finished Spring Data repository scanning in 74 ms. Found 13 JPA repository interfaces.
+2022-05-26 13:21:40,081 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [main] Tomcat initialized with port(s): 8080 (http)
+2022-05-26 13:21:40,088 INFO org.apache.juli.logging.DirectJDKLog [main] Initializing ProtocolHandler ["http-nio-8080"]
+2022-05-26 13:21:40,088 INFO org.apache.juli.logging.DirectJDKLog [main] Starting service [Tomcat]
+2022-05-26 13:21:40,089 INFO org.apache.juli.logging.DirectJDKLog [main] Starting Servlet engine: [Apache Tomcat/9.0.58]
+2022-05-26 13:21:40,145 INFO org.apache.juli.logging.DirectJDKLog [main] Initializing Spring embedded WebApplicationContext
+2022-05-26 13:21:40,145 INFO org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext [main] Root WebApplicationContext: initialization completed in 1512 ms
+2022-05-26 13:21:40,257 WARN org.springframework.boot.autoconfigure.orm.jpa.JpaBaseConfiguration$JpaWebConfiguration [main] spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2022-05-26 13:21:40,339 INFO com.zaxxer.hikari.HikariDataSource [main] HikariPool-1 - Starting...
+2022-05-26 13:21:40,402 INFO com.zaxxer.hikari.HikariDataSource [main] HikariPool-1 - Start completed.
+2022-05-26 13:21:40,418 INFO org.flywaydb.core.internal.logging.slf4j.Slf4jLog [main] Flyway Community Edition 8.5.4 by Redgate
+2022-05-26 13:21:40,419 INFO org.flywaydb.core.internal.logging.slf4j.Slf4jLog [main] See what's new here: https://flywaydb.org/documentation/learnmore/releaseNotes#8.5.4
+2022-05-26 13:21:40,419 INFO org.flywaydb.core.internal.logging.slf4j.Slf4jLog [main] 
+2022-05-26 13:21:40,419 INFO org.flywaydb.core.internal.logging.slf4j.Slf4jLog [main] Database: jdbc:postgresql://localhost:5432/AcademicMisinformation (PostgreSQL 14.2)
+2022-05-26 13:21:40,466 INFO org.flywaydb.core.internal.logging.slf4j.Slf4jLog [main] Successfully validated 23 migrations (execution time 00:00.034s)
+2022-05-26 13:21:40,472 INFO org.flywaydb.core.internal.logging.slf4j.Slf4jLog [main] Current version of schema "migrations": 22
+2022-05-26 13:21:40,473 INFO org.flywaydb.core.internal.logging.slf4j.Slf4jLog [main] Schema "migrations" is up to date. No migration necessary.
+2022-05-26 13:21:40,533 INFO org.hibernate.jpa.internal.util.LogHelper [main] HHH000204: Processing PersistenceUnitInfo [name: default]
+2022-05-26 13:21:40,584 INFO org.hibernate.Version [main] HHH000412: Hibernate ORM core version 5.6.5.Final
+2022-05-26 13:21:40,723 INFO org.hibernate.annotations.common.reflection.java.JavaReflectionManager [main] HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+2022-05-26 13:21:40,807 INFO org.hibernate.dialect.Dialect [main] HHH000400: Using dialect: org.hibernate.dialect.PostgreSQLDialect
+2022-05-26 13:21:41,446 INFO org.hibernate.engine.transaction.jta.platform.internal.JtaPlatformInitiator [main] HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2022-05-26 13:21:41,453 INFO org.springframework.orm.jpa.AbstractEntityManagerFactoryBean [main] Initialized JPA EntityManagerFactory for persistence unit 'default'
+2022-05-26 13:21:41,831 DEBUG org.springframework.web.filter.GenericFilterBean [main] Filter 'authenticationJwtTokenFilter' configured for use
+2022-05-26 13:21:42,253 INFO org.springframework.security.web.DefaultSecurityFilterChain [main] Will not secure any request
+2022-05-26 13:21:42,918 INFO org.apache.juli.logging.DirectJDKLog [main] Starting ProtocolHandler ["http-nio-8080"]
+2022-05-26 13:21:42,941 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [main] Tomcat started on port(s): 8080 (http) with context path ''
+2022-05-26 13:21:42,961 INFO org.springframework.boot.StartupInfoLogger [main] Started IssProjectApplication in 5.303 seconds (JVM running for 6.666)
+2022-05-26 13:21:46,565 INFO org.apache.juli.logging.DirectJDKLog [http-nio-8080-exec-1] Initializing Spring DispatcherServlet 'dispatcherServlet'
+2022-05-26 13:21:46,566 INFO org.springframework.web.servlet.FrameworkServlet [http-nio-8080-exec-1] Initializing Servlet 'dispatcherServlet'
+2022-05-26 13:21:46,568 INFO org.springframework.web.servlet.FrameworkServlet [http-nio-8080-exec-1] Completed initialization in 2 ms
+2022-05-26 13:21:46,927 INFO com.example.controllers.CommonResourcesController [http-nio-8080-exec-2] Getting all faculties
+2022-05-26 13:21:52,822 INFO com.example.controllers.AuthenticationController [http-nio-8080-exec-4] Signing in with username belvira
+2022-05-26 13:21:53,023 INFO com.example.controllers.AuthenticationController [http-nio-8080-exec-4] Sign in successful with username belvira
+2022-05-26 13:21:53,105 INFO com.example.controllers.CommonResourcesController [http-nio-8080-exec-6] Getting all faculties
+2022-05-26 13:22:06,333 INFO com.example.controllers.StaffMemberController [http-nio-8080-exec-8] Getting the students' averages studying at the specialization with the id 4 in the semester 2
+2022-05-26 13:22:10,300 WARN com.example.controllers.StaffMemberController [http-nio-8080-exec-8] Specialization isn't at the current faculty!
+2022-05-26 13:23:33,843 INFO org.springframework.orm.jpa.AbstractEntityManagerFactoryBean [SpringApplicationShutdownHook] Closing JPA EntityManagerFactory for persistence unit 'default'
+2022-05-26 13:23:33,848 INFO com.zaxxer.hikari.HikariDataSource [SpringApplicationShutdownHook] HikariPool-1 - Shutdown initiated...
+2022-05-26 13:23:33,853 INFO com.zaxxer.hikari.HikariDataSource [SpringApplicationShutdownHook] HikariPool-1 - Shutdown completed.
+2022-05-26 13:23:36,218 INFO org.hibernate.validator.internal.util.Version [background-preinit] HV000001: Hibernate Validator 6.2.2.Final
+2022-05-26 13:23:36,219 INFO org.springframework.boot.StartupInfoLogger [main] Starting IssProjectApplication using Java 17.0.2 on Alexs-personal-MacBook-Pro.local with PID 8565 (/Users/alexnedelcu/Desktop/Uni/ISS/academicmisinformation/backend/target/classes started by alexnedelcu in /Users/alexnedelcu/Desktop/Uni/ISS/academicmisinformation/backend)
+2022-05-26 13:23:36,222 DEBUG org.springframework.boot.StartupInfoLogger [main] Running with Spring Boot v2.6.4, Spring v5.3.16
+2022-05-26 13:23:36,222 INFO org.springframework.boot.SpringApplication [main] No active profile set, falling back to 1 default profile: "default"
+2022-05-26 13:23:37,436 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2022-05-26 13:23:37,516 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Finished Spring Data repository scanning in 71 ms. Found 13 JPA repository interfaces.
+2022-05-26 13:23:38,090 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [main] Tomcat initialized with port(s): 8080 (http)
+2022-05-26 13:23:38,097 INFO org.apache.juli.logging.DirectJDKLog [main] Initializing ProtocolHandler ["http-nio-8080"]
+2022-05-26 13:23:38,098 INFO org.apache.juli.logging.DirectJDKLog [main] Starting service [Tomcat]
+2022-05-26 13:23:38,098 INFO org.apache.juli.logging.DirectJDKLog [main] Starting Servlet engine: [Apache Tomcat/9.0.58]
+2022-05-26 13:23:38,152 INFO org.apache.juli.logging.DirectJDKLog [main] Initializing Spring embedded WebApplicationContext
+2022-05-26 13:23:38,153 INFO org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext [main] Root WebApplicationContext: initialization completed in 1876 ms
+2022-05-26 13:23:38,266 WARN org.springframework.boot.autoconfigure.orm.jpa.JpaBaseConfiguration$JpaWebConfiguration [main] spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2022-05-26 13:23:38,344 INFO com.zaxxer.hikari.HikariDataSource [main] HikariPool-1 - Starting...
+2022-05-26 13:23:38,412 INFO com.zaxxer.hikari.HikariDataSource [main] HikariPool-1 - Start completed.
+2022-05-26 13:23:38,426 INFO org.flywaydb.core.internal.logging.slf4j.Slf4jLog [main] Flyway Community Edition 8.5.4 by Redgate
+2022-05-26 13:23:38,426 INFO org.flywaydb.core.internal.logging.slf4j.Slf4jLog [main] See what's new here: https://flywaydb.org/documentation/learnmore/releaseNotes#8.5.4
+2022-05-26 13:23:38,426 INFO org.flywaydb.core.internal.logging.slf4j.Slf4jLog [main] 
+2022-05-26 13:23:38,426 INFO org.flywaydb.core.internal.logging.slf4j.Slf4jLog [main] Database: jdbc:postgresql://localhost:5432/AcademicMisinformation (PostgreSQL 14.2)
+2022-05-26 13:23:38,480 INFO org.flywaydb.core.internal.logging.slf4j.Slf4jLog [main] Successfully validated 23 migrations (execution time 00:00.042s)
+2022-05-26 13:23:38,490 INFO org.flywaydb.core.internal.logging.slf4j.Slf4jLog [main] Current version of schema "migrations": 22
+2022-05-26 13:23:38,490 INFO org.flywaydb.core.internal.logging.slf4j.Slf4jLog [main] Schema "migrations" is up to date. No migration necessary.
+2022-05-26 13:23:38,569 INFO org.hibernate.jpa.internal.util.LogHelper [main] HHH000204: Processing PersistenceUnitInfo [name: default]
+2022-05-26 13:23:38,626 INFO org.hibernate.Version [main] HHH000412: Hibernate ORM core version 5.6.5.Final
+2022-05-26 13:23:38,789 INFO org.hibernate.annotations.common.reflection.java.JavaReflectionManager [main] HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+2022-05-26 13:23:38,875 INFO org.hibernate.dialect.Dialect [main] HHH000400: Using dialect: org.hibernate.dialect.PostgreSQLDialect
+2022-05-26 13:23:39,588 INFO org.hibernate.engine.transaction.jta.platform.internal.JtaPlatformInitiator [main] HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2022-05-26 13:23:39,595 INFO org.springframework.orm.jpa.AbstractEntityManagerFactoryBean [main] Initialized JPA EntityManagerFactory for persistence unit 'default'
+2022-05-26 13:23:39,970 DEBUG org.springframework.web.filter.GenericFilterBean [main] Filter 'authenticationJwtTokenFilter' configured for use
+2022-05-26 13:23:40,351 INFO org.springframework.security.web.DefaultSecurityFilterChain [main] Will not secure any request
+2022-05-26 13:23:40,968 INFO org.apache.juli.logging.DirectJDKLog [main] Starting ProtocolHandler ["http-nio-8080"]
+2022-05-26 13:23:40,980 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [main] Tomcat started on port(s): 8080 (http) with context path ''
+2022-05-26 13:23:40,988 INFO org.springframework.boot.StartupInfoLogger [main] Started IssProjectApplication in 5.234 seconds (JVM running for 6.073)
+2022-05-26 13:23:46,195 INFO org.apache.juli.logging.DirectJDKLog [http-nio-8080-exec-1] Initializing Spring DispatcherServlet 'dispatcherServlet'
+2022-05-26 13:23:46,196 INFO org.springframework.web.servlet.FrameworkServlet [http-nio-8080-exec-1] Initializing Servlet 'dispatcherServlet'
+2022-05-26 13:23:46,199 INFO org.springframework.web.servlet.FrameworkServlet [http-nio-8080-exec-1] Completed initialization in 3 ms
+2022-05-26 13:23:46,501 INFO com.example.controllers.CommonResourcesController [http-nio-8080-exec-2] Getting all faculties
+2022-05-26 13:23:50,969 INFO com.example.controllers.StaffMemberController [http-nio-8080-exec-4] Getting the students' averages studying at the specialization with the id 1 in the semester 3
+2022-05-26 13:24:31,447 WARN com.zaxxer.hikari.pool.HikariPool$HouseKeeper [HikariPool-1 housekeeper] HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=52s929ms).
+2022-05-26 13:25:58,024 WARN com.zaxxer.hikari.pool.HikariPool$HouseKeeper [HikariPool-1 housekeeper] HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=1m26s578ms).
+2022-05-26 13:25:58,036 INFO com.example.controllers.StaffMemberController [http-nio-8080-exec-4] Student averages successfully retrieved!
+2022-05-26 13:25:58,151 INFO org.springframework.orm.jpa.AbstractEntityManagerFactoryBean [SpringApplicationShutdownHook] Closing JPA EntityManagerFactory for persistence unit 'default'
+2022-05-26 13:25:58,157 INFO com.zaxxer.hikari.HikariDataSource [SpringApplicationShutdownHook] HikariPool-1 - Shutdown initiated...
+2022-05-26 13:25:58,161 INFO com.zaxxer.hikari.HikariDataSource [SpringApplicationShutdownHook] HikariPool-1 - Shutdown completed.
+2022-05-26 13:26:24,256 INFO org.hibernate.validator.internal.util.Version [background-preinit] HV000001: Hibernate Validator 6.2.2.Final
+2022-05-26 13:26:24,256 INFO org.springframework.boot.StartupInfoLogger [main] Starting IssProjectApplication using Java 17.0.2 on Alexs-personal-MacBook-Pro.local with PID 8609 (/Users/alexnedelcu/Desktop/Uni/ISS/academicmisinformation/backend/target/classes started by alexnedelcu in /Users/alexnedelcu/Desktop/Uni/ISS/academicmisinformation/backend)
+2022-05-26 13:26:24,258 DEBUG org.springframework.boot.StartupInfoLogger [main] Running with Spring Boot v2.6.4, Spring v5.3.16
+2022-05-26 13:26:24,259 INFO org.springframework.boot.SpringApplication [main] No active profile set, falling back to 1 default profile: "default"
+2022-05-26 13:26:25,368 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2022-05-26 13:26:25,459 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Finished Spring Data repository scanning in 80 ms. Found 13 JPA repository interfaces.
+2022-05-26 13:26:26,020 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [main] Tomcat initialized with port(s): 8080 (http)
+2022-05-26 13:26:26,040 INFO org.apache.juli.logging.DirectJDKLog [main] Initializing ProtocolHandler ["http-nio-8080"]
+2022-05-26 13:26:26,041 INFO org.apache.juli.logging.DirectJDKLog [main] Starting service [Tomcat]
+2022-05-26 13:26:26,041 INFO org.apache.juli.logging.DirectJDKLog [main] Starting Servlet engine: [Apache Tomcat/9.0.58]
+2022-05-26 13:26:26,110 INFO org.apache.juli.logging.DirectJDKLog [main] Initializing Spring embedded WebApplicationContext
+2022-05-26 13:26:26,110 INFO org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext [main] Root WebApplicationContext: initialization completed in 1820 ms
+2022-05-26 13:26:26,238 WARN org.springframework.boot.autoconfigure.orm.jpa.JpaBaseConfiguration$JpaWebConfiguration [main] spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2022-05-26 13:26:26,338 INFO com.zaxxer.hikari.HikariDataSource [main] HikariPool-1 - Starting...
+2022-05-26 13:26:26,423 INFO com.zaxxer.hikari.HikariDataSource [main] HikariPool-1 - Start completed.
+2022-05-26 13:26:26,439 INFO org.flywaydb.core.internal.logging.slf4j.Slf4jLog [main] Flyway Community Edition 8.5.4 by Redgate
+2022-05-26 13:26:26,440 INFO org.flywaydb.core.internal.logging.slf4j.Slf4jLog [main] See what's new here: https://flywaydb.org/documentation/learnmore/releaseNotes#8.5.4
+2022-05-26 13:26:26,440 INFO org.flywaydb.core.internal.logging.slf4j.Slf4jLog [main] 
+2022-05-26 13:26:26,440 INFO org.flywaydb.core.internal.logging.slf4j.Slf4jLog [main] Database: jdbc:postgresql://localhost:5432/AcademicMisinformation (PostgreSQL 14.2)
+2022-05-26 13:26:26,495 INFO org.flywaydb.core.internal.logging.slf4j.Slf4jLog [main] Successfully validated 23 migrations (execution time 00:00.039s)
+2022-05-26 13:26:26,501 INFO org.flywaydb.core.internal.logging.slf4j.Slf4jLog [main] Current version of schema "migrations": 22
+2022-05-26 13:26:26,501 INFO org.flywaydb.core.internal.logging.slf4j.Slf4jLog [main] Schema "migrations" is up to date. No migration necessary.
+2022-05-26 13:26:26,557 INFO org.hibernate.jpa.internal.util.LogHelper [main] HHH000204: Processing PersistenceUnitInfo [name: default]
+2022-05-26 13:26:26,600 INFO org.hibernate.Version [main] HHH000412: Hibernate ORM core version 5.6.5.Final
+2022-05-26 13:26:26,751 INFO org.hibernate.annotations.common.reflection.java.JavaReflectionManager [main] HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+2022-05-26 13:26:26,850 INFO org.hibernate.dialect.Dialect [main] HHH000400: Using dialect: org.hibernate.dialect.PostgreSQLDialect
+2022-05-26 13:26:27,608 INFO org.hibernate.engine.transaction.jta.platform.internal.JtaPlatformInitiator [main] HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2022-05-26 13:26:27,618 INFO org.springframework.orm.jpa.AbstractEntityManagerFactoryBean [main] Initialized JPA EntityManagerFactory for persistence unit 'default'
+2022-05-26 13:26:28,072 DEBUG org.springframework.web.filter.GenericFilterBean [main] Filter 'authenticationJwtTokenFilter' configured for use
+2022-05-26 13:26:28,745 INFO org.springframework.security.web.DefaultSecurityFilterChain [main] Will not secure any request
+2022-05-26 13:26:29,437 INFO org.apache.juli.logging.DirectJDKLog [main] Starting ProtocolHandler ["http-nio-8080"]
+2022-05-26 13:26:29,450 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [main] Tomcat started on port(s): 8080 (http) with context path ''
+2022-05-26 13:26:29,461 INFO org.springframework.boot.StartupInfoLogger [main] Started IssProjectApplication in 5.72 seconds (JVM running for 6.675)
+2022-05-26 13:26:31,306 INFO org.apache.juli.logging.DirectJDKLog [http-nio-8080-exec-1] Initializing Spring DispatcherServlet 'dispatcherServlet'
+2022-05-26 13:26:31,310 INFO org.springframework.web.servlet.FrameworkServlet [http-nio-8080-exec-1] Initializing Servlet 'dispatcherServlet'
+2022-05-26 13:26:31,311 INFO org.springframework.web.servlet.FrameworkServlet [http-nio-8080-exec-1] Completed initialization in 1 ms
+2022-05-26 13:26:31,621 INFO com.example.controllers.CommonResourcesController [http-nio-8080-exec-2] Getting all faculties
+2022-05-26 13:26:36,216 INFO com.example.controllers.StaffMemberController [http-nio-8080-exec-4] Getting the students' averages studying at the specialization with the id 4 in the semester 2
+2022-05-26 13:26:36,229 WARN com.example.controllers.StaffMemberController [http-nio-8080-exec-4] Specialization isn't at the current faculty!
+2022-05-26 13:26:57,725 INFO com.example.controllers.StaffMemberController [http-nio-8080-exec-6] Getting the students' averages studying at the specialization with the id 3 in the semester 2
+2022-05-26 13:26:57,737 WARN com.example.controllers.StaffMemberController [http-nio-8080-exec-6] Specialization isn't at the current faculty!
+2022-05-26 13:29:00,680 INFO org.springframework.orm.jpa.AbstractEntityManagerFactoryBean [SpringApplicationShutdownHook] Closing JPA EntityManagerFactory for persistence unit 'default'
+2022-05-26 13:29:00,692 INFO com.zaxxer.hikari.HikariDataSource [SpringApplicationShutdownHook] HikariPool-1 - Shutdown initiated...
+2022-05-26 13:29:00,702 INFO com.zaxxer.hikari.HikariDataSource [SpringApplicationShutdownHook] HikariPool-1 - Shutdown completed.
+2022-05-26 13:29:40,833 INFO org.springframework.boot.StartupInfoLogger [main] Starting IssProjectApplication using Java 17.0.2 on Alexs-personal-MacBook-Pro.local with PID 8666 (/Users/alexnedelcu/Desktop/Uni/ISS/academicmisinformation/backend/target/classes started by alexnedelcu in /Users/alexnedelcu/Desktop/Uni/ISS/academicmisinformation/backend)
+2022-05-26 13:29:40,831 INFO org.hibernate.validator.internal.util.Version [background-preinit] HV000001: Hibernate Validator 6.2.2.Final
+2022-05-26 13:29:40,834 DEBUG org.springframework.boot.StartupInfoLogger [main] Running with Spring Boot v2.6.4, Spring v5.3.16
+2022-05-26 13:29:40,835 INFO org.springframework.boot.SpringApplication [main] No active profile set, falling back to 1 default profile: "default"
+2022-05-26 13:29:41,514 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2022-05-26 13:29:41,590 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Finished Spring Data repository scanning in 64 ms. Found 13 JPA repository interfaces.
+2022-05-26 13:29:42,606 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [main] Tomcat initialized with port(s): 8080 (http)
+2022-05-26 13:29:42,623 INFO org.apache.juli.logging.DirectJDKLog [main] Initializing ProtocolHandler ["http-nio-8080"]
+2022-05-26 13:29:42,624 INFO org.apache.juli.logging.DirectJDKLog [main] Starting service [Tomcat]
+2022-05-26 13:29:42,625 INFO org.apache.juli.logging.DirectJDKLog [main] Starting Servlet engine: [Apache Tomcat/9.0.58]
+2022-05-26 13:29:42,707 INFO org.apache.juli.logging.DirectJDKLog [main] Initializing Spring embedded WebApplicationContext
+2022-05-26 13:29:42,707 INFO org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext [main] Root WebApplicationContext: initialization completed in 1842 ms
+2022-05-26 13:29:42,883 WARN org.springframework.boot.autoconfigure.orm.jpa.JpaBaseConfiguration$JpaWebConfiguration [main] spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2022-05-26 13:29:43,048 INFO com.zaxxer.hikari.HikariDataSource [main] HikariPool-1 - Starting...
+2022-05-26 13:29:43,126 INFO com.zaxxer.hikari.HikariDataSource [main] HikariPool-1 - Start completed.
+2022-05-26 13:29:43,144 INFO org.flywaydb.core.internal.logging.slf4j.Slf4jLog [main] Flyway Community Edition 8.5.4 by Redgate
+2022-05-26 13:29:43,144 INFO org.flywaydb.core.internal.logging.slf4j.Slf4jLog [main] See what's new here: https://flywaydb.org/documentation/learnmore/releaseNotes#8.5.4
+2022-05-26 13:29:43,144 INFO org.flywaydb.core.internal.logging.slf4j.Slf4jLog [main] 
+2022-05-26 13:29:43,144 INFO org.flywaydb.core.internal.logging.slf4j.Slf4jLog [main] Database: jdbc:postgresql://localhost:5432/AcademicMisinformation (PostgreSQL 14.2)
+2022-05-26 13:29:43,190 INFO org.flywaydb.core.internal.logging.slf4j.Slf4jLog [main] Successfully validated 23 migrations (execution time 00:00.033s)
+2022-05-26 13:29:43,196 INFO org.flywaydb.core.internal.logging.slf4j.Slf4jLog [main] Current version of schema "migrations": 22
+2022-05-26 13:29:43,197 INFO org.flywaydb.core.internal.logging.slf4j.Slf4jLog [main] Schema "migrations" is up to date. No migration necessary.
+2022-05-26 13:29:43,291 INFO org.hibernate.jpa.internal.util.LogHelper [main] HHH000204: Processing PersistenceUnitInfo [name: default]
+2022-05-26 13:29:43,380 INFO org.hibernate.Version [main] HHH000412: Hibernate ORM core version 5.6.5.Final
+2022-05-26 13:29:43,602 INFO org.hibernate.annotations.common.reflection.java.JavaReflectionManager [main] HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+2022-05-26 13:29:43,730 INFO org.hibernate.dialect.Dialect [main] HHH000400: Using dialect: org.hibernate.dialect.PostgreSQLDialect
+2022-05-26 13:29:44,609 INFO org.hibernate.engine.transaction.jta.platform.internal.JtaPlatformInitiator [main] HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2022-05-26 13:29:44,623 INFO org.springframework.orm.jpa.AbstractEntityManagerFactoryBean [main] Initialized JPA EntityManagerFactory for persistence unit 'default'
+2022-05-26 13:29:45,096 DEBUG org.springframework.web.filter.GenericFilterBean [main] Filter 'authenticationJwtTokenFilter' configured for use
+2022-05-26 13:29:45,535 INFO org.springframework.security.web.DefaultSecurityFilterChain [main] Will not secure any request
+2022-05-26 13:29:46,123 INFO org.apache.juli.logging.DirectJDKLog [main] Starting ProtocolHandler ["http-nio-8080"]
+2022-05-26 13:29:46,136 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [main] Tomcat started on port(s): 8080 (http) with context path ''
+2022-05-26 13:29:46,147 INFO org.springframework.boot.StartupInfoLogger [main] Started IssProjectApplication in 5.63 seconds (JVM running for 6.1)
+2022-05-26 13:29:49,407 INFO org.apache.juli.logging.DirectJDKLog [http-nio-8080-exec-1] Initializing Spring DispatcherServlet 'dispatcherServlet'
+2022-05-26 13:29:49,408 INFO org.springframework.web.servlet.FrameworkServlet [http-nio-8080-exec-1] Initializing Servlet 'dispatcherServlet'
+2022-05-26 13:29:49,410 INFO org.springframework.web.servlet.FrameworkServlet [http-nio-8080-exec-1] Completed initialization in 2 ms
+2022-05-26 13:29:49,694 INFO com.example.controllers.CommonResourcesController [http-nio-8080-exec-2] Getting all faculties
+2022-05-26 13:30:03,861 INFO com.example.controllers.StaffMemberController [http-nio-8080-exec-4] Getting the students' averages studying at the specialization with the id 3 in the semester 6
+2022-05-26 13:30:03,936 INFO com.example.controllers.StaffMemberController [http-nio-8080-exec-4] Student averages successfully retrieved!
+2022-05-26 13:30:41,931 INFO com.example.controllers.CommonResourcesController [http-nio-8080-exec-5] Getting all faculties
+2022-05-26 13:30:45,395 INFO com.example.controllers.StaffMemberController [http-nio-8080-exec-7] Getting the students' averages studying at the specialization with the id 1 in the semester 2
+2022-05-26 13:30:45,477 INFO com.example.controllers.StaffMemberController [http-nio-8080-exec-7] Student averages successfully retrieved!
+2022-05-26 13:33:58,931 INFO com.example.controllers.CommonResourcesController [http-nio-8080-exec-5] Getting all faculties
+2022-05-26 13:34:01,796 INFO com.example.controllers.StaffMemberController [http-nio-8080-exec-7] Getting the students' averages studying at the specialization with the id 1 in the semester 2
+2022-05-26 13:34:01,864 INFO com.example.controllers.StaffMemberController [http-nio-8080-exec-7] Student averages successfully retrieved!
+2022-05-26 13:36:26,022 INFO com.example.controllers.CommonResourcesController [http-nio-8080-exec-10] Getting all faculties
+2022-05-26 13:36:29,341 INFO com.example.controllers.StaffMemberController [http-nio-8080-exec-2] Getting the students' averages studying at the specialization with the id 2 in the semester 2
+2022-05-26 13:36:29,406 INFO com.example.controllers.StaffMemberController [http-nio-8080-exec-2] Student averages successfully retrieved!
+2022-05-26 13:37:39,848 INFO com.example.controllers.CommonResourcesController [http-nio-8080-exec-8] Getting all faculties
+2022-05-26 13:37:39,851 INFO com.example.controllers.StaffMemberController [http-nio-8080-exec-9] Getting the students' averages studying at the specialization with the id 2 in the semester 2
+2022-05-26 13:37:39,918 INFO com.example.controllers.StaffMemberController [http-nio-8080-exec-9] Student averages successfully retrieved!
+2022-05-26 13:37:50,091 INFO com.example.controllers.CommonResourcesController [http-nio-8080-exec-1] Getting all faculties
+2022-05-26 13:37:53,583 INFO com.example.controllers.StaffMemberController [http-nio-8080-exec-3] Getting the students' averages studying at the specialization with the id 2 in the semester 2
+2022-05-26 13:37:53,637 INFO com.example.controllers.StaffMemberController [http-nio-8080-exec-3] Student averages successfully retrieved!
+2022-05-26 13:37:56,978 WARN org.springframework.web.servlet.handler.AbstractHandlerExceptionResolver [http-nio-8080-exec-5] Resolved [org.springframework.web.HttpRequestMethodNotSupportedException: Request method 'POST' not supported]
+2022-05-26 13:38:23,782 INFO org.springframework.orm.jpa.AbstractEntityManagerFactoryBean [SpringApplicationShutdownHook] Closing JPA EntityManagerFactory for persistence unit 'default'
+2022-05-26 13:38:23,816 INFO com.zaxxer.hikari.HikariDataSource [SpringApplicationShutdownHook] HikariPool-1 - Shutdown initiated...
+2022-05-26 13:38:23,832 INFO com.zaxxer.hikari.HikariDataSource [SpringApplicationShutdownHook] HikariPool-1 - Shutdown completed.
+2022-05-26 13:38:28,864 INFO org.springframework.boot.StartupInfoLogger [main] Starting IssProjectApplication using Java 17.0.2 on Alexs-personal-MacBook-Pro.local with PID 8805 (/Users/alexnedelcu/Desktop/Uni/ISS/academicmisinformation/backend/target/classes started by alexnedelcu in /Users/alexnedelcu/Desktop/Uni/ISS/academicmisinformation/backend)
+2022-05-26 13:38:28,867 DEBUG org.springframework.boot.StartupInfoLogger [main] Running with Spring Boot v2.6.4, Spring v5.3.16
+2022-05-26 13:38:28,868 INFO org.springframework.boot.SpringApplication [main] No active profile set, falling back to 1 default profile: "default"
+2022-05-26 13:38:28,869 INFO org.hibernate.validator.internal.util.Version [background-preinit] HV000001: Hibernate Validator 6.2.2.Final
+2022-05-26 13:38:29,776 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2022-05-26 13:38:29,887 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Finished Spring Data repository scanning in 100 ms. Found 13 JPA repository interfaces.
+2022-05-26 13:38:30,394 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [main] Tomcat initialized with port(s): 8080 (http)
+2022-05-26 13:38:30,405 INFO org.apache.juli.logging.DirectJDKLog [main] Initializing ProtocolHandler ["http-nio-8080"]
+2022-05-26 13:38:30,406 INFO org.apache.juli.logging.DirectJDKLog [main] Starting service [Tomcat]
+2022-05-26 13:38:30,406 INFO org.apache.juli.logging.DirectJDKLog [main] Starting Servlet engine: [Apache Tomcat/9.0.58]
+2022-05-26 13:38:30,485 INFO org.apache.juli.logging.DirectJDKLog [main] Initializing Spring embedded WebApplicationContext
+2022-05-26 13:38:30,485 INFO org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext [main] Root WebApplicationContext: initialization completed in 1573 ms
+2022-05-26 13:38:30,582 WARN org.springframework.boot.autoconfigure.orm.jpa.JpaBaseConfiguration$JpaWebConfiguration [main] spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2022-05-26 13:38:30,663 INFO com.zaxxer.hikari.HikariDataSource [main] HikariPool-1 - Starting...
+2022-05-26 13:38:30,733 INFO com.zaxxer.hikari.HikariDataSource [main] HikariPool-1 - Start completed.
+2022-05-26 13:38:30,748 INFO org.flywaydb.core.internal.logging.slf4j.Slf4jLog [main] Flyway Community Edition 8.5.4 by Redgate
+2022-05-26 13:38:30,748 INFO org.flywaydb.core.internal.logging.slf4j.Slf4jLog [main] See what's new here: https://flywaydb.org/documentation/learnmore/releaseNotes#8.5.4
+2022-05-26 13:38:30,748 INFO org.flywaydb.core.internal.logging.slf4j.Slf4jLog [main] 
+2022-05-26 13:38:30,748 INFO org.flywaydb.core.internal.logging.slf4j.Slf4jLog [main] Database: jdbc:postgresql://localhost:5432/AcademicMisinformation (PostgreSQL 14.2)
+2022-05-26 13:38:30,802 INFO org.flywaydb.core.internal.logging.slf4j.Slf4jLog [main] Successfully validated 23 migrations (execution time 00:00.039s)
+2022-05-26 13:38:30,810 INFO org.flywaydb.core.internal.logging.slf4j.Slf4jLog [main] Current version of schema "migrations": 22
+2022-05-26 13:38:30,811 INFO org.flywaydb.core.internal.logging.slf4j.Slf4jLog [main] Schema "migrations" is up to date. No migration necessary.
+2022-05-26 13:38:30,876 INFO org.hibernate.jpa.internal.util.LogHelper [main] HHH000204: Processing PersistenceUnitInfo [name: default]
+2022-05-26 13:38:30,927 INFO org.hibernate.Version [main] HHH000412: Hibernate ORM core version 5.6.5.Final
+2022-05-26 13:38:31,054 INFO org.hibernate.annotations.common.reflection.java.JavaReflectionManager [main] HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+2022-05-26 13:38:31,145 INFO org.hibernate.dialect.Dialect [main] HHH000400: Using dialect: org.hibernate.dialect.PostgreSQLDialect
+2022-05-26 13:38:32,070 INFO org.hibernate.engine.transaction.jta.platform.internal.JtaPlatformInitiator [main] HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2022-05-26 13:38:32,079 INFO org.springframework.orm.jpa.AbstractEntityManagerFactoryBean [main] Initialized JPA EntityManagerFactory for persistence unit 'default'
+2022-05-26 13:38:32,601 DEBUG org.springframework.web.filter.GenericFilterBean [main] Filter 'authenticationJwtTokenFilter' configured for use
+2022-05-26 13:38:32,978 INFO org.springframework.security.web.DefaultSecurityFilterChain [main] Will not secure any request
+2022-05-26 13:38:33,602 INFO org.apache.juli.logging.DirectJDKLog [main] Starting ProtocolHandler ["http-nio-8080"]
+2022-05-26 13:38:33,629 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [main] Tomcat started on port(s): 8080 (http) with context path ''
+2022-05-26 13:38:33,645 INFO org.springframework.boot.StartupInfoLogger [main] Started IssProjectApplication in 5.32 seconds (JVM running for 5.928)
+2022-05-26 13:38:52,746 INFO org.apache.juli.logging.DirectJDKLog [http-nio-8080-exec-1] Initializing Spring DispatcherServlet 'dispatcherServlet'
+2022-05-26 13:38:52,748 INFO org.springframework.web.servlet.FrameworkServlet [http-nio-8080-exec-1] Initializing Servlet 'dispatcherServlet'
+2022-05-26 13:38:52,760 INFO org.springframework.web.servlet.FrameworkServlet [http-nio-8080-exec-1] Completed initialization in 12 ms
+2022-05-26 13:38:53,195 INFO com.example.controllers.CommonResourcesController [http-nio-8080-exec-4] Getting all faculties
+2022-05-26 13:38:53,211 INFO com.example.controllers.StaffMemberController [http-nio-8080-exec-3] Getting the students' averages studying at the specialization with the id 2 in the semester 2
+2022-05-26 13:38:53,295 INFO com.example.controllers.StaffMemberController [http-nio-8080-exec-3] Student averages successfully retrieved!
+2022-05-26 13:39:06,089 INFO org.springframework.orm.jpa.AbstractEntityManagerFactoryBean [SpringApplicationShutdownHook] Closing JPA EntityManagerFactory for persistence unit 'default'
+2022-05-26 13:39:06,094 INFO com.zaxxer.hikari.HikariDataSource [SpringApplicationShutdownHook] HikariPool-1 - Shutdown initiated...
+2022-05-26 13:39:06,098 INFO com.zaxxer.hikari.HikariDataSource [SpringApplicationShutdownHook] HikariPool-1 - Shutdown completed.
+2022-05-26 13:39:09,251 INFO org.springframework.boot.StartupInfoLogger [main] Starting IssProjectApplication using Java 17.0.2 on Alexs-personal-MacBook-Pro.local with PID 8830 (/Users/alexnedelcu/Desktop/Uni/ISS/academicmisinformation/backend/target/classes started by alexnedelcu in /Users/alexnedelcu/Desktop/Uni/ISS/academicmisinformation/backend)
+2022-05-26 13:39:09,253 INFO org.hibernate.validator.internal.util.Version [background-preinit] HV000001: Hibernate Validator 6.2.2.Final
+2022-05-26 13:39:09,254 DEBUG org.springframework.boot.StartupInfoLogger [main] Running with Spring Boot v2.6.4, Spring v5.3.16
+2022-05-26 13:39:09,254 INFO org.springframework.boot.SpringApplication [main] No active profile set, falling back to 1 default profile: "default"
+2022-05-26 13:39:10,027 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2022-05-26 13:39:10,120 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Finished Spring Data repository scanning in 84 ms. Found 13 JPA repository interfaces.
+2022-05-26 13:39:10,580 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [main] Tomcat initialized with port(s): 8080 (http)
+2022-05-26 13:39:10,587 INFO org.apache.juli.logging.DirectJDKLog [main] Initializing ProtocolHandler ["http-nio-8080"]
+2022-05-26 13:39:10,587 INFO org.apache.juli.logging.DirectJDKLog [main] Starting service [Tomcat]
+2022-05-26 13:39:10,588 INFO org.apache.juli.logging.DirectJDKLog [main] Starting Servlet engine: [Apache Tomcat/9.0.58]
+2022-05-26 13:39:10,643 INFO org.apache.juli.logging.DirectJDKLog [main] Initializing Spring embedded WebApplicationContext
+2022-05-26 13:39:10,644 INFO org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext [main] Root WebApplicationContext: initialization completed in 1351 ms
+2022-05-26 13:39:10,755 WARN org.springframework.boot.autoconfigure.orm.jpa.JpaBaseConfiguration$JpaWebConfiguration [main] spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2022-05-26 13:39:10,834 INFO com.zaxxer.hikari.HikariDataSource [main] HikariPool-1 - Starting...
+2022-05-26 13:39:10,911 INFO com.zaxxer.hikari.HikariDataSource [main] HikariPool-1 - Start completed.
+2022-05-26 13:39:10,925 INFO org.flywaydb.core.internal.logging.slf4j.Slf4jLog [main] Flyway Community Edition 8.5.4 by Redgate
+2022-05-26 13:39:10,925 INFO org.flywaydb.core.internal.logging.slf4j.Slf4jLog [main] See what's new here: https://flywaydb.org/documentation/learnmore/releaseNotes#8.5.4
+2022-05-26 13:39:10,926 INFO org.flywaydb.core.internal.logging.slf4j.Slf4jLog [main] 
+2022-05-26 13:39:10,926 INFO org.flywaydb.core.internal.logging.slf4j.Slf4jLog [main] Database: jdbc:postgresql://localhost:5432/AcademicMisinformation (PostgreSQL 14.2)
+2022-05-26 13:39:10,975 INFO org.flywaydb.core.internal.logging.slf4j.Slf4jLog [main] Successfully validated 23 migrations (execution time 00:00.038s)
+2022-05-26 13:39:10,980 INFO org.flywaydb.core.internal.logging.slf4j.Slf4jLog [main] Current version of schema "migrations": 22
+2022-05-26 13:39:10,981 INFO org.flywaydb.core.internal.logging.slf4j.Slf4jLog [main] Schema "migrations" is up to date. No migration necessary.
+2022-05-26 13:39:11,037 INFO org.hibernate.jpa.internal.util.LogHelper [main] HHH000204: Processing PersistenceUnitInfo [name: default]
+2022-05-26 13:39:11,080 INFO org.hibernate.Version [main] HHH000412: Hibernate ORM core version 5.6.5.Final
+2022-05-26 13:39:11,234 INFO org.hibernate.annotations.common.reflection.java.JavaReflectionManager [main] HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+2022-05-26 13:39:11,332 INFO org.hibernate.dialect.Dialect [main] HHH000400: Using dialect: org.hibernate.dialect.PostgreSQLDialect
+2022-05-26 13:39:12,110 INFO org.hibernate.engine.transaction.jta.platform.internal.JtaPlatformInitiator [main] HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2022-05-26 13:39:12,119 INFO org.springframework.orm.jpa.AbstractEntityManagerFactoryBean [main] Initialized JPA EntityManagerFactory for persistence unit 'default'
+2022-05-26 13:39:12,566 DEBUG org.springframework.web.filter.GenericFilterBean [main] Filter 'authenticationJwtTokenFilter' configured for use
+2022-05-26 13:39:12,998 INFO org.springframework.security.web.DefaultSecurityFilterChain [main] Will not secure any request
+2022-05-26 13:39:13,616 INFO org.apache.juli.logging.DirectJDKLog [main] Starting ProtocolHandler ["http-nio-8080"]
+2022-05-26 13:39:13,629 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [main] Tomcat started on port(s): 8080 (http) with context path ''
+2022-05-26 13:39:13,639 INFO org.springframework.boot.StartupInfoLogger [main] Started IssProjectApplication in 4.773 seconds (JVM running for 5.339)
+2022-05-26 13:40:04,938 INFO org.springframework.orm.jpa.AbstractEntityManagerFactoryBean [SpringApplicationShutdownHook] Closing JPA EntityManagerFactory for persistence unit 'default'
+2022-05-26 13:40:04,944 INFO com.zaxxer.hikari.HikariDataSource [SpringApplicationShutdownHook] HikariPool-1 - Shutdown initiated...
+2022-05-26 13:40:04,947 INFO com.zaxxer.hikari.HikariDataSource [SpringApplicationShutdownHook] HikariPool-1 - Shutdown completed.
+2022-05-26 13:40:09,118 INFO org.springframework.boot.StartupInfoLogger [main] Starting IssProjectApplication using Java 17.0.2 on Alexs-personal-MacBook-Pro.local with PID 8852 (/Users/alexnedelcu/Desktop/Uni/ISS/academicmisinformation/backend/target/classes started by alexnedelcu in /Users/alexnedelcu/Desktop/Uni/ISS/academicmisinformation/backend)
+2022-05-26 13:40:09,119 INFO org.hibernate.validator.internal.util.Version [background-preinit] HV000001: Hibernate Validator 6.2.2.Final
+2022-05-26 13:40:09,121 DEBUG org.springframework.boot.StartupInfoLogger [main] Running with Spring Boot v2.6.4, Spring v5.3.16
+2022-05-26 13:40:09,121 INFO org.springframework.boot.SpringApplication [main] No active profile set, falling back to 1 default profile: "default"
+2022-05-26 13:40:09,763 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2022-05-26 13:40:09,828 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Finished Spring Data repository scanning in 57 ms. Found 13 JPA repository interfaces.
+2022-05-26 13:40:10,384 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [main] Tomcat initialized with port(s): 8080 (http)
+2022-05-26 13:40:10,391 INFO org.apache.juli.logging.DirectJDKLog [main] Initializing ProtocolHandler ["http-nio-8080"]
+2022-05-26 13:40:10,391 INFO org.apache.juli.logging.DirectJDKLog [main] Starting service [Tomcat]
+2022-05-26 13:40:10,392 INFO org.apache.juli.logging.DirectJDKLog [main] Starting Servlet engine: [Apache Tomcat/9.0.58]
+2022-05-26 13:40:10,455 INFO org.apache.juli.logging.DirectJDKLog [main] Initializing Spring embedded WebApplicationContext
+2022-05-26 13:40:10,455 INFO org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext [main] Root WebApplicationContext: initialization completed in 1296 ms
+2022-05-26 13:40:10,577 WARN org.springframework.boot.autoconfigure.orm.jpa.JpaBaseConfiguration$JpaWebConfiguration [main] spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2022-05-26 13:40:10,689 INFO com.zaxxer.hikari.HikariDataSource [main] HikariPool-1 - Starting...
+2022-05-26 13:40:10,760 INFO com.zaxxer.hikari.HikariDataSource [main] HikariPool-1 - Start completed.
+2022-05-26 13:40:10,775 INFO org.flywaydb.core.internal.logging.slf4j.Slf4jLog [main] Flyway Community Edition 8.5.4 by Redgate
+2022-05-26 13:40:10,775 INFO org.flywaydb.core.internal.logging.slf4j.Slf4jLog [main] See what's new here: https://flywaydb.org/documentation/learnmore/releaseNotes#8.5.4
+2022-05-26 13:40:10,775 INFO org.flywaydb.core.internal.logging.slf4j.Slf4jLog [main] 
+2022-05-26 13:40:10,775 INFO org.flywaydb.core.internal.logging.slf4j.Slf4jLog [main] Database: jdbc:postgresql://localhost:5432/AcademicMisinformation (PostgreSQL 14.2)
+2022-05-26 13:40:10,829 INFO org.flywaydb.core.internal.logging.slf4j.Slf4jLog [main] Successfully validated 23 migrations (execution time 00:00.042s)
+2022-05-26 13:40:10,836 INFO org.flywaydb.core.internal.logging.slf4j.Slf4jLog [main] Current version of schema "migrations": 22
+2022-05-26 13:40:10,837 INFO org.flywaydb.core.internal.logging.slf4j.Slf4jLog [main] Schema "migrations" is up to date. No migration necessary.
+2022-05-26 13:40:10,895 INFO org.hibernate.jpa.internal.util.LogHelper [main] HHH000204: Processing PersistenceUnitInfo [name: default]
+2022-05-26 13:40:10,946 INFO org.hibernate.Version [main] HHH000412: Hibernate ORM core version 5.6.5.Final
+2022-05-26 13:40:11,083 INFO org.hibernate.annotations.common.reflection.java.JavaReflectionManager [main] HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+2022-05-26 13:40:11,162 INFO org.hibernate.dialect.Dialect [main] HHH000400: Using dialect: org.hibernate.dialect.PostgreSQLDialect
+2022-05-26 13:40:11,810 INFO org.hibernate.engine.transaction.jta.platform.internal.JtaPlatformInitiator [main] HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2022-05-26 13:40:11,817 INFO org.springframework.orm.jpa.AbstractEntityManagerFactoryBean [main] Initialized JPA EntityManagerFactory for persistence unit 'default'
+2022-05-26 13:40:12,242 DEBUG org.springframework.web.filter.GenericFilterBean [main] Filter 'authenticationJwtTokenFilter' configured for use
+2022-05-26 13:40:12,661 INFO org.springframework.security.web.DefaultSecurityFilterChain [main] Will not secure any request
+2022-05-26 13:40:13,337 INFO org.apache.juli.logging.DirectJDKLog [main] Starting ProtocolHandler ["http-nio-8080"]
+2022-05-26 13:40:13,359 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [main] Tomcat started on port(s): 8080 (http) with context path ''
+2022-05-26 13:40:13,390 INFO org.springframework.boot.StartupInfoLogger [main] Started IssProjectApplication in 4.58 seconds (JVM running for 5.031)
+2022-05-26 13:40:18,245 INFO org.apache.juli.logging.DirectJDKLog [http-nio-8080-exec-1] Initializing Spring DispatcherServlet 'dispatcherServlet'
+2022-05-26 13:40:18,245 INFO org.springframework.web.servlet.FrameworkServlet [http-nio-8080-exec-1] Initializing Servlet 'dispatcherServlet'
+2022-05-26 13:40:18,252 INFO org.springframework.web.servlet.FrameworkServlet [http-nio-8080-exec-1] Completed initialization in 3 ms
+2022-05-26 13:40:18,550 INFO com.example.controllers.CommonResourcesController [http-nio-8080-exec-1] Getting all faculties
+2022-05-26 13:40:23,901 INFO com.example.controllers.StaffMemberController [http-nio-8080-exec-3] Getting the students' averages studying at the specialization with the id 1 in the semester 2
+2022-05-26 13:40:24,007 INFO com.example.controllers.StaffMemberController [http-nio-8080-exec-3] Student averages successfully retrieved!
+2022-05-26 13:40:28,306 INFO com.example.controllers.StaffMemberController [http-nio-8080-exec-5] Assigning students studying at the specialization with the id 1 in the semester 2 to their chosen optionals
+2022-05-26 13:40:28,310 INFO com.example.controllers.StaffMemberController [http-nio-8080-exec-5] Sorting the students
+2022-05-26 13:40:28,416 INFO com.example.controllers.StaffMemberController [http-nio-8080-exec-5] Assigned the student with the id 13 to the optional with the id 9
+2022-05-26 13:40:28,422 INFO com.example.controllers.StaffMemberController [http-nio-8080-exec-5] Assigned the student with the id 13 to the optional with the id 32
+2022-05-26 13:40:28,449 INFO com.example.controllers.StaffMemberController [http-nio-8080-exec-5] Assigned the student with the id 16 to the optional with the id 10
+2022-05-26 13:40:28,454 INFO com.example.controllers.StaffMemberController [http-nio-8080-exec-5] Assigned the student with the id 16 to the optional with the id 32
+2022-05-26 13:40:28,464 INFO com.example.controllers.StaffMemberController [http-nio-8080-exec-5] Assigned the student with the id 15 to the optional with the id 10
+2022-05-26 13:40:28,467 INFO com.example.controllers.StaffMemberController [http-nio-8080-exec-5] Assigned the student with the id 15 to the optional with the id 9
+2022-05-26 13:40:28,477 INFO com.example.controllers.StaffMemberController [http-nio-8080-exec-5] Assigned the student with the id 11 to the optional with the id 9
+2022-05-26 13:40:28,480 INFO com.example.controllers.StaffMemberController [http-nio-8080-exec-5] Assigned the student with the id 11 to the optional with the id 32
+2022-05-26 13:40:28,489 INFO com.example.controllers.StaffMemberController [http-nio-8080-exec-5] Assigned the student with the id 10 to the optional with the id 10
+2022-05-26 13:40:28,492 INFO com.example.controllers.StaffMemberController [http-nio-8080-exec-5] Assigned the student with the id 10 to the optional with the id 9
+2022-05-26 13:40:28,501 INFO com.example.controllers.StaffMemberController [http-nio-8080-exec-5] Assigned the student with the id 14 to the optional with the id 9
+2022-05-26 13:40:28,503 INFO com.example.controllers.StaffMemberController [http-nio-8080-exec-5] Assigned the student with the id 14 to the optional with the id 32
+2022-05-26 13:40:28,512 INFO com.example.controllers.StaffMemberController [http-nio-8080-exec-5] Assigned the student with the id 12 to the optional with the id 32
+2022-05-26 13:40:28,515 INFO com.example.controllers.StaffMemberController [http-nio-8080-exec-5] Assigned the student with the id 12 to the optional with the id 10
+2022-05-26 13:40:28,522 INFO com.example.controllers.StaffMemberController [http-nio-8080-exec-5] Optional assignment successfully done!
+2022-05-26 13:42:04,791 WARN org.springframework.web.servlet.handler.AbstractHandlerExceptionResolver [http-nio-8080-exec-8] Resolved [org.springframework.web.method.annotation.MethodArgumentTypeMismatchException: Failed to convert value of type 'java.lang.String' to required type 'java.lang.Long'; nested exception is java.lang.NumberFormatException: For input string: "undefined"]
+2022-05-26 13:43:35,604 INFO com.example.controllers.CommonResourcesController [http-nio-8080-exec-10] Getting all faculties
+2022-05-26 13:43:39,766 INFO com.example.controllers.StaffMemberController [http-nio-8080-exec-2] Getting the students' averages studying at the specialization with the id 2 in the semester 2
+2022-05-26 13:43:39,824 INFO com.example.controllers.StaffMemberController [http-nio-8080-exec-2] Student averages successfully retrieved!
+2022-05-26 13:43:48,152 INFO com.example.controllers.StaffMemberController [http-nio-8080-exec-4] Assigning students studying at the specialization with the id 2 in the semester 2 to their respective groups
+2022-05-26 13:43:48,177 INFO com.example.controllers.StaffMemberController [http-nio-8080-exec-4] Assigning 2 students per group
+2022-05-26 13:43:48,178 INFO com.example.controllers.StaffMemberController [http-nio-8080-exec-4] Group assignment successfully done!
+2022-05-26 13:45:38,190 INFO org.springframework.orm.jpa.AbstractEntityManagerFactoryBean [SpringApplicationShutdownHook] Closing JPA EntityManagerFactory for persistence unit 'default'
+2022-05-26 13:45:38,205 INFO com.zaxxer.hikari.HikariDataSource [SpringApplicationShutdownHook] HikariPool-1 - Shutdown initiated...
+2022-05-26 13:45:38,216 INFO com.zaxxer.hikari.HikariDataSource [SpringApplicationShutdownHook] HikariPool-1 - Shutdown completed.
+2022-05-26 13:45:41,497 INFO org.hibernate.validator.internal.util.Version [background-preinit] HV000001: Hibernate Validator 6.2.2.Final
+2022-05-26 13:45:41,522 INFO org.springframework.boot.StartupInfoLogger [main] Starting IssProjectApplication using Java 17.0.2 on Alexs-personal-MacBook-Pro.local with PID 8939 (/Users/alexnedelcu/Desktop/Uni/ISS/academicmisinformation/backend/target/classes started by alexnedelcu in /Users/alexnedelcu/Desktop/Uni/ISS/academicmisinformation/backend)
+2022-05-26 13:45:41,523 DEBUG org.springframework.boot.StartupInfoLogger [main] Running with Spring Boot v2.6.4, Spring v5.3.16
+2022-05-26 13:45:41,524 INFO org.springframework.boot.SpringApplication [main] No active profile set, falling back to 1 default profile: "default"
+2022-05-26 13:45:42,558 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2022-05-26 13:45:42,645 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Finished Spring Data repository scanning in 80 ms. Found 13 JPA repository interfaces.
+2022-05-26 13:45:43,163 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [main] Tomcat initialized with port(s): 8080 (http)
+2022-05-26 13:45:43,170 INFO org.apache.juli.logging.DirectJDKLog [main] Initializing ProtocolHandler ["http-nio-8080"]
+2022-05-26 13:45:43,170 INFO org.apache.juli.logging.DirectJDKLog [main] Starting service [Tomcat]
+2022-05-26 13:45:43,171 INFO org.apache.juli.logging.DirectJDKLog [main] Starting Servlet engine: [Apache Tomcat/9.0.58]
+2022-05-26 13:45:43,225 INFO org.apache.juli.logging.DirectJDKLog [main] Initializing Spring embedded WebApplicationContext
+2022-05-26 13:45:43,225 INFO org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext [main] Root WebApplicationContext: initialization completed in 1620 ms
+2022-05-26 13:45:43,333 WARN org.springframework.boot.autoconfigure.orm.jpa.JpaBaseConfiguration$JpaWebConfiguration [main] spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2022-05-26 13:45:43,420 INFO com.zaxxer.hikari.HikariDataSource [main] HikariPool-1 - Starting...
+2022-05-26 13:45:43,491 INFO com.zaxxer.hikari.HikariDataSource [main] HikariPool-1 - Start completed.
+2022-05-26 13:45:43,505 INFO org.flywaydb.core.internal.logging.slf4j.Slf4jLog [main] Flyway Community Edition 8.5.4 by Redgate
+2022-05-26 13:45:43,505 INFO org.flywaydb.core.internal.logging.slf4j.Slf4jLog [main] See what's new here: https://flywaydb.org/documentation/learnmore/releaseNotes#8.5.4
+2022-05-26 13:45:43,505 INFO org.flywaydb.core.internal.logging.slf4j.Slf4jLog [main] 
+2022-05-26 13:45:43,505 INFO org.flywaydb.core.internal.logging.slf4j.Slf4jLog [main] Database: jdbc:postgresql://localhost:5432/AcademicMisinformation (PostgreSQL 14.2)
+2022-05-26 13:45:43,550 INFO org.flywaydb.core.internal.logging.slf4j.Slf4jLog [main] Successfully validated 23 migrations (execution time 00:00.033s)
+2022-05-26 13:45:43,557 INFO org.flywaydb.core.internal.logging.slf4j.Slf4jLog [main] Current version of schema "migrations": 22
+2022-05-26 13:45:43,557 INFO org.flywaydb.core.internal.logging.slf4j.Slf4jLog [main] Schema "migrations" is up to date. No migration necessary.
+2022-05-26 13:45:43,625 INFO org.hibernate.jpa.internal.util.LogHelper [main] HHH000204: Processing PersistenceUnitInfo [name: default]
+2022-05-26 13:45:43,684 INFO org.hibernate.Version [main] HHH000412: Hibernate ORM core version 5.6.5.Final
+2022-05-26 13:45:43,821 INFO org.hibernate.annotations.common.reflection.java.JavaReflectionManager [main] HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+2022-05-26 13:45:43,912 INFO org.hibernate.dialect.Dialect [main] HHH000400: Using dialect: org.hibernate.dialect.PostgreSQLDialect
+2022-05-26 13:45:44,545 INFO org.hibernate.engine.transaction.jta.platform.internal.JtaPlatformInitiator [main] HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2022-05-26 13:45:44,553 INFO org.springframework.orm.jpa.AbstractEntityManagerFactoryBean [main] Initialized JPA EntityManagerFactory for persistence unit 'default'
+2022-05-26 13:45:44,960 DEBUG org.springframework.web.filter.GenericFilterBean [main] Filter 'authenticationJwtTokenFilter' configured for use
+2022-05-26 13:45:45,347 INFO org.springframework.security.web.DefaultSecurityFilterChain [main] Will not secure any request
+2022-05-26 13:45:46,021 INFO org.apache.juli.logging.DirectJDKLog [main] Starting ProtocolHandler ["http-nio-8080"]
+2022-05-26 13:45:46,035 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [main] Tomcat started on port(s): 8080 (http) with context path ''
+2022-05-26 13:45:46,045 INFO org.springframework.boot.StartupInfoLogger [main] Started IssProjectApplication in 5.086 seconds (JVM running for 5.831)
+2022-05-26 13:45:51,416 INFO org.apache.juli.logging.DirectJDKLog [http-nio-8080-exec-1] Initializing Spring DispatcherServlet 'dispatcherServlet'
+2022-05-26 13:45:51,418 INFO org.springframework.web.servlet.FrameworkServlet [http-nio-8080-exec-1] Initializing Servlet 'dispatcherServlet'
+2022-05-26 13:45:51,422 INFO org.springframework.web.servlet.FrameworkServlet [http-nio-8080-exec-1] Completed initialization in 2 ms
+2022-05-26 13:45:51,772 INFO com.example.controllers.CommonResourcesController [http-nio-8080-exec-2] Getting all faculties
+2022-05-26 13:45:57,686 INFO com.example.controllers.StaffMemberController [http-nio-8080-exec-4] Getting the students' averages studying at the specialization with the id 3 in the semester 2
+2022-05-26 13:45:57,784 INFO com.example.controllers.StaffMemberController [http-nio-8080-exec-4] Student averages successfully retrieved!
+2022-05-26 13:46:00,540 INFO com.example.controllers.StaffMemberController [http-nio-8080-exec-6] Assigning students studying at the specialization with the id 3 in the semester 2 to their respective groups
+2022-05-26 13:46:58,403 WARN com.zaxxer.hikari.pool.HikariPool$HouseKeeper [HikariPool-1 housekeeper] HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=1m14s811ms).
+2022-05-26 13:47:23,731 INFO com.example.controllers.StaffMemberController [http-nio-8080-exec-6] Assigning 2 students per group
+2022-05-26 13:49:26,459 WARN com.zaxxer.hikari.pool.HikariPool$HouseKeeper [HikariPool-1 housekeeper] HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=1m5s897ms).
+2022-05-26 13:49:26,468 INFO com.example.controllers.StaffMemberController [http-nio-8080-exec-6] Assigned to student with id 18 the group X11
+2022-05-26 13:49:26,522 INFO com.example.controllers.StaffMemberController [http-nio-8080-exec-6] Assigned to student with id 21 the group X11
+2022-05-26 13:49:26,604 INFO com.example.controllers.StaffMemberController [http-nio-8080-exec-6] Assigned to student with id 19 the group X12
+2022-05-26 13:49:26,657 INFO com.example.controllers.StaffMemberController [http-nio-8080-exec-6] Assigned to student with id 17 the group X12
+2022-05-26 13:49:26,705 INFO com.example.controllers.StaffMemberController [http-nio-8080-exec-6] Assigned to student with id 22 the group X13
+2022-05-26 13:49:26,750 INFO com.example.controllers.StaffMemberController [http-nio-8080-exec-6] Assigned to student with id 20 the group X13
+2022-05-26 13:49:26,751 INFO com.example.controllers.StaffMemberController [http-nio-8080-exec-6] Group assignment successfully done!
+2022-05-26 13:49:26,831 INFO org.springframework.orm.jpa.AbstractEntityManagerFactoryBean [SpringApplicationShutdownHook] Closing JPA EntityManagerFactory for persistence unit 'default'
+2022-05-26 13:49:26,847 INFO com.zaxxer.hikari.HikariDataSource [SpringApplicationShutdownHook] HikariPool-1 - Shutdown initiated...
+2022-05-26 13:49:26,854 INFO com.zaxxer.hikari.HikariDataSource [SpringApplicationShutdownHook] HikariPool-1 - Shutdown completed.
+2022-05-26 13:49:48,267 INFO org.springframework.boot.StartupInfoLogger [main] Starting IssProjectApplication using Java 17.0.2 on Alexs-personal-MacBook-Pro.local with PID 8995 (/Users/alexnedelcu/Desktop/Uni/ISS/academicmisinformation/backend/target/classes started by alexnedelcu in /Users/alexnedelcu/Desktop/Uni/ISS/academicmisinformation/backend)
+2022-05-26 13:49:48,267 INFO org.hibernate.validator.internal.util.Version [background-preinit] HV000001: Hibernate Validator 6.2.2.Final
+2022-05-26 13:49:48,269 DEBUG org.springframework.boot.StartupInfoLogger [main] Running with Spring Boot v2.6.4, Spring v5.3.16
+2022-05-26 13:49:48,269 INFO org.springframework.boot.SpringApplication [main] No active profile set, falling back to 1 default profile: "default"
+2022-05-26 13:49:48,989 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2022-05-26 13:49:49,068 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Finished Spring Data repository scanning in 67 ms. Found 13 JPA repository interfaces.
+2022-05-26 13:49:49,644 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [main] Tomcat initialized with port(s): 8080 (http)
+2022-05-26 13:49:49,654 INFO org.apache.juli.logging.DirectJDKLog [main] Initializing ProtocolHandler ["http-nio-8080"]
+2022-05-26 13:49:49,655 INFO org.apache.juli.logging.DirectJDKLog [main] Starting service [Tomcat]
+2022-05-26 13:49:49,655 INFO org.apache.juli.logging.DirectJDKLog [main] Starting Servlet engine: [Apache Tomcat/9.0.58]
+2022-05-26 13:49:49,751 INFO org.apache.juli.logging.DirectJDKLog [main] Initializing Spring embedded WebApplicationContext
+2022-05-26 13:49:49,752 INFO org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext [main] Root WebApplicationContext: initialization completed in 1455 ms
+2022-05-26 13:49:49,887 WARN org.springframework.boot.autoconfigure.orm.jpa.JpaBaseConfiguration$JpaWebConfiguration [main] spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2022-05-26 13:49:49,985 INFO com.zaxxer.hikari.HikariDataSource [main] HikariPool-1 - Starting...
+2022-05-26 13:49:50,070 INFO com.zaxxer.hikari.HikariDataSource [main] HikariPool-1 - Start completed.
+2022-05-26 13:49:50,088 INFO org.flywaydb.core.internal.logging.slf4j.Slf4jLog [main] Flyway Community Edition 8.5.4 by Redgate
+2022-05-26 13:49:50,088 INFO org.flywaydb.core.internal.logging.slf4j.Slf4jLog [main] See what's new here: https://flywaydb.org/documentation/learnmore/releaseNotes#8.5.4
+2022-05-26 13:49:50,088 INFO org.flywaydb.core.internal.logging.slf4j.Slf4jLog [main] 
+2022-05-26 13:49:50,088 INFO org.flywaydb.core.internal.logging.slf4j.Slf4jLog [main] Database: jdbc:postgresql://localhost:5432/AcademicMisinformation (PostgreSQL 14.2)
+2022-05-26 13:49:50,142 INFO org.flywaydb.core.internal.logging.slf4j.Slf4jLog [main] Successfully validated 23 migrations (execution time 00:00.041s)
+2022-05-26 13:49:50,148 INFO org.flywaydb.core.internal.logging.slf4j.Slf4jLog [main] Current version of schema "migrations": 22
+2022-05-26 13:49:50,149 INFO org.flywaydb.core.internal.logging.slf4j.Slf4jLog [main] Schema "migrations" is up to date. No migration necessary.
+2022-05-26 13:49:50,218 INFO org.hibernate.jpa.internal.util.LogHelper [main] HHH000204: Processing PersistenceUnitInfo [name: default]
+2022-05-26 13:49:50,280 INFO org.hibernate.Version [main] HHH000412: Hibernate ORM core version 5.6.5.Final
+2022-05-26 13:49:50,432 INFO org.hibernate.annotations.common.reflection.java.JavaReflectionManager [main] HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+2022-05-26 13:49:50,536 INFO org.hibernate.dialect.Dialect [main] HHH000400: Using dialect: org.hibernate.dialect.PostgreSQLDialect
+2022-05-26 13:49:51,342 INFO org.hibernate.engine.transaction.jta.platform.internal.JtaPlatformInitiator [main] HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2022-05-26 13:49:51,349 INFO org.springframework.orm.jpa.AbstractEntityManagerFactoryBean [main] Initialized JPA EntityManagerFactory for persistence unit 'default'
+2022-05-26 13:49:51,811 DEBUG org.springframework.web.filter.GenericFilterBean [main] Filter 'authenticationJwtTokenFilter' configured for use
+2022-05-26 13:49:52,209 INFO org.springframework.security.web.DefaultSecurityFilterChain [main] Will not secure any request
+2022-05-26 13:49:53,117 INFO org.apache.juli.logging.DirectJDKLog [main] Starting ProtocolHandler ["http-nio-8080"]
+2022-05-26 13:49:53,130 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [main] Tomcat started on port(s): 8080 (http) with context path ''
+2022-05-26 13:49:53,139 INFO org.springframework.boot.StartupInfoLogger [main] Started IssProjectApplication in 5.324 seconds (JVM running for 6.113)
+2022-05-26 13:50:02,762 INFO org.apache.juli.logging.DirectJDKLog [http-nio-8080-exec-1] Initializing Spring DispatcherServlet 'dispatcherServlet'
+2022-05-26 13:50:02,763 INFO org.springframework.web.servlet.FrameworkServlet [http-nio-8080-exec-1] Initializing Servlet 'dispatcherServlet'
+2022-05-26 13:50:02,764 INFO org.springframework.web.servlet.FrameworkServlet [http-nio-8080-exec-1] Completed initialization in 1 ms
+2022-05-26 13:50:02,924 INFO com.example.controllers.AuthenticationController [http-nio-8080-exec-2] Signing in with username belvira
+2022-05-26 13:50:03,360 INFO com.example.controllers.AuthenticationController [http-nio-8080-exec-2] Sign in successful with username belvira
+2022-05-26 13:50:03,478 INFO com.example.controllers.CommonResourcesController [http-nio-8080-exec-4] Getting all faculties
+2022-05-26 13:50:30,237 INFO com.example.controllers.StaffMemberController [http-nio-8080-exec-6] Getting the students' averages studying at the specialization with the id 3 in the semester 2
+2022-05-26 13:50:30,343 INFO com.example.controllers.StaffMemberController [http-nio-8080-exec-6] Student averages successfully retrieved!
+2022-05-26 13:50:35,624 INFO com.example.controllers.StaffMemberController [http-nio-8080-exec-8] Assigning students studying at the specialization with the id 3 in the semester 2 to their respective groups
+2022-05-26 13:50:35,661 INFO com.example.controllers.StaffMemberController [http-nio-8080-exec-8] Assigning 2 students per group
+2022-05-26 13:50:35,662 INFO com.example.controllers.StaffMemberController [http-nio-8080-exec-8] Group assignment successfully done!
+2022-05-26 13:50:45,399 INFO com.example.controllers.StaffMemberController [http-nio-8080-exec-10] Getting the students' averages studying at the specialization with the id 1 in the semester 1
+2022-05-26 13:50:45,455 INFO com.example.controllers.StaffMemberController [http-nio-8080-exec-10] Student averages successfully retrieved!
+2022-05-26 13:51:53,834 INFO com.example.controllers.StaffMemberController [http-nio-8080-exec-3] Assigning students studying at the specialization with the id 1 in the semester 1 to their respective groups
+2022-05-26 13:51:53,859 INFO com.example.controllers.StaffMemberController [http-nio-8080-exec-3] Assigning 2 students per group
+2022-05-26 13:51:53,863 INFO com.example.controllers.StaffMemberController [http-nio-8080-exec-3] Assigned to student with id 4 the group A11
+2022-05-26 13:51:53,863 INFO com.example.controllers.StaffMemberController [http-nio-8080-exec-3] Assigned to student with id 5 the group A11
+2022-05-26 13:51:53,864 INFO com.example.controllers.StaffMemberController [http-nio-8080-exec-3] Assigned to student with id 18 the group A12
+2022-05-26 13:51:53,864 INFO com.example.controllers.StaffMemberController [http-nio-8080-exec-3] Assigned to student with id 6 the group A12
+2022-05-26 13:51:53,864 INFO com.example.controllers.StaffMemberController [http-nio-8080-exec-3] Assigned to student with id 7 the group A13
+2022-05-26 13:51:53,864 INFO com.example.controllers.StaffMemberController [http-nio-8080-exec-3] Assigned to student with id 21 the group A13
+2022-05-26 13:51:53,864 INFO com.example.controllers.StaffMemberController [http-nio-8080-exec-3] Assigned to student with id 19 the group A14
+2022-05-26 13:51:53,864 INFO com.example.controllers.StaffMemberController [http-nio-8080-exec-3] Assigned to student with id 17 the group A14
+2022-05-26 13:51:53,865 INFO com.example.controllers.StaffMemberController [http-nio-8080-exec-3] Assigned to student with id 9 the group A15
+2022-05-26 13:51:53,865 INFO com.example.controllers.StaffMemberController [http-nio-8080-exec-3] Assigned to student with id 8 the group A15
+2022-05-26 13:51:53,865 INFO com.example.controllers.StaffMemberController [http-nio-8080-exec-3] Assigned to student with id 22 the group A16
+2022-05-26 13:51:53,865 INFO com.example.controllers.StaffMemberController [http-nio-8080-exec-3] Assigned to student with id 3 the group A16
+2022-05-26 13:51:53,865 INFO com.example.controllers.StaffMemberController [http-nio-8080-exec-3] Assigned to student with id 20 the group A17
+2022-05-26 13:51:53,866 INFO com.example.controllers.StaffMemberController [http-nio-8080-exec-3] Group assignment successfully done!

@@ -34,12 +34,14 @@ const NavContainer = styled.div`
 
 const ProfileContainer = styled.div`
   /* display: flex; */
+
   & > * {
     display: inline;
     margin: 0px 10px;
   }
 
   position: relative;
+  //min-width: 150px;
 `;
 
 const ProfileInfoPopup = styled.div`
@@ -66,9 +68,11 @@ const ProfileInfoPopup = styled.div`
   & #role {
     font-size: large;
   }
+
   & #faculty {
     font-size: small;
   }
+
   & #settings {
     font-size: small;
     display: flex;
@@ -101,15 +105,15 @@ const Navbar = ({ user }) => {
   const getIconForRole = (role) => {
     switch (role) {
       case Role.Admin:
-        return <Icon icon="icons8:student" color="#bdf841" />;
+        return <Icon icon="icons8:student" color="#bdf841"/>;
       case Role.Student:
-        return <Icon icon="icons8:student" color="#bdf841" />;
+        return <Icon icon="icons8:student" color="#bdf841"/>;
       case Role.Chief:
-        return <Icon icon="ic:baseline-supervisor-account" color="#bdf841" />;
+        return <Icon icon="ic:baseline-supervisor-account" color="#bdf841"/>;
       case Role.Teacher:
-        return <Icon icon="la:chalkboard-teacher" color="#bdf841" />;
+        return <Icon icon="la:chalkboard-teacher" color="#bdf841"/>;
       case Role.Staff:
-        return <Icon icon="icon-park-outline:file-staff-one" color="#bdf841" />;
+        return <Icon icon="icon-park-outline:file-staff-one" color="#bdf841"/>;
       default:
         return undefined;
     }
@@ -125,6 +129,7 @@ const Navbar = ({ user }) => {
         <ProfileContainer>
           {getIconForRole(user.role)}
           <h4 onClick={() => setProfileVisible(!profileVisible)}>
+            {(!user.firstName && !user.lastName && <span>Configure profile</span>)}
             {user && (
               <>
                 {user.firstName} {user.lastName}
@@ -137,15 +142,15 @@ const Navbar = ({ user }) => {
               <div id="faculty">{FACULTY_NAME}</div>
               <div id="settings" onClick={showManagePopup}>
                 Manage profile
-                <Icon icon="ci:settings-filled" color="#bdf841" />
+                <Icon icon="ci:settings-filled" color="#bdf841"/>
               </div>
             </ProfileInfoPopup>
           )}
         </ProfileContainer>
-        <Icon onClick={handleLogout} icon="mdi:logout" color="#bdf841" />
+        <Icon onClick={handleLogout} icon="mdi:logout" color="#bdf841"/>
       </NavContainer>
       {configureVisible && (
-        <ConfigureProfilePopup user={user} closePopup={hideManagePopup} />
+        <ConfigureProfilePopup user={user} closePopup={hideManagePopup}/>
       )}
     </>
   );
